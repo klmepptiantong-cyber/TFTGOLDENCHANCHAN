@@ -1,0 +1,88 @@
+.v081-block {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.v081-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.v081-head > div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.v081-head strong {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+#v081-status {
+  font-size: 9px;
+  opacity: 0.82;
+}
+
+#v081-status[data-kind="ok"] { color: #85f5b2; }
+#v081-status[data-kind="warn"] { color: #ffd778; }
+#v081-status[data-kind="error"] { color: #ff9c9c; }
+
+#v081-auto-learn,
+.v081-actions button {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  padding: 6px 8px;
+  font-size: 9px;
+  cursor: pointer;
+}
+
+#v081-auto-learn[data-enabled="1"] {
+  border-color: rgba(80, 238, 153, 0.38);
+}
+
+.v081-states {
+  display: grid;
+  gap: 4px;
+  margin-top: 7px;
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+#v081-prototype-stats {
+  opacity: 0.7;
+}
+
+.v081-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 7px;
+}
+
+.v081-actions button {
+  flex: 1;
+}
+
+.v081-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.v081-note {
+  display: block;
+  margin-top: 6px;
+  font-size: 8px;
+  line-height: 1.4;
+  opacity: 0.6;
+}
+
+.compact .v081-states,
+.compact .v081-actions,
+.compact .v081-note {
+  display: none;
+}
