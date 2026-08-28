@@ -36,7 +36,7 @@ export type MetaSnapshot = {
   targetRankCoverage: boolean;
   totalGames: number | null;
   source: string;
-  sourceUrl?: string;
+  sourceUrl?: string | null;
   patchAuthority?: string;
   comps: Comp[];
 };
