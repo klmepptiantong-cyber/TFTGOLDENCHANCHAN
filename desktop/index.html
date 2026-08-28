@@ -7,6 +7,7 @@
     <title>TFTGOLDENCHANCHAN Overlay</title>
     <script type="module" src="/src/main.ts"></script>
     <script type="module" src="/src/v042-enhancements.ts"></script>
+    <script type="module" src="/src/v043-decision-speed.ts"></script>
   </head>
   <body>
     <main id="overlay" class="overlay-shell">
@@ -89,7 +90,7 @@
             <div class="panel-heading">
               <div>
                 <strong>强化符文</strong>
-                <span>可点选已核验目录，也可手工输入</span>
+                <span>最近使用快速点选 + 手工输入</span>
               </div>
               <button id="add-augment" class="mini-button" type="button">+ 强化</button>
             </div>
@@ -140,7 +141,7 @@
         <header class="picker-head">
           <div>
             <strong>强化符文快速选择</strong>
-            <span id="augment-source-label">等待公开数据目录</span>
+            <span id="augment-source-label">最近使用</span>
           </div>
           <button value="cancel" type="submit" aria-label="关闭">×</button>
         </header>
