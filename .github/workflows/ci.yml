@@ -20,4 +20,6 @@ jobs:
       - run: npm run check:data
       - name: Guard game-rule precision mode
         run: npm run check:rules
+      - name: Guard vision model activation
+        run: npm run check:vision-model
       - run: npm run build
