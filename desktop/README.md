@@ -1,32 +1,54 @@
-# TFTGOLDENCHANCHAN Overlay V0.6
+# TFTGOLDENCHANCHAN Overlay V0.7
 
 Windows 桌面悬浮助手，基于 Tauri 2 + Vite。
+
+## V0.7 Opponent Scouting + Pool Pressure
+
+- Overlay 内新增 `V0.7 OPPONENT SCOUTING` 面板，最多保存 7 名对手快照
+- 支持存活 / 淘汰状态；淘汰玩家不再继续影响共享卡池
+- 手工英雄张数为可信主路径，例如 `蛇女=2, 洛=2, 阿木木=1`
+- V0.6.1 OCR 会从当前画面提取高置信英雄候选，但**不会自动写入对手账本**；必须显式保存
+- 根据对手棋盘重合自动推导阵容同行数，并注入原有 `lib/recommender.ts`
+- `lib/scouting.ts` + `lib/pool.ts` 计算核心英雄相对卡池压力；压力会影响 Fit、D牌止损和转阵建议
+- 存活对手快照超过 5 分钟未刷新会过期，避免旧棋盘长期污染判断
+- `lib/scouting-runtime.ts` 将侦察摘要桥接到现有 `parseGameState()`，不建立第二套推荐器
+- 当前 S18 规则仍为 `provisional / precisionUse=blocked`，因此只输出相对压力，不伪造精确 D牌命中率 / Top1 / Top4 概率
+
+## V0.6.1 Local OCR Recognition
+
+- 在 Windows 自动窗口抓帧上接入本地 PaddleOCR/ONNX OCR
+- 自动读取阶段、人口、金币、HP；达到多帧置信度门槛后可回填状态
+- 商店只有在完整识别 5 格并达到置信度门槛时才自动应用
+- OCR 输出通过 `lib/vision.ts` 做时间衰减 + 多帧融合，单帧误识别不会直接成为可信状态
+- OCR 模型本地下载、校验并随 portable runtime 组织
+- 前端通过 `tft-vision-state` 事件向后续视觉层提供原始 OCR frame、结构化识别和融合状态
 
 ## V0.6.0 Auto Vision Foundation
 
 - Windows 原生窗口枚举 + `xcap` / Windows Graphics Capture（WGC）窗口抓帧
 - Overlay 启动后默认低频持续捕获，优先自动匹配“金铲铲 / JCC / 常见安卓模拟器”窗口
 - 自动匹配失败时保留一次性手动选择窗口的 fallback；选择结果会持久化
-- 捕获帧通过本地 Tauri IPC 返回，前端发出 `tft-vision-frame` 事件，供 OCR / 英雄模板识别继续消费
+- 捕获帧通过本地 Tauri IPC 返回，前端发出 `tft-vision-frame` 事件
 - 当前捕获频率约 1 FPS，避免为了决策辅助无意义占用 60 FPS
 - 视觉帧只来自玩家屏幕已显示内容；不读取游戏进程内存、不注入、不抓取/解密客户端网络协议
-- `lib/vision.ts` 提供多帧置信度 + 时间衰减融合，避免单帧 OCR 误识别直接污染状态
-- `lib/pool.ts` 提供自己/对手持牌、同行压力、淘汰返池和识别置信度衰减模型
+- `lib/vision.ts` 提供多帧置信度 + 时间衰减融合
+- `lib/pool.ts` 提供观察张数、同行压力、淘汰返池和识别置信度衰减模型
 - `lib/ev.ts` 提供当前相对路线 EV；未核准规则下明确禁止伪精确 Top1 / Top4 / D牌命中概率
-- `rules/S18/18.1b.json` 为版本化规则入口；当前 S18 公开卡池资料存在冲突，因此标记 `provisional / precisionUse=blocked`
-- CI 新增 `check:rules` 门禁：只有规则状态为 `verified` 且存在完整商店概率时才允许开启精确概率模式
+- `rules/S18/18.1b.json` 为版本化规则入口；当前公开规则存在冲突，因此标记 `provisional / precisionUse=blocked`
+- CI `check:rules` 门禁：只有规则状态为 `verified` 且存在完整商店概率时才允许开启精确概率模式
 
-### 当前 V0.6 状态
+### 当前视觉 / 侦察状态
 
 - Capture / Window Tracking：✅
 - Temporal Vision Fusion：✅
-- Pool Pressure Engine：✅
-- Relative EV Guardrail：✅
-- OCR（阶段/金币/HP/人口）：下一步
-- 商店5格英雄识别：下一步
-- 场上/备战席/装备识别：下一步
-- 对手数据库自动重建：后续 V0.6.x
-- 精确 Top1 / Top4 / Expected Placement：等待规则核验 + 视觉状态输入
+- 本地 OCR（阶段 / 人口 / 金币 / HP）：✅
+- 完整 5 格商店 OCR + 高置信自动回填：✅
+- 对手侦察账本：✅
+- 自动同行重建：✅
+- 相对卡池压力 → 推荐器：✅
+- 对手棋盘英雄 OCR 候选：✅，需用户确认保存
+- 全自动场上 / 备战席 / 装备视觉识别：后续
+- 精确 Top1 / Top4 / Expected Placement：等待规则核验 + 更完整视觉状态
 
 ## V0.5 整局动态运营
 
@@ -106,8 +128,15 @@ npm run build:portable
 desktop/src-tauri/target/release/tftgoldenchanchan-overlay.exe
 ```
 
-GitHub Actions 的 `Desktop CI` 会在 Windows runner 上完成 TypeScript/Vite、Rust 与 portable exe 构建，并上传 `TFTGOLDENCHANCHAN-Windows-portable` artifact。
+GitHub Actions 的 `Desktop CI` 会在 Windows runner 上完成：
+
+1. desktop npm audit
+2. TypeScript + Vite build
+3. Rust `cargo check`
+4. portable Windows `.exe` 构建
+5. OCR runtime 组装与验证
+6. 上传 `TFTGOLDENCHANCHAN-Windows-portable` artifact
 
 ## 数据更新
 
-桌面端只从本仓库公开的、已经通过 V0.2.1 版本闸门和数据校验的 `data/latest.json` 获取最新快照。视觉图片 URL 同样来自 DataJ 已公开的结构化字段，并限制到腾讯图片域名。不会从未知接口绕过第三方站点访问控制。
+桌面端只从本仓库公开的、已经通过数据版本闸门和校验的 `data/latest.json` 获取最新快照。视觉图片 URL 来自已公开的结构化字段，并限制到腾讯图片域名。不会从未知接口绕过第三方站点访问控制。
