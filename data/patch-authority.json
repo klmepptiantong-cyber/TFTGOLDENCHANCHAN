@@ -1,0 +1,9 @@
+{
+  "season": "S18",
+  "patch": "18.1b",
+  "verifiedAt": "2026-08-28T06:40:00.000Z",
+  "source": "official-taptap",
+  "sourceUrl": "https://www.taptap.cn/moment/841982769956390376",
+  "effectiveAt": "2026-08-27T12:00:00+08:00",
+  "note": "安全锁：当自动官方版本源暂时不可解析时，实时统计仍必须与此独立核验版本一致。新版本上线后先更新此文件，再允许新版本统计覆盖排行榜。"
+}
