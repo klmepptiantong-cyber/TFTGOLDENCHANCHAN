@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-08-28T06:56:34Z",
+  "source": "datatft-jcc-public-client",
+  "sourceUrl": "https://jcc.datatft.com/explorer",
+  "semantics": "cumulative-and-above",
+  "verifiedPublicBands": [
+    "grandmaster+"
+  ],
+  "cnPublicSelectorLockedTo": "grandmaster+",
+  "requestedTargetBands": [
+    "platinum+",
+    "emerald+",
+    "diamond+",
+    "master+"
+  ],
+  "targetBandsPubliclyAvailable": false,
+  "dataIngested": false,
+  "note": "DataTFT 的通用前端包含铂金/翡翠/钻石/大师/宗师/王者枚举，但中国大陆服 jcc 公共界面当前将段位选择限制为宗师及以上。项目不把通用枚举误报为国服可用分段数据，也不绕过站点访问控制。"
+}
