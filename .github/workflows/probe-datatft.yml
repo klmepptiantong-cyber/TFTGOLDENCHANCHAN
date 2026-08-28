@@ -1,4 +1,4 @@
-name: Probe DataTFT
+name: Probe Public Sources
 
 on:
   workflow_dispatch:
@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "scripts/probe-datatft.mjs"
+      - "scripts/probe-dataj.mjs"
       - ".github/workflows/probe-datatft.yml"
 
 jobs:
@@ -20,3 +21,5 @@ jobs:
       - run: npm install
       - name: Inspect DataTFT public client bundles
         run: node scripts/probe-datatft.mjs
+      - name: Inspect DataJ comp DOM
+        run: node scripts/probe-dataj.mjs
