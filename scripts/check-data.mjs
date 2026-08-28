@@ -36,6 +36,14 @@ for (const comp of raw.comps ?? []) {
     }
   }
 
+  if (comp.enrichmentStatus === "full") {
+    if (!Array.isArray(comp.coreUnits) || comp.coreUnits.length === 0) errors.push(`${comp.name}: full enrichment missing coreUnits`);
+    if (!Array.isArray(comp.keyItems) || comp.keyItems.length === 0) errors.push(`${comp.name}: full enrichment missing keyItems`);
+    if (!comp.itemCarriers || Object.keys(comp.itemCarriers).length === 0) errors.push(`${comp.name}: full enrichment missing itemCarriers`);
+    if (!Array.isArray(comp.stagePlan) || comp.stagePlan.length === 0) errors.push(`${comp.name}: full enrichment missing stagePlan`);
+    if (comp.needsEnrichment === true) errors.push(`${comp.name}: full enrichment cannot still need enrichment`);
+  }
+
   const verified = new Set(comp.enrichmentVerifiedFields ?? []);
   if (comp.sourceEquipmentNamesComplete) {
     const coverage = comp.sourceEquipmentNameCoverage;
@@ -74,6 +82,24 @@ for (const comp of raw.comps ?? []) {
       }
     }
   }
+
+  if (comp.stagePlanSource === "derived-economy-v1") {
+    if (comp.enrichmentStatus !== "full" || comp.needsEnrichment !== false) {
+      errors.push(`${comp.name}: derived stage plan must only promote a fully ready comp`);
+    }
+    if (!new Set(["high", "medium"]).has(comp.stagePlanConfidence)) {
+      errors.push(`${comp.name}: derived stage plan confidence must be high or medium`);
+    }
+    if (!Array.isArray(comp.stagePlanEvidence) || comp.stagePlanEvidence.length < 3) {
+      errors.push(`${comp.name}: derived stage plan needs auditable evidence`);
+    }
+    if (!verified.has("stagePlanDerived")) {
+      errors.push(`${comp.name}: derived stage plan must declare stagePlanDerived`);
+    }
+    if (!comp.sourceEquipmentNamesComplete || !verified.has("keyItems") || !verified.has("itemCarriers")) {
+      errors.push(`${comp.name}: derived stage promotion requires complete verified equipment semantics`);
+    }
+  }
 }
 
 try {
@@ -88,9 +114,11 @@ try {
     if (item.priority < 0 || item.priority > 100) errors.push(`${item.name ?? "unknown"}: enrichment priority out of range`);
     if (!Array.isArray(item.missing) || item.missing.length === 0) errors.push(`${item.name ?? "unknown"}: enrichment queue missing fields must be non-empty`);
     const verified = new Set(item.verifiedFields ?? []);
-    for (const field of ["coreUnits", "flexUnits", "keyItems", "itemCarriers", "stagePlan"]) {
+    for (const field of ["coreUnits", "flexUnits", "keyItems", "itemCarriers"]) {
       if (verified.has(field) && item.missing?.includes(field)) errors.push(`${item.name ?? "unknown"}: ${field} cannot be both verified and missing`);
     }
+    const stageReady = verified.has("stagePlan") || verified.has("stagePlanDerived");
+    if (stageReady && item.missing?.includes("stagePlan")) errors.push(`${item.name ?? "unknown"}: stagePlan cannot be both ready and missing`);
   }
 } catch (error) {
   if (raw.enrichmentPending !== undefined) errors.push(`enrichment queue missing/invalid: ${error instanceof Error ? error.message : String(error)}`);
