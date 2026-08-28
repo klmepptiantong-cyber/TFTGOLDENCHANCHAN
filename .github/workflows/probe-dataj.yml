@@ -1,0 +1,24 @@
+name: Probe DataJ
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/v0.4.2-visual-input
+    paths:
+      - scripts/probe-dataj.mjs
+      - .github/workflows/probe-dataj.yml
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: node scripts/probe-dataj.mjs
