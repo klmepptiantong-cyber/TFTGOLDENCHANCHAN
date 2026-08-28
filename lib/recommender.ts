@@ -38,6 +38,40 @@ function augmentTraitHits(comp: Comp, state: GameState): string[] {
   return unique(augments.filter((augment) => traits.some((trait) => augment.includes(trait) || trait.includes(augment))));
 }
 
+function augmentAssessment(comp: Comp, state: GameState): { score: number; hits: string[]; evidence: string[] } {
+  const augments = state.augments ?? [];
+  if (!augments.length) return { score: 0, hits: [], evidence: [] };
+
+  const hits = augmentTraitHits(comp, state);
+  const economy = augments.filter((augment) => /经济|金币|利息|经验|升级|刷新|商店|D牌|搜牌/.test(augment));
+  const combat = augments.filter((augment) => /伤害|攻速|法强|攻击|护甲|魔抗|生命|吸血|暴击|治疗|护盾|战力|全能/.test(augment));
+  const general = augments.filter((augment) => !hits.includes(augment) && !economy.includes(augment) && !combat.includes(augment));
+  const score = Math.min(100, hits.length * 40 + combat.length * 18 + economy.length * 12 + general.length * 5);
+  const evidence: string[] = [];
+  if (hits.length) evidence.push(`羁绊定向：${hits.join(" / ")}`);
+  if (combat.length) evidence.push(`战力类×${combat.length}`);
+  if (economy.length) evidence.push(`经济类×${economy.length}`);
+  if (general.length) evidence.push(`通用/未分类×${general.length}`);
+  return { score, hits, evidence };
+}
+
+function completionScore(comp: Comp, state: GameState): number {
+  const owned = mergeOwned(state.units, state.bench);
+  const core = unique(comp.coreUnits);
+  const coreOwned = core.filter((unit) => (owned[unit] ?? 0) > 0).length;
+  const unitCoverage = core.length ? coreOwned / core.length : 0;
+
+  const targetItems = unique(comp.keyItems).slice(0, 3);
+  const matchedItems = unique(overlap(targetItems, allItems(state))).length;
+  const itemCoverage = targetItems.length ? matchedItems / targetItems.length : 0;
+
+  return Math.max(0, Math.min(100, Math.round(unitCoverage * 70 + itemCoverage * 30)));
+}
+
+function contestedCount(comp: Comp, state: GameState): number {
+  return Math.max(0, Math.min(7, Math.round(state.contestedComps?.[comp.id] ?? 0)));
+}
+
 function targetLevel(comp: Comp): number {
   const fiveCosts = (comp.sourceLineup ?? []).filter((unit) => unit.price === 5).length;
   const highCap = /95|九五/.test(comp.name) || fiveCosts >= 3 || comp.stagePlan.some((line) => /9\s*人口|九人口/.test(line));
@@ -49,7 +83,7 @@ function targetLevel(comp: Comp): number {
   return 8;
 }
 
-function fitScore(comp: Comp, state: GameState): number {
+function fitScore(comp: Comp, state: GameState, augmentScore: number): number {
   const owned = mergeOwned(state.units, state.bench);
   const ownedNames = Object.keys(owned);
   const coreHits = overlap(comp.coreUnits, ownedNames).reduce(
@@ -59,17 +93,19 @@ function fitScore(comp: Comp, state: GameState): number {
   const flexHits = overlap(comp.flexUnits, ownedNames).length;
   const shopHits = overlap([...comp.coreUnits, ...comp.flexUnits], state.shop ?? []).length;
   const itemHits = overlap(comp.keyItems, allItems(state)).length;
-  const augmentHits = augmentTraitHits(comp, state).length;
 
   const unitScore = Math.min(38, coreHits * 7 + flexHits * 2);
   const shopScore = Math.min(12, shopHits * 5);
   const itemScore = Math.min(20, itemHits * 6);
-  const augmentScore = Math.min(10, augmentHits * 5);
+  const augmentFitScore = Math.min(10, Math.round(augmentScore / 10));
   const economyScore = state.gold >= 50 ? 10 : state.gold >= 30 ? 8 : state.gold >= 20 ? 5 : 2;
   const hpScore = state.hp >= 70 ? 10 : state.hp >= 45 ? 7 : state.hp >= 25 ? 4 : 1;
   const lockBonus = state.lockedCompId === comp.id ? 10 : 0;
+  const contestPenalty = Math.min(24, contestedCount(comp, state) * 6);
 
-  return Math.min(100, Math.round(unitScore + shopScore + itemScore + augmentScore + economyScore + hpScore + lockBonus));
+  return Math.max(0, Math.min(100, Math.round(
+    unitScore + shopScore + itemScore + augmentFitScore + economyScore + hpScore + lockBonus - contestPenalty
+  )));
 }
 
 function rollAdvice(comp: Comp, state: GameState): string {
@@ -93,7 +129,12 @@ function levelAdvice(comp: Comp, state: GameState): string {
 }
 
 function pivotAdvice(comp: Comp, state: GameState, fit: number, keep: string[]): string {
+  const contested = contestedCount(comp, state);
+  if (state.lockedCompId === comp.id && contested >= 3) {
+    return `你已锁定 ${comp.name}，但侦察到 ${contested} 家同行：优先保血并观察核心牌库存，若持续断档应开放转阵。`;
+  }
   if (state.lockedCompId === comp.id) return `你已锁定 ${comp.name}：除非核心牌完全断档或血量进入危险线，否则围绕现有体系继续补强。`;
+  if (contested >= 3 && fit < 78) return `${comp.name} 当前有 ${contested} 家同行且你的完成度优势不足，不建议硬挤；优先保留其他候选路线。`;
   if (fit >= 75) return `阵容契合度高：优先沿 ${comp.name} 收束，不建议因为单次商店不来牌就转阵。`;
   if (fit >= 58 || keep.length >= 3) return `具备转入 ${comp.name} 的基础，但还没到必须锁死的程度；观察未来1–2轮核心牌和装备命中再决定。`;
   return `当前对 ${comp.name} 的沉没成本低，把它作为备选而不是强转目标；若另一套候选命中更多两星/装备，优先保血。`;
@@ -162,7 +203,7 @@ function buildActions(
   });
   actions.push({ kind: "roll", priority: state.hp <= 40 ? "high" : "medium", text: roll, evidence: [`血量=${state.hp}`, `金币=${state.gold}`, `人口=${state.level}`] });
   actions.push({ kind: "level", priority: state.gold >= 40 && state.hp > 30 ? "medium" : "low", text: level, evidence: [`目标人口≈${targetLevel(comp)}`, `当前人口=${state.level}`] });
-  actions.push({ kind: "pivot", priority: "medium", text: pivot, evidence: ["依据现有体系牌、装备、商店命中和阵容锁定状态"] });
+  actions.push({ kind: "pivot", priority: "medium", text: pivot, evidence: ["依据现有体系牌、装备、商店命中、同行侦察和阵容锁定状态"] });
   if (items.length) actions.push({ kind: "item", priority: "medium", text: items[0], evidence: ["依据实时快照中的已核验装备持有者"] });
   return actions;
 }
@@ -181,22 +222,27 @@ export function recommend(comps: Comp[], state: GameState): Recommendation[] {
   const ranked = comps
     .filter((comp) => !comp.needsEnrichment && comp.coreUnits.length > 0 && comp.stagePlan.length > 0)
     .map((comp) => {
-      const rawFit = fitScore(comp, state);
+      const augment = augmentAssessment(comp, state);
+      const rawFit = fitScore(comp, state, augment.score);
       const meta = metaScore(comp);
       const discovery = discoveryScore(comp);
       const systemUnits = [...comp.coreUnits, ...comp.flexUnits];
       const keep = systemUnits.filter((unit) => ownedNames.includes(unit));
       const buy = unique(shop.filter((unit) => systemUnits.includes(unit)));
       const sell = ownedNames.filter((unit) => !systemUnits.includes(unit) && (owned[unit] ?? 0) < 3);
-      const traitAugments = augmentTraitHits(comp, state);
       const matchedItems = overlap(comp.keyItems, allItems(state));
+      const completion = completionScore(comp, state);
+      const contested = contestedCount(comp, state);
       const reasons: string[] = [];
       const blendedFit = Math.round(rawFit * 0.65 + meta * 0.35);
 
       if (keep.length) reasons.push(`场上/替补席已有 ${keep.length} 个体系英雄命中`);
       if (buy.length) reasons.push(`当前商店出现 ${buy.length} 个可直接买入的体系英雄`);
       if (matchedItems.length) reasons.push(`已有 ${unique(matchedItems).length} 件核心装备方向命中`);
-      if (traitAugments.length) reasons.push(`强化符文与羁绊方向匹配：${traitAugments.join(" / ")}`);
+      if (augment.hits.length) reasons.push(`强化符文与羁绊方向匹配：${augment.hits.join(" / ")}`);
+      else if ((state.augments ?? []).length) reasons.push(`强化符文结构化得分 ${augment.score}/100`);
+      if (contested > 0) reasons.push(`侦察记录：${contested} 家同行，已计入阵容竞争惩罚`);
+      if (completion >= 60) reasons.push(`当前阵容完成度 ${completion}%`);
       if (comp.trend24h > 0) reasons.push(`最近24小时表现提升 ${comp.trend24h.toFixed(1)}%`);
       if (comp.sampleSize >= 2000) reasons.push("样本量达到可参考区间");
       if (comp.stagePlanSource === "derived-economy-v1") reasons.push("运营节奏由已核验费用/目标星级规则推导");
@@ -213,6 +259,10 @@ export function recommend(comps: Comp[], state: GameState): Recommendation[] {
         fitScore: blendedFit,
         discoveryScore: discovery,
         confidence: confidenceScore(comp.sampleSize),
+        completionScore: completion,
+        augmentScore: augment.score,
+        augmentHits: augment.hits,
+        contestedCount: contested,
         buy,
         keep,
         sell,
