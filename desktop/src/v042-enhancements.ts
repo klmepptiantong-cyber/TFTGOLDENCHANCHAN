@@ -12,6 +12,7 @@ const embeddedSnapshot = embeddedSnapshotJson as unknown as MetaSnapshot;
 let visualSnapshot: MetaSnapshot = embeddedSnapshot;
 let heroPictures = new Map<string, string>();
 let itemPictures = new Map<string, string>();
+let visualScanQueued = false;
 
 function byId<T extends HTMLElement>(id: string): T | null {
   return document.getElementById(id) as T | null;
@@ -89,8 +90,14 @@ function createPicture(url: string, alt: string, className: string): HTMLImageEl
   return img;
 }
 
+function matchedElements(root: ParentNode, selector: string): HTMLElement[] {
+  const matches = [...root.querySelectorAll<HTMLElement>(selector)];
+  if (root instanceof HTMLElement && root.matches(selector)) matches.unshift(root);
+  return matches;
+}
+
 function decorateHero(root: ParentNode, selector: string, nameSelector: string) {
-  for (const element of root.querySelectorAll<HTMLElement>(selector)) {
+  for (const element of matchedElements(root, selector)) {
     if (element.dataset.visualHeroDone === "1") continue;
     const name = element.querySelector<HTMLElement>(nameSelector)?.textContent?.trim();
     if (!name) continue;
@@ -104,7 +111,7 @@ function decorateHero(root: ParentNode, selector: string, nameSelector: string) 
 }
 
 function decorateItem(root: ParentNode, selector: string, nameSelector: string) {
-  for (const element of root.querySelectorAll<HTMLElement>(selector)) {
+  for (const element of matchedElements(root, selector)) {
     if (element.dataset.visualItemDone === "1") continue;
     const name = element.querySelector<HTMLElement>(nameSelector)?.textContent?.trim();
     if (!name) continue;
@@ -125,14 +132,17 @@ function decorateVisuals(root: ParentNode) {
   decorateItem(root, ".selection-chip.item-chip", ".chip-name");
 }
 
-function observeVisuals() {
-  const observer = new MutationObserver((mutations) => {
-    for (const mutation of mutations) {
-      for (const added of mutation.addedNodes) {
-        if (added instanceof HTMLElement) decorateVisuals(added);
-      }
-    }
+function scheduleVisualScan() {
+  if (visualScanQueued) return;
+  visualScanQueued = true;
+  requestAnimationFrame(() => {
+    visualScanQueued = false;
+    decorateVisuals(document.body);
   });
+}
+
+function observeVisuals() {
+  const observer = new MutationObserver(() => scheduleVisualScan());
   observer.observe(document.body, { childList: true, subtree: true });
 }
 
