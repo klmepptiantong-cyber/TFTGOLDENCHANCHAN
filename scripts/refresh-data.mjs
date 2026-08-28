@@ -49,21 +49,34 @@ function mergeMetrics(stats, library, baseline, patch, fetchedAt) {
   const baselineMap = new Map((baseline?.comps ?? []).map((comp) => [normalizeName(comp.name), comp]));
   return stats.map((raw) => {
     const enrichment = findEnrichment(raw.name, library);
+    const sourceCoreUnits = Array.isArray(raw.sourceCoreUnits) ? raw.sourceCoreUnits : [];
+    const sourceFlexUnits = Array.isArray(raw.sourceFlexUnits) ? raw.sourceFlexUnits : [];
+    const hasVerifiedRoster = sourceCoreUnits.length > 0;
     const before = baselineMap.get(normalizeName(raw.name));
     const trend24h = before ? Number((performance(raw) - performance(before)).toFixed(2)) : 0;
+    const enrichmentStatus = enrichment ? "full" : hasVerifiedRoster ? "partial" : "pending";
+    const sourceCompUrl = raw.datajCompId ? `https://www.dataj.cc/comp/${raw.datajCompId}` : null;
+
     return {
       ...raw,
       patch,
       rankBand: "all",
       trend: trendLabel(trend24h),
       trend24h,
-      coreUnits: enrichment?.coreUnits ?? [],
-      flexUnits: enrichment?.flexUnits ?? [],
+      coreUnits: enrichment?.coreUnits ?? sourceCoreUnits,
+      flexUnits: enrichment?.flexUnits ?? sourceFlexUnits,
       keyItems: enrichment?.keyItems ?? [],
       itemCarriers: enrichment?.itemCarriers ?? {},
-      stagePlan: enrichment?.stagePlan ?? ["该阵容由实时数据新发现，运营与核心牌仍待补全。"],
+      stagePlan: enrichment?.stagePlan ?? ["阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"],
       dataSource: "dataj",
+      sourceCompUrl,
       fetchedAt,
+      enrichmentStatus,
+      enrichmentVerifiedFields: enrichment
+        ? ["coreUnits", "flexUnits", "keyItems", "itemCarriers", "stagePlan"]
+        : hasVerifiedRoster
+          ? ["coreUnits", "flexUnits", "carries", "traits", "equipmentIds"]
+          : [],
       needsEnrichment: !enrichment
     };
   });
@@ -75,6 +88,12 @@ function enrichmentPriority(comp) {
   const winSignal = Math.max(0, comp.winRate - 8) * 0.8;
   const trendSignal = Math.max(0, comp.trend24h ?? 0) * 2;
   return Math.max(0, Math.min(100, Math.round(playSignal + top4Signal + winSignal + trendSignal)));
+}
+
+function missingEnrichmentFields(comp) {
+  const verified = new Set(comp.enrichmentVerifiedFields ?? []);
+  return ["coreUnits", "flexUnits", "keyItems", "itemCarriers", "stagePlan"]
+    .filter((field) => !verified.has(field));
 }
 
 function buildEnrichmentQueue(comps, previousQueue, patch, fetchedAt, sourceUrl) {
@@ -90,12 +109,13 @@ function buildEnrichmentQueue(comps, previousQueue, patch, fetchedAt, sourceUrl)
         id: comp.id,
         name: comp.name,
         patch,
-        status: "pending",
+        status: comp.enrichmentStatus === "partial" ? "partial" : "pending",
         priority: enrichmentPriority(comp),
         firstSeenAt: before?.firstSeenAt ?? fetchedAt,
         lastSeenAt: fetchedAt,
         source: comp.dataSource,
-        sourceUrl,
+        sourceUrl: comp.sourceCompUrl ?? sourceUrl,
+        verifiedFields: comp.enrichmentVerifiedFields ?? [],
         metrics: {
           tier: comp.tier,
           avgPlace: comp.avgPlace,
@@ -103,18 +123,20 @@ function buildEnrichmentQueue(comps, previousQueue, patch, fetchedAt, sourceUrl)
           winRate: comp.winRate,
           top4Rate: comp.top4Rate,
           sampleSize: comp.sampleSize,
+          sampleSizeSource: comp.sampleSizeSource,
           trend24h: comp.trend24h
         },
-        missing: ["coreUnits", "flexUnits", "keyItems", "itemCarriers", "stagePlan"]
+        missing: missingEnrichmentFields(comp)
       };
     })
     .sort((a, b) => b.priority - a.priority || b.metrics.playRate - a.metrics.playRate);
 
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     patch,
     generatedAt: fetchedAt,
     pendingCount: items.length,
+    partialCount: items.filter((item) => item.status === "partial").length,
     items
   };
 }
@@ -164,7 +186,7 @@ const sourceStatus = {
   rankStatus,
   targetRankCoverage: false,
   note: versionsAgree
-    ? `实时阵容统计已通过独立版本校验（${authority?.mode}）。DataJ 当前提供全段位阵容统计；DataTFT 国服公共页面已验证宗师及以上能力，但铂金→大师目标分段并未在国服公共选择器中开放，因此不伪造分段数据。`
+    ? `实时阵容统计已通过独立版本校验（${authority?.mode}）。DataJ 当前提供全段位阵容统计与公开序列化阵容结构；DataTFT 国服公共页面已验证宗师及以上能力，但铂金→大师目标分段并未在国服公共选择器中开放，因此不伪造分段数据。`
     : "阵容统计源未通过独立国服版本校验或抓取失败，本轮拒绝覆盖排行榜，保留上一份已验证快照。"
 };
 await fs.writeFile(STATUS_PATH, JSON.stringify(sourceStatus, null, 2) + "\n", "utf8");
@@ -191,17 +213,22 @@ const snapshot = {
   verifiedPublicRankBands: rankStatus.verifiedPublicBands,
   targetRankCoverage: false,
   totalGames: dataj.totalGames,
-  sampleSizeMethod: "estimated appearances: totalGames × lobby appearance rate percentage / 100",
+  parserMode: dataj.parserMode,
+  sampleSizeMethod: dataj.parserMode === "structured-next-flight"
+    ? "source-provided DataJ sampleCount; play-rate estimate only if structured data is unavailable"
+    : "fallback estimate: totalGames × lobby appearance rate percentage / 100",
   source: "dataj",
   sourceUrl: dataj.url,
   patchAuthority: authority?.id ?? "unknown",
   enrichmentPending: enrichmentQueue.pendingCount,
+  enrichmentPartial: enrichmentQueue.partialCount,
   comps
 };
 
 sourceStatus.enrichmentQueue = {
   path: "data/enrichment-queue.json",
   pendingCount: enrichmentQueue.pendingCount,
+  partialCount: enrichmentQueue.partialCount,
   highestPriority: enrichmentQueue.items[0]?.name ?? null
 };
 
@@ -212,4 +239,4 @@ await fs.writeFile(COMPS_PATH, JSON.stringify(comps, null, 2) + "\n", "utf8");
 const historyName = fetchedAt.replace(/[:.]/g, "-") + ".json";
 await fs.writeFile(path.join(HISTORY_DIR, historyName), JSON.stringify(snapshot, null, 2) + "\n", "utf8");
 
-console.log(`accepted patch ${authoritativePatch} via ${authority?.id}: ${comps.length} comps, ${dataj.totalGames ?? "?"} games, enrichment pending=${enrichmentQueue.pendingCount}`);
+console.log(`accepted patch ${authoritativePatch} via ${authority?.id}: ${comps.length} comps, ${dataj.totalGames ?? "?"} games, parser=${dataj.parserMode}, enrichment pending=${enrichmentQueue.pendingCount}, partial=${enrichmentQueue.partialCount}`);
