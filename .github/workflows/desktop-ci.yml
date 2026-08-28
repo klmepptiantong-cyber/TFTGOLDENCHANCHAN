@@ -1,0 +1,47 @@
+name: Desktop CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "desktop/**"
+      - "lib/**"
+      - "data/latest.json"
+      - ".github/workflows/desktop-ci.yml"
+  pull_request:
+    paths:
+      - "desktop/**"
+      - "lib/**"
+      - "data/latest.json"
+      - ".github/workflows/desktop-ci.yml"
+
+jobs:
+  windows-portable:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install desktop dependencies
+        working-directory: desktop
+        run: npm install
+      - name: Audit desktop npm dependencies
+        working-directory: desktop
+        run: npm audit --audit-level=high
+      - name: TypeScript and Vite build
+        working-directory: desktop
+        run: npm run build
+      - name: Rust check
+        run: cargo check --manifest-path desktop/src-tauri/Cargo.toml
+      - name: Build portable Windows executable
+        working-directory: desktop
+        run: npm run build:portable
+      - name: Upload portable executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: TFTGOLDENCHANCHAN-Windows-portable
+          path: desktop/src-tauri/target/release/tftgoldenchanchan-overlay.exe
+          if-no-files-found: error
