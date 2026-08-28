@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-28T06:31:01.898Z",
+  "fetchedAt": "2026-08-28T06:33:36.907Z",
   "authoritativePatch": "18.1b",
   "liveCompDataAccepted": false,
   "sources": {
@@ -8,7 +8,7 @@
       "ok": false,
       "patch": null,
       "url": "https://www.taptap.cn/forum/g213275",
-      "fetchedAt": "2026-08-28T06:31:01.898Z",
+      "fetchedAt": "2026-08-28T06:33:36.907Z",
       "mode": "patch-authority",
       "error": "https://www.taptap.cn/forum/g213275: patch not found | https://www.taptap.cn/app/176937/topic?group_label_id=521740: patch not found"
     },
@@ -17,7 +17,7 @@
       "ok": false,
       "patch": null,
       "url": "https://jcc.datatft.com/explorer",
-      "fetchedAt": "2026-08-28T06:30:59.623Z",
+      "fetchedAt": "2026-08-28T06:33:33.337Z",
       "mode": "metadata-only",
       "rankLabel": null,
       "supportsRankFilter": false,
@@ -27,12 +27,13 @@
       "id": "dataj",
       "ok": false,
       "url": "https://www.dataj.cc/comp",
-      "fetchedAt": "2026-08-28T06:31:01.195Z",
+      "fetchedAt": "2026-08-28T06:33:35.365Z",
       "mode": "comp-stats",
       "rankBand": "all",
       "patch": "18.1b",
       "totalGames": 21232,
       "comps": [],
+      "parserDebug": "排行与评级 - 金铲铲大数据金铲铲大数据首页阵容排行检索器数据统计 赛季资料 赞助S18 自然之力搜索Ctrl + K阵容排行基于对局样本的阵容梯度与数据统计版本18.1b（21,232 局）最小样本平均排名出场率登顶率前四率A赌蛇女平均排名4.28出场率1.26登顶率10.2%前四率54.3%C莲华阿狸平均排名4.72出场率1.06登顶率13.3%前四率45.1%A裁决奶妈平均排名4.42出场率0.53登顶率16.1%前四率51.8%S7野怪鸡哥平均排名3.79出场率0.52登顶率17.3%前四率63.3%B重装琉斯平均排名4.48出场率0.48登顶率10.1%前四率51.3%D神器天使平均排名4.97出场率0.47登顶率10.3%前四率",
       "error": "parse incomplete: patch=18.1b, comps=0"
     }
   },
