@@ -35,6 +35,45 @@ for (const comp of raw.comps ?? []) {
       errors.push(`${comp.name}: partial enrichment must declare verified coreUnits`);
     }
   }
+
+  const verified = new Set(comp.enrichmentVerifiedFields ?? []);
+  if (comp.sourceEquipmentNamesComplete) {
+    const coverage = comp.sourceEquipmentNameCoverage;
+    if (!coverage || !Number.isInteger(coverage.mapped) || !Number.isInteger(coverage.total) || coverage.total <= 0 || coverage.mapped !== coverage.total) {
+      errors.push(`${comp.name}: complete source equipment mapping requires mapped === total > 0`);
+    }
+  }
+
+  if (verified.has("keyItems")) {
+    if (!Array.isArray(comp.keyItems) || comp.keyItems.length === 0) {
+      errors.push(`${comp.name}: verified keyItems must be non-empty`);
+    } else {
+      for (const item of comp.keyItems) {
+        if (typeof item !== "string" || !item.trim() || /^\d+$/.test(item.trim())) {
+          errors.push(`${comp.name}: verified keyItems must contain equipment names, not IDs`);
+        }
+      }
+    }
+  }
+
+  if (verified.has("itemCarriers")) {
+    const entries = comp.itemCarriers && typeof comp.itemCarriers === "object" ? Object.entries(comp.itemCarriers) : [];
+    if (!entries.length) errors.push(`${comp.name}: verified itemCarriers must be non-empty`);
+    for (const [hero, items] of entries) {
+      if (!hero.trim() || !Array.isArray(items) || items.length === 0) {
+        errors.push(`${comp.name}: invalid verified item carrier ${hero || "unknown"}`);
+        continue;
+      }
+      for (const item of items) {
+        if (typeof item !== "string" || !item.trim() || /^\d+$/.test(item.trim())) {
+          errors.push(`${comp.name}: itemCarriers must contain equipment names, not IDs`);
+        }
+        if (Array.isArray(comp.keyItems) && !comp.keyItems.includes(item)) {
+          errors.push(`${comp.name}: carrier item ${item} missing from keyItems`);
+        }
+      }
+    }
+  }
 }
 
 try {
@@ -48,6 +87,10 @@ try {
     if (!new Set(["pending", "partial"]).has(item.status)) errors.push(`${item.name ?? "unknown"}: enrichment queue status invalid`);
     if (item.priority < 0 || item.priority > 100) errors.push(`${item.name ?? "unknown"}: enrichment priority out of range`);
     if (!Array.isArray(item.missing) || item.missing.length === 0) errors.push(`${item.name ?? "unknown"}: enrichment queue missing fields must be non-empty`);
+    const verified = new Set(item.verifiedFields ?? []);
+    for (const field of ["coreUnits", "flexUnits", "keyItems", "itemCarriers", "stagePlan"]) {
+      if (verified.has(field) && item.missing?.includes(field)) errors.push(`${item.name ?? "unknown"}: ${field} cannot be both verified and missing`);
+    }
   }
 } catch (error) {
   if (raw.enrichmentPending !== undefined) errors.push(`enrichment queue missing/invalid: ${error instanceof Error ? error.message : String(error)}`);
