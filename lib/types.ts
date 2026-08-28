@@ -21,6 +21,11 @@ export type SourceLineupUnit = {
   targetStars: number | null;
 };
 
+export type EquipmentNameCoverage = {
+  mapped: number;
+  total: number;
+};
+
 export type Comp = {
   id: string;
   datajCompId?: string | null;
@@ -46,6 +51,9 @@ export type Comp = {
   sourceCarries?: SourceCarry[];
   sourceTraits?: string[];
   sourceEquipmentIdsByHero?: Record<string, string[]>;
+  sourceEquipmentNamesByHero?: Record<string, string[]>;
+  sourceEquipmentNamesComplete?: boolean;
+  sourceEquipmentNameCoverage?: EquipmentNameCoverage;
   sourceLineup?: SourceLineupUnit[];
   sourceCompUrl?: string | null;
   dataSource?: string;
