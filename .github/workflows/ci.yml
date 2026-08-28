@@ -15,5 +15,7 @@ jobs:
         with:
           node-version: 22
       - run: npm install
+      - name: Block high-severity production dependency vulnerabilities
+        run: npm audit --omit=dev --audit-level=high
       - run: npm run check:data
       - run: npm run build
