@@ -2,6 +2,7 @@ import * as cheerio from "cheerio";
 import { fetchText } from "../lib/http.mjs";
 
 const URLS = [
+  "https://www.taptap.cn/moment/841982769956390376",
   "https://www.taptap.cn/forum/g213275",
   "https://www.taptap.cn/app/176937/topic?group_label_id=521740"
 ];
