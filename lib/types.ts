@@ -148,6 +148,7 @@ export type GameState = {
   xp?: number;
   rankBand?: string;
   lockedCompId?: string | null;
+  contestedComps?: Record<string, number>;
 };
 
 export type DecisionAction = {
@@ -163,6 +164,10 @@ export type Recommendation = {
   fitScore: number;
   discoveryScore: number;
   confidence: number;
+  completionScore: number;
+  augmentScore: number;
+  augmentHits: string[];
+  contestedCount: number;
   buy: string[];
   keep: string[];
   sell: string[];

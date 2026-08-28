@@ -13,6 +13,9 @@ type TauriGlobal = {
   };
 };
 
+type PickerMode = "shop" | "units" | "bench" | "items";
+type HeroCatalogEntry = { name: string; price: number | null };
+
 declare global {
   interface Window {
     __TAURI__?: TauriGlobal;
@@ -25,6 +28,10 @@ let snapshot: MetaSnapshot = embeddedSnapshot;
 let lockedCompId = localStorage.getItem("tftgolden.lockedCompId") || "";
 let compact = localStorage.getItem("tftgolden.compact") === "true";
 let clickThrough = false;
+let pickerMode: PickerMode = "shop";
+let activeShopSlot = 0;
+let shopSlots = ["", "", "", "", ""];
+let contestedByComp = readStoredCountMap("tftgolden.contested");
 
 const inputIds = ["stage", "level", "gold", "hp", "streak", "shop", "units", "bench", "items", "augments", "equipped"] as const;
 
@@ -53,6 +60,13 @@ function parseUnits(value: string): Record<string, number> {
   return result;
 }
 
+function serializeUnits(units: Record<string, number>): string {
+  return Object.entries(units)
+    .filter(([, copies]) => copies > 0)
+    .map(([name, copies]) => `${name}=${copies}`)
+    .join(", ");
+}
+
 function parseEquipped(value: string): Record<string, string[]> {
   const result: Record<string, string[]> = {};
   for (const token of value.split(/[;；\n]/).map((item) => item.trim()).filter(Boolean)) {
@@ -66,29 +80,51 @@ function parseEquipped(value: string): Record<string, string[]> {
   return result;
 }
 
+function readStoredCountMap(key: string): Record<string, number> {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    return Object.fromEntries(
+      Object.entries(parsed)
+        .map(([id, value]) => [id, Math.max(0, Math.min(7, Math.round(Number(value) || 0)))] as const)
+        .filter(([, count]) => count > 0)
+    );
+  } catch {
+    return {};
+  }
+}
+
 function numberValue(id: string, fallback: number): number {
   const value = Number((el<HTMLInputElement>(id)).value);
   return Number.isFinite(value) ? value : fallback;
 }
 
+function syncShopHidden() {
+  el<HTMLInputElement>("shop").value = shopSlots.filter(Boolean).join(", ");
+}
+
 function readState() {
+  syncShopHidden();
   return parseGameState({
     stage: el<HTMLInputElement>("stage").value,
     level: numberValue("level", 6),
     gold: numberValue("gold", 0),
     hp: numberValue("hp", 100),
     streak: numberValue("streak", 0),
-    shop: parseList(el<HTMLInputElement>("shop").value).slice(0, 5),
+    shop: shopSlots.filter(Boolean).slice(0, 5),
     units: parseUnits(el<HTMLTextAreaElement>("units").value),
     bench: parseUnits(el<HTMLTextAreaElement>("bench").value),
     items: parseList(el<HTMLTextAreaElement>("items").value),
     augments: parseList(el<HTMLTextAreaElement>("augments").value),
     equippedItems: parseEquipped(el<HTMLTextAreaElement>("equipped").value),
-    lockedCompId: lockedCompId || undefined
+    lockedCompId: lockedCompId || undefined,
+    contestedComps: contestedByComp
   });
 }
 
 function persistInputs() {
+  syncShopHidden();
   const saved: Record<string, string> = {};
   for (const id of inputIds) {
     const node = el<HTMLInputElement | HTMLTextAreaElement>(id);
@@ -107,6 +143,8 @@ function restoreInputs() {
         el<HTMLInputElement | HTMLTextAreaElement>(id).value = saved[id];
       }
     }
+    const restoredShop = parseList(saved.shop ?? "").slice(0, 5);
+    shopSlots = Array.from({ length: 5 }, (_, index) => restoredShop[index] ?? "");
   } catch {
     localStorage.removeItem("tftgolden.form");
   }
@@ -155,6 +193,179 @@ function node<K extends keyof HTMLElementTagNameMap>(tag: K, className?: string,
   return item;
 }
 
+function heroCatalog(): HeroCatalogEntry[] {
+  const catalog = new Map<string, number | null>();
+  for (const comp of snapshot.comps) {
+    for (const unit of comp.sourceLineup ?? []) {
+      if (!catalog.has(unit.name) || (catalog.get(unit.name) === null && unit.price !== null)) {
+        catalog.set(unit.name, unit.price);
+      }
+    }
+    for (const name of [...comp.coreUnits, ...comp.flexUnits]) {
+      if (!catalog.has(name)) catalog.set(name, null);
+    }
+  }
+  return [...catalog.entries()]
+    .map(([name, price]) => ({ name, price }))
+    .sort((a, b) => (a.price ?? 9) - (b.price ?? 9) || a.name.localeCompare(b.name, "zh-CN"));
+}
+
+function itemCatalog(): string[] {
+  return [...new Set(snapshot.comps.flatMap((comp) => comp.keyItems).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, "zh-CN"));
+}
+
+function updateTextCollection(id: "units" | "bench", name: string, delta: number) {
+  const textarea = el<HTMLTextAreaElement>(id);
+  const units = parseUnits(textarea.value);
+  const next = Math.max(0, Math.min(9, (units[name] ?? 0) + delta));
+  if (next === 0) delete units[name];
+  else units[name] = next;
+  textarea.value = serializeUnits(units);
+  renderUnitChips(id, id === "units" ? "units-chips" : "bench-chips");
+  persistInputs();
+}
+
+function renderUnitChips(id: "units" | "bench", containerId: string) {
+  const container = el<HTMLElement>(containerId);
+  container.replaceChildren();
+  const units = parseUnits(el<HTMLTextAreaElement>(id).value);
+  for (const [name, copies] of Object.entries(units)) {
+    const chip = node("span", "selection-chip hero-chip");
+    chip.append(node("span", "chip-avatar", name.slice(0, 1)), node("span", "chip-name", name));
+    const minus = node("button", "chip-step", "−");
+    minus.type = "button";
+    minus.title = `减少 ${name}`;
+    minus.addEventListener("click", () => updateTextCollection(id, name, -1));
+    const count = node("b", "chip-count", String(copies));
+    const plus = node("button", "chip-step", "+");
+    plus.type = "button";
+    plus.title = `增加 ${name}`;
+    plus.addEventListener("click", () => updateTextCollection(id, name, 1));
+    chip.append(minus, count, plus);
+    container.append(chip);
+  }
+}
+
+function renderItemChips() {
+  const container = el<HTMLElement>("item-chips");
+  container.replaceChildren();
+  const items = parseList(el<HTMLTextAreaElement>("items").value);
+  const counts = new Map<string, number>();
+  for (const item of items) counts.set(item, (counts.get(item) ?? 0) + 1);
+  for (const [item, count] of counts) {
+    const chip = node("button", "selection-chip item-chip");
+    chip.type = "button";
+    chip.title = `点击移除一个 ${item}`;
+    chip.append(node("span", "item-glyph", "◆"), node("span", "chip-name", item));
+    if (count > 1) chip.append(node("b", "chip-count", `×${count}`));
+    chip.addEventListener("click", () => {
+      const list = parseList(el<HTMLTextAreaElement>("items").value);
+      const index = list.indexOf(item);
+      if (index >= 0) list.splice(index, 1);
+      el<HTMLTextAreaElement>("items").value = list.join(", ");
+      renderItemChips();
+      persistInputs();
+    });
+    container.append(chip);
+  }
+}
+
+function renderShopSlots() {
+  for (const button of document.querySelectorAll<HTMLButtonElement>(".shop-slot")) {
+    const slot = Number(button.dataset.slot ?? 0);
+    const hero = shopSlots[slot] ?? "";
+    button.replaceChildren();
+    if (hero) {
+      button.classList.add("filled");
+      button.append(node("span", "shop-avatar", hero.slice(0, 1)), node("span", "shop-name", hero));
+    } else {
+      button.classList.remove("filled");
+      button.append(node("span", "shop-index", String(slot + 1)), node("span", "shop-empty", "点选"));
+    }
+  }
+  syncShopHidden();
+}
+
+function renderFastInputs() {
+  renderShopSlots();
+  renderUnitChips("units", "units-chips");
+  renderUnitChips("bench", "bench-chips");
+  renderItemChips();
+}
+
+function pickerTitle(mode: PickerMode): string {
+  if (mode === "shop") return `商店第 ${activeShopSlot + 1} 格`;
+  if (mode === "units") return "添加场上英雄";
+  if (mode === "bench") return "添加替补英雄";
+  return "添加装备";
+}
+
+function selectPickerValue(value: string) {
+  if (pickerMode === "shop") {
+    shopSlots[activeShopSlot] = value;
+    renderShopSlots();
+    persistInputs();
+    const nextEmpty = shopSlots.findIndex((item, index) => !item && index > activeShopSlot);
+    if (nextEmpty >= 0) {
+      activeShopSlot = nextEmpty;
+      el<HTMLElement>("picker-title").textContent = pickerTitle("shop");
+      return;
+    }
+  } else if (pickerMode === "units" || pickerMode === "bench") {
+    updateTextCollection(pickerMode, value, 1);
+  } else {
+    const textarea = el<HTMLTextAreaElement>("items");
+    const items = parseList(textarea.value);
+    items.push(value);
+    textarea.value = items.join(", ");
+    renderItemChips();
+    persistInputs();
+  }
+  el<HTMLDialogElement>("picker-dialog").close();
+}
+
+function renderPickerOptions() {
+  const query = el<HTMLInputElement>("picker-search").value.trim().toLowerCase();
+  const grid = el<HTMLElement>("picker-grid");
+  grid.replaceChildren();
+
+  if (pickerMode === "items") {
+    for (const item of itemCatalog().filter((name) => !query || name.toLowerCase().includes(query))) {
+      const button = node("button", "picker-tile item-tile");
+      button.type = "button";
+      button.append(node("span", "picker-item-glyph", "◆"), node("span", "picker-name", item));
+      button.addEventListener("click", () => selectPickerValue(item));
+      grid.append(button);
+    }
+    return;
+  }
+
+  for (const hero of heroCatalog().filter((entry) => !query || entry.name.toLowerCase().includes(query))) {
+    const button = node("button", "picker-tile hero-tile");
+    button.type = "button";
+    button.append(node("span", `picker-avatar cost-${hero.price ?? 0}`, hero.name.slice(0, 1)));
+    const label = node("span", "picker-name", hero.name);
+    button.append(label);
+    if (hero.price !== null) button.append(node("small", "picker-cost", `${hero.price}费`));
+    button.addEventListener("click", () => selectPickerValue(hero.name));
+    grid.append(button);
+  }
+}
+
+function openPicker(mode: PickerMode, slot = 0) {
+  pickerMode = mode;
+  activeShopSlot = slot;
+  el<HTMLElement>("picker-title").textContent = pickerTitle(mode);
+  el<HTMLElement>("picker-hint").textContent = mode === "items" ? "当前快照已核验装备名称" : "当前实时阵容涉及的英雄";
+  const search = el<HTMLInputElement>("picker-search");
+  search.value = "";
+  renderPickerOptions();
+  const dialog = el<HTMLDialogElement>("picker-dialog");
+  if (!dialog.open) dialog.showModal();
+  requestAnimationFrame(() => search.focus());
+}
+
 const actionLabels: Record<string, string> = {
   buy: "买",
   keep: "留",
@@ -164,6 +375,20 @@ const actionLabels: Record<string, string> = {
   pivot: "转阵",
   item: "装备"
 };
+
+function metric(label: string, value: string, className = ""): HTMLElement {
+  const block = node("div", `metric ${className}`.trim());
+  block.append(node("small", "", label), node("strong", "", value));
+  return block;
+}
+
+function updateContested(compId: string, delta: number) {
+  const next = Math.max(0, Math.min(7, (contestedByComp[compId] ?? 0) + delta));
+  if (next === 0) delete contestedByComp[compId];
+  else contestedByComp[compId] = next;
+  localStorage.setItem("tftgolden.contested", JSON.stringify(contestedByComp));
+  calculate();
+}
 
 function renderRecommendation(rec: Recommendation, index: number): HTMLElement {
   const card = node("article", `rec-card ${index === 0 ? "best" : ""}`);
@@ -179,6 +404,24 @@ function renderRecommendation(rec: Recommendation, index: number): HTMLElement {
   head.append(titleBox, score);
   card.append(head);
 
+  const metrics = node("div", "rec-metrics");
+  metrics.append(metric("完成度", `${rec.completionScore}%`, rec.completionScore >= 65 ? "good" : ""));
+  metrics.append(metric("强化", `${rec.augmentScore}`, rec.augmentScore >= 50 ? "good" : ""));
+  const contest = node("div", "metric contest-metric");
+  contest.append(node("small", "", "同行"));
+  const contestControl = node("span", "contest-control");
+  const minus = node("button", "", "−");
+  minus.type = "button";
+  minus.addEventListener("click", () => updateContested(rec.comp.id, -1));
+  const count = node("strong", "", String(rec.contestedCount));
+  const plus = node("button", "", "+");
+  plus.type = "button";
+  plus.addEventListener("click", () => updateContested(rec.comp.id, 1));
+  contestControl.append(minus, count, plus);
+  contest.append(contestControl);
+  metrics.append(contest);
+  card.append(metrics);
+
   card.append(node("p", "next-step", rec.nextStep));
 
   const actionList = node("div", "action-list");
@@ -192,8 +435,9 @@ function renderRecommendation(rec: Recommendation, index: number): HTMLElement {
 
   if (!compact) {
     const evidence = node("div", "evidence");
-    const reasons = rec.reasons.length ? rec.reasons.slice(0, 4).join(" · ") : "当前主要依据实时Meta作为备选。";
+    const reasons = rec.reasons.length ? rec.reasons.slice(0, 5).join(" · ") : "当前主要依据实时Meta作为备选。";
     evidence.append(node("p", "", `依据：${reasons}`));
+    if (rec.augmentHits.length) evidence.append(node("p", "", `强化命中：${rec.augmentHits.join(" / ")}`));
     if (rec.itemAdvice[0]) evidence.append(node("p", "", `装备：${rec.itemAdvice[0]}`));
     card.append(evidence);
   }
@@ -235,6 +479,25 @@ function updateUnlockButton() {
   button.textContent = lockedCompId ? "解除锁阵" : "解除锁阵";
 }
 
+function advanceStage(value: string): string {
+  const match = value.trim().match(/^(\d+)-(\d+)$/);
+  if (!match) return value;
+  const stage = Number(match[1]);
+  const round = Number(match[2]);
+  if (round >= 7) return `${stage + 1}-1`;
+  return `${stage}-${round + 1}`;
+}
+
+function nextRound() {
+  const stage = el<HTMLInputElement>("stage");
+  stage.value = advanceStage(stage.value);
+  shopSlots = ["", "", "", "", ""];
+  renderShopSlots();
+  persistInputs();
+  calculate();
+  openPicker("shop", 0);
+}
+
 async function invoke(command: string, args?: Record<string, unknown>) {
   try {
     await window.__TAURI__?.core?.invoke(command, args);
@@ -274,8 +537,10 @@ async function registerNativeEvents() {
 
 function bindEvents() {
   el<HTMLButtonElement>("decide").addEventListener("click", calculate);
+  el<HTMLButtonElement>("next-round").addEventListener("click", nextRound);
   el<HTMLButtonElement>("refresh-data").addEventListener("click", async () => {
     await refreshSnapshot(true);
+    renderFastInputs();
     calculate();
   });
   el<HTMLButtonElement>("toggle-compact").addEventListener("click", () => void setCompact(!compact));
@@ -287,6 +552,19 @@ function bindEvents() {
     updateUnlockButton();
     calculate();
   });
+  el<HTMLButtonElement>("clear-shop").addEventListener("click", () => {
+    shopSlots = ["", "", "", "", ""];
+    renderShopSlots();
+    persistInputs();
+  });
+  el<HTMLButtonElement>("add-unit").addEventListener("click", () => openPicker("units"));
+  el<HTMLButtonElement>("add-bench").addEventListener("click", () => openPicker("bench"));
+  el<HTMLButtonElement>("add-item").addEventListener("click", () => openPicker("items"));
+  el<HTMLInputElement>("picker-search").addEventListener("input", renderPickerOptions);
+
+  for (const button of document.querySelectorAll<HTMLButtonElement>(".shop-slot")) {
+    button.addEventListener("click", () => openPicker("shop", Number(button.dataset.slot ?? 0)));
+  }
 
   el<HTMLElement>("drag-handle").addEventListener("pointerdown", (event) => {
     if ((event.target as HTMLElement).closest("button")) return;
@@ -294,17 +572,24 @@ function bindEvents() {
   });
 
   for (const id of inputIds) {
-    el<HTMLInputElement | HTMLTextAreaElement>(id).addEventListener("change", persistInputs);
+    el<HTMLInputElement | HTMLTextAreaElement>(id).addEventListener("change", () => {
+      if (id === "units") renderUnitChips("units", "units-chips");
+      if (id === "bench") renderUnitChips("bench", "bench-chips");
+      if (id === "items") renderItemChips();
+      persistInputs();
+    });
   }
 }
 
 async function boot() {
   restoreInputs();
+  renderFastInputs();
   bindEvents();
   updateUnlockButton();
   await setCompact(compact);
   await registerNativeEvents();
   await refreshSnapshot(false);
+  renderFastInputs();
 }
 
 void boot();
