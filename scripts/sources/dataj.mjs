@@ -38,7 +38,9 @@ function parsePage(html) {
       playRate: play,
       winRate: Number(winRate),
       top4Rate: Number(top4Rate),
-      sampleSize: totalGames ? Math.max(1, Math.round(totalGames * play)) : 0
+      // DataJ exposes play rate as a percentage (for example 1.26 = 1.26%).
+      // Convert to a fraction before estimating the number of games represented.
+      sampleSize: totalGames ? Math.max(1, Math.round(totalGames * play / 100)) : 0
     });
   }
 
