@@ -3,7 +3,7 @@ use std::sync::{
     Arc,
 };
 use tauri::{Emitter, LogicalSize, Manager, Size, WebviewWindow};
-use tauri_plugin_global_shortcut::{Code, GlobalShortcutExt, Modifiers, Shortcut};
+use tauri_plugin_global_shortcut::{Code, Modifiers, ShortcutState};
 
 #[tauri::command]
 fn hide_overlay(window: WebviewWindow) -> Result<(), String> {
@@ -33,24 +33,22 @@ fn start_drag(window: WebviewWindow) -> Result<(), String> {
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
-            let toggle_shortcut = Shortcut::new(Some(Modifiers::ALT), Code::KeyQ);
-            let click_shortcut = Shortcut::new(Some(Modifiers::ALT), Code::KeyW);
-            let compact_shortcut = Shortcut::new(Some(Modifiers::ALT), Code::KeyE);
-
-            let toggle_handler = toggle_shortcut.clone();
-            let click_handler = click_shortcut.clone();
-            let compact_handler = compact_shortcut.clone();
             let click_through = Arc::new(AtomicBool::new(false));
             let click_through_handler = Arc::clone(&click_through);
 
             app.handle().plugin(
                 tauri_plugin_global_shortcut::Builder::new()
-                    .with_handler(move |app, shortcut| {
+                    .with_shortcuts(["alt+q", "alt+w", "alt+e"])?
+                    .with_handler(move |app, shortcut, event| {
+                        if event.state != ShortcutState::Pressed {
+                            return;
+                        }
+
                         let Some(window) = app.get_webview_window("main") else {
                             return;
                         };
 
-                        if shortcut == &toggle_handler {
+                        if shortcut.matches(Modifiers::ALT, Code::KeyQ) {
                             if window.is_visible().unwrap_or(true) {
                                 let _ = window.hide();
                             } else {
@@ -60,7 +58,7 @@ fn main() {
                             return;
                         }
 
-                        if shortcut == &click_handler {
+                        if shortcut.matches(Modifiers::ALT, Code::KeyW) {
                             let enabled = !click_through_handler.load(Ordering::Relaxed);
                             click_through_handler.store(enabled, Ordering::Relaxed);
                             let _ = window.set_ignore_cursor_events(enabled);
@@ -68,16 +66,12 @@ fn main() {
                             return;
                         }
 
-                        if shortcut == &compact_handler {
+                        if shortcut.matches(Modifiers::ALT, Code::KeyE) {
                             let _ = window.emit("overlay-toggle-compact", ());
                         }
                     })
                     .build(),
             )?;
-
-            app.global_shortcut().register(toggle_shortcut)?;
-            app.global_shortcut().register(click_shortcut)?;
-            app.global_shortcut().register(compact_shortcut)?;
 
             Ok(())
         })
