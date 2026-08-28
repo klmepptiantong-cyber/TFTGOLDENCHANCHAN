@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Train a current-season China-server slot classifier from V0.8.2 JSON exports.
+"""Train a current-season China-server slot classifier from cleaned V0.8.x JSON exports.
 
 This script intentionally cannot mark the production manifest verified. It emits an
 ONNX candidate, classes and crop-level report. Board-level exact accuracy,
-false-write rate and CPU P95 must be measured separately before activation.
+false-write rate and Windows CPU P95 must be measured separately before activation.
 """
 from __future__ import annotations
 
@@ -49,12 +49,11 @@ def split_sessions(samples):
     n = len(sessions)
     train_end = max(1, int(n * 0.7))
     val_end = max(train_end + 1, int(n * 0.85)) if n >= 3 else n
-    split = {
+    return {
         "train": set(sessions[:train_end]),
         "validation": set(sessions[train_end:val_end]),
         "test": set(sessions[val_end:]),
     }
-    return split
 
 
 class SlotDataset(Dataset):
@@ -105,7 +104,7 @@ def evaluate(model, loader, classes, device):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("exports", nargs="+", type=Path)
-    parser.add_argument("--out", type=Path, default=Path("vision/candidate-v082"))
+    parser.add_argument("--out", type=Path, default=Path("vision/candidate-v083"))
     parser.add_argument("--epochs", type=int, default=12)
     parser.add_argument("--batch-size", type=int, default=48)
     args = parser.parse_args()
@@ -114,7 +113,7 @@ def main():
     torch.manual_seed(SEED)
     samples = load_exports(args.exports)
     if not samples:
-        raise SystemExit("no valid V0.8.2 samples")
+        raise SystemExit("no valid current-season samples")
     per_label = defaultdict(int)
     for sample in samples:
         per_label[sample["label"]] += 1
@@ -165,9 +164,9 @@ def main():
     confusion, precision, recall = evaluate(model, test_loader, classes, device)
 
     args.out.mkdir(parents=True, exist_ok=True)
-    classes_path = args.out / "classes-v082.json"
-    model_path = args.out / "champion-v082.onnx"
-    report_path = args.out / "model-report-v082.json"
+    classes_path = args.out / "classes-v083.json"
+    model_path = args.out / "champion-v083.onnx"
+    report_path = args.out / "model-report-v083-candidate.json"
     classes_path.write_text(json.dumps(classes, ensure_ascii=False, indent=2), encoding="utf-8")
 
     model.eval().cpu()
@@ -184,12 +183,13 @@ def main():
 
     known = [name for name in classes if name != UNKNOWN]
     report = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "region": "CN",
         "season": "S18",
         "currentSeasonOnly": True,
         "splitUnit": "session",
         "sessions": {key: len(value) for key, value in split.items()},
+        "splitSessionIds": {key: sorted(value) for key, value in split.items()},
         "sampleCount": len(samples),
         "classCounts": dict(per_label),
         "metrics": {
@@ -205,14 +205,14 @@ def main():
         "confusionMatrix": confusion,
         "activationReady": False,
         "activationBlockers": [
-            "measure boardExactAccuracy on full-board test sessions",
-            "measure falseWriteRate with the same GameState write gate used in production",
+            "measure boardExactAccuracy on held-out full-board test sessions",
+            "measure falseWriteRate with production-equivalent trust thresholds",
             "measure Windows CPU P95 ONNX latency",
         ],
     }
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"candidate ONNX: {model_path}")
-    print("candidate remains BLOCKED until board/false-write/CPU gates are measured")
+    print("candidate remains BLOCKED until board/false-write/Windows CPU gates are measured")
 
 
 if __name__ == "__main__":
