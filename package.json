@@ -1,6 +1,6 @@
 {
   "name": "tftgoldenchanchan",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,7 +9,8 @@
     "lint": "next lint",
     "refresh:data": "node scripts/refresh-data.mjs",
     "check:data": "node scripts/check-data.mjs",
-    "check:rules": "node scripts/check-rules.mjs"
+    "check:rules": "node scripts/check-rules.mjs",
+    "check:vision-model": "node scripts/check-vision-model.mjs"
   },
   "dependencies": {
     "cheerio": "^1.2.0",
