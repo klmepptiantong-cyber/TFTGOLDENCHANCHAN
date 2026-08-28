@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-28T06:51:11.378Z",
+  "fetchedAt": "2026-08-28T06:53:50.643Z",
   "authoritativePatch": "18.1b",
   "patchAuthority": {
     "id": "official-taptap",
@@ -14,7 +14,7 @@
       "ok": true,
       "patch": "18.1b",
       "url": "https://www.taptap.cn/moment/841982769956390376",
-      "fetchedAt": "2026-08-28T06:51:10.402Z",
+      "fetchedAt": "2026-08-28T06:53:50.459Z",
       "mode": "patch-authority"
     },
     "datatft": {
@@ -22,7 +22,7 @@
       "ok": false,
       "patch": null,
       "url": "https://jcc.datatft.com/explorer",
-      "fetchedAt": "2026-08-28T06:51:11.378Z",
+      "fetchedAt": "2026-08-28T06:53:50.340Z",
       "mode": "metadata-only",
       "rankLabel": null,
       "supportsRankFilter": false,
@@ -32,7 +32,7 @@
       "id": "dataj",
       "ok": true,
       "url": "https://www.dataj.cc/comp",
-      "fetchedAt": "2026-08-28T06:51:11.017Z",
+      "fetchedAt": "2026-08-28T06:53:50.643Z",
       "mode": "comp-stats",
       "rankBand": "all",
       "patch": "18.1b",
@@ -46,7 +46,7 @@
           "playRate": 1.26,
           "winRate": 10.2,
           "top4Rate": 54.3,
-          "sampleSize": 26752
+          "sampleSize": 268
         },
         {
           "id": "dataj-莲华阿狸",
@@ -56,7 +56,7 @@
           "playRate": 1.06,
           "winRate": 13.3,
           "top4Rate": 45.1,
-          "sampleSize": 22506
+          "sampleSize": 225
         },
         {
           "id": "dataj-裁决奶妈",
@@ -66,7 +66,7 @@
           "playRate": 0.53,
           "winRate": 16.1,
           "top4Rate": 51.8,
-          "sampleSize": 11253
+          "sampleSize": 113
         },
         {
           "id": "dataj-7野怪鸡哥",
@@ -76,7 +76,7 @@
           "playRate": 0.52,
           "winRate": 17.3,
           "top4Rate": 63.3,
-          "sampleSize": 11041
+          "sampleSize": 110
         },
         {
           "id": "dataj-重装琉斯",
@@ -86,7 +86,7 @@
           "playRate": 0.48,
           "winRate": 10.1,
           "top4Rate": 51.3,
-          "sampleSize": 10191
+          "sampleSize": 102
         },
         {
           "id": "dataj-神器天使",
@@ -96,7 +96,7 @@
           "playRate": 0.47,
           "winRate": 10.3,
           "top4Rate": 41.9,
-          "sampleSize": 9979
+          "sampleSize": 100
         },
         {
           "id": "dataj-剑圣大嘴",
@@ -106,7 +106,7 @@
           "playRate": 0.44,
           "winRate": 11.8,
           "top4Rate": 51.2,
-          "sampleSize": 9342
+          "sampleSize": 93
         },
         {
           "id": "dataj-重装女警",
@@ -116,7 +116,7 @@
           "playRate": 0.34,
           "winRate": 9.2,
           "top4Rate": 55.8,
-          "sampleSize": 7219
+          "sampleSize": 72
         },
         {
           "id": "dataj-黑豹轮",
@@ -126,7 +126,7 @@
           "playRate": 0.21,
           "winRate": 7.2,
           "top4Rate": 38.8,
-          "sampleSize": 4459
+          "sampleSize": 45
         },
         {
           "id": "dataj-巨龙95",
@@ -136,7 +136,7 @@
           "playRate": 0.08,
           "winRate": 19.6,
           "top4Rate": 57.5,
-          "sampleSize": 1699
+          "sampleSize": 17
         },
         {
           "id": "dataj-重装豹女",
@@ -146,7 +146,7 @@
           "playRate": 0.07,
           "winRate": 6.1,
           "top4Rate": 38.1,
-          "sampleSize": 1486
+          "sampleSize": 15
         },
         {
           "id": "dataj-世纪和解",
@@ -156,7 +156,7 @@
           "playRate": 0.05,
           "winRate": 10,
           "top4Rate": 37.5,
-          "sampleSize": 1062
+          "sampleSize": 11
         },
         {
           "id": "dataj-花仙小炮",
@@ -166,7 +166,7 @@
           "playRate": 0.04,
           "winRate": 2,
           "top4Rate": 34.7,
-          "sampleSize": 849
+          "sampleSize": 8
         },
         {
           "id": "dataj-永森95",
@@ -176,7 +176,7 @@
           "playRate": 0.02,
           "winRate": 18.2,
           "top4Rate": 72.7,
-          "sampleSize": 425
+          "sampleSize": 4
         }
       ]
     }
