@@ -8,7 +8,7 @@ function uniq(values) {
   return [...new Set(values.filter(Boolean))];
 }
 
-function contextMatches(text, pattern, radius = 260) {
+function contextMatches(text, pattern, radius = 420) {
   const out = [];
   for (const match of text.matchAll(pattern)) {
     const index = match.index ?? 0;
@@ -19,10 +19,35 @@ function contextMatches(text, pattern, radius = 260) {
 
 function quotedLiterals(js) {
   const values = [];
-  const pattern = /(["'`])((?:\\.|(?!\1).){1,240})\1/g;
+  const pattern = /(["'`])((?:\\.|(?!\1).){1,260})\1/g;
   let match;
   while ((match = pattern.exec(js)) !== null) values.push(match[2]);
   return uniq(values);
+}
+
+function printFocusedBundle(label, src, js) {
+  console.log(`\n=== ${label} ${src} (${js.length}) ===`);
+  const literals = quotedLiterals(js);
+  const paths = literals.filter((v) => /^\/[A-Za-z0-9_?&=\-./{}:[\]]+/.test(v) && v.length < 220);
+  const keys = literals.filter((v) => /(rank|tier|version|patch|day|time|server|region|filter|query|stat|match|hero|unit|comp|augment|equip|result)/i.test(v) && v.length < 160);
+  for (const value of uniq(paths).slice(0, 250)) console.log(`PATH ${value}`);
+  for (const value of uniq(keys).slice(0, 250)) console.log(`KEY ${value}`);
+
+  const specs = [
+    ["IMPORT", /^import[^;]+;?/g],
+    ["API_PATH", /\/(?:explore|explorer|statistics|stat|query|search|match|hero|unit|comp|augment|equip|result)[A-Za-z0-9_?&=\-./{}:[\]]*/ig],
+    ["GRANDMASTER", /grandmaster/ig],
+    ["RANK", /(?:rank|tier)(?:Type|Level|Key|Id|Band|Range)?\s*[:=]/ig],
+    ["VERSION", /(?:version|patch)(?:Id|Key|Name|Code)?\s*[:=]/ig],
+    ["POSTISH", /(?:post|request|query|explore|statistics)\s*\(/ig],
+    ["AWAIT_CALL", /await\s+[A-Za-z_$][\w$]*\s*\(/ig],
+    ["FILTER_PAYLOAD", /(?:filter|conditions|condition|params|payload|body|data)\s*[:=]/ig]
+  ];
+  for (const [name, pattern] of specs) {
+    const contexts = contextMatches(js, pattern).slice(0, 80);
+    console.log(`${name}_COUNT=${contexts.length}`);
+    for (const value of contexts) console.log(`${name}_CTX ${value.replace(/\s+/g, " ").slice(0, 1100)}`);
+  }
 }
 
 const html = await fetchText(PAGE, { retries: 1, timeoutMs: 20000 });
@@ -32,43 +57,30 @@ const scriptSrcs = uniq($("script[src]").map((_, el) => $(el).attr("src")).get()
 
 console.log(`PAGE_BYTES=${html.length}`);
 console.log(`SCRIPT_COUNT=${scriptSrcs.length}`);
-for (const src of scriptSrcs) console.log(`SCRIPT ${src}`);
 
-for (const src of scriptSrcs.slice(-30)) {
+for (const src of scriptSrcs) {
   try {
     const js = await fetchText(src, { retries: 0, timeoutMs: 20000 });
-    if (!/(explorer|rank|grandmaster|宗师|api|fetch\(|axios|baseURL)/i.test(js)) continue;
+    console.log(`MAIN ${src} ${js.length}`);
 
-    console.log(`\n=== BUNDLE ${src} (${js.length}) ===`);
+    const baseContexts = contextMatches(js, /baseURL="https:\/\/api\.datatft\.com"/ig).slice(0, 4);
+    for (const value of baseContexts) console.log(`BASE_CTX ${value.replace(/\s+/g, " ").slice(0, 1400)}`);
+    const rankContexts = contextMatches(js, /TS=Gi\.filter\([^)]*grandmaster[^)]*\)/ig).slice(0, 4);
+    for (const value of rankContexts) console.log(`JCC_RANK_CTX ${value.replace(/\s+/g, " ").slice(0, 1800)}`);
 
-    const literals = quotedLiterals(js);
-    const hosts = literals.filter((v) => /https?:\/\//i.test(v) && /datatft|api/i.test(v));
-    const relative = literals.filter((v) => /^\//.test(v) && v.length < 180);
-    const suspicious = literals.filter((v) => /(explor|stat|rank|match|search|query|hero|equip|augment|comp|lineup|team|filter|version|patch)/i.test(v) && v.length < 180);
+    const assets = quotedLiterals(js)
+      .filter((v) => /^assets\/.+\.js$/.test(v))
+      .filter((v) => /(ExplorerView|FilterResult|FilterSelect|StatisticsListResult|Match-|CompView|CompRankView)/i.test(v));
 
-    for (const value of uniq(hosts)) console.log(`HOST ${value}`);
-    for (const value of uniq(relative).slice(0, 300)) console.log(`REL ${value}`);
-    for (const value of uniq(suspicious).slice(0, 400)) console.log(`LIT ${value}`);
-
-    const contextSpecs = [
-      ["BASEURL", /baseURL/ig],
-      ["AXIOS_CREATE", /axios\.create/ig],
-      ["CREATE_CALL", /\.create\(\{[^}]{0,120}(?:baseURL|timeout|headers)/ig],
-      ["FETCH", /fetch\(/ig],
-      ["XHR", /XMLHttpRequest/ig],
-      ["GRANDMASTER_KEY", /grandmasterAndAbove/ig],
-      ["PLATINUM_KEY", /platinumAndAbove/ig],
-      ["EXPLORER", /explorer/ig],
-      ["RANK_PARAM", /(?:rank|tier)(?:Type|Level|Key|Id|Band|Range)?\s*[:=]/ig],
-      ["REQUEST", /request\s*\(/ig],
-      ["POST", /\.post\(/ig],
-      ["GET", /\.get\(/ig]
-    ];
-
-    for (const [label, pattern] of contextSpecs) {
-      const contexts = contextMatches(js, pattern).slice(0, label === "GET" || label === "POST" ? 50 : 80);
-      console.log(`${label}_COUNT=${contexts.length}`);
-      for (const value of contexts) console.log(`${label}_CTX ${value.replace(/\s+/g, " ").slice(0, 800)}`);
+    console.log(`FOCUSED_ASSETS=${assets.length}`);
+    for (const asset of uniq(assets)) {
+      const assetUrl = new URL(`/${asset}`, BASE).toString();
+      try {
+        const chunk = await fetchText(assetUrl, { retries: 0, timeoutMs: 20000 });
+        printFocusedBundle(asset, assetUrl, chunk);
+      } catch (error) {
+        console.log(`CHUNK_ERROR ${assetUrl} ${error instanceof Error ? error.message : String(error)}`);
+      }
     }
   } catch (error) {
     console.log(`SCRIPT_ERROR ${src} ${error instanceof Error ? error.message : String(error)}`);
