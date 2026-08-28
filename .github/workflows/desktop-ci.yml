@@ -26,6 +26,16 @@ jobs:
         with:
           node-version: 22
       - uses: dtolnay/rust-toolchain@stable
+      - name: Cache Rust dependencies and build output
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            desktop/src-tauri/target
+          key: windows-cargo-v1-${{ hashFiles('desktop/src-tauri/Cargo.toml') }}
+          restore-keys: |
+            windows-cargo-v1-
       - name: Install desktop dependencies
         working-directory: desktop
         run: npm install
@@ -40,20 +50,60 @@ jobs:
       - name: Build portable Windows executable
         working-directory: desktop
         run: npm run build:portable
-      - name: Verify OCR runtime files
+      - name: Assemble and verify portable OCR runtime
         shell: pwsh
         run: |
-          $release = "desktop/src-tauri/target/release"
-          if (!(Test-Path "$release/tftgoldenchanchan-overlay.exe")) { throw "portable exe missing" }
-          if (!(Test-Path "$release/onnxruntime.dll")) {
-            Get-ChildItem $release -Filter "*.dll" -Recurse | Select-Object FullName
-            throw "onnxruntime.dll missing; OCR portable package would not run"
+          $ErrorActionPreference = "Stop"
+          $release = Resolve-Path "desktop/src-tauri/target/release"
+          $exe = Join-Path $release "tftgoldenchanchan-overlay.exe"
+          if (!(Test-Path $exe)) { throw "portable exe missing" }
+
+          $portable = "desktop/portable"
+          Remove-Item $portable -Recurse -Force -ErrorAction SilentlyContinue
+          New-Item -ItemType Directory -Path $portable | Out-Null
+          Copy-Item $exe $portable
+
+          # Preserve any runtime DLLs Cargo already placed next to the executable.
+          Get-ChildItem $release -Filter "*.dll" -File -ErrorAction SilentlyContinue |
+            ForEach-Object { Copy-Item $_.FullName $portable -Force }
+
+          # Inspect the PE import table. ONNX Runtime may be statically linked; in that
+          # case requiring onnxruntime.dll would incorrectly reject a valid portable EXE.
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          if (!(Test-Path $vswhere)) { throw "vswhere.exe missing; cannot verify PE dependencies" }
+          $vsPath = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          if (!$vsPath) { throw "Visual Studio C++ tools missing; cannot verify PE dependencies" }
+          $dumpbin = Get-ChildItem "$vsPath\VC\Tools\MSVC\*\bin\Hostx64\x64\dumpbin.exe" -File |
+            Sort-Object FullName -Descending | Select-Object -First 1
+          if (!$dumpbin) { throw "dumpbin.exe missing; cannot verify PE dependencies" }
+
+          $deps = (& $dumpbin.FullName /dependents $exe | Out-String)
+          Write-Host $deps
+          $needsOrtDll = $deps -match '(?i)onnxruntime\.dll'
+
+          if ($needsOrtDll -and !(Test-Path "$portable/onnxruntime.dll")) {
+            $candidates = @()
+            $candidates += Get-ChildItem "desktop/src-tauri/target" -Filter "onnxruntime.dll" -File -Recurse -ErrorAction SilentlyContinue
+            $ortCache = Join-Path $env:LOCALAPPDATA "ort.pyke.io"
+            if (Test-Path $ortCache) {
+              $candidates += Get-ChildItem $ortCache -Filter "onnxruntime.dll" -File -Recurse -ErrorAction SilentlyContinue
+            }
+            $runtime = $candidates | Select-Object -First 1
+            if (!$runtime) { throw "EXE imports onnxruntime.dll, but no runtime DLL was found in Cargo target or ORT cache" }
+            Copy-Item $runtime.FullName "$portable/onnxruntime.dll" -Force
           }
+
+          if ($needsOrtDll) {
+            if (!(Test-Path "$portable/onnxruntime.dll")) { throw "dynamic ONNX Runtime dependency missing from portable package" }
+            Write-Host "ONNX Runtime linkage: dynamic; runtime DLL packaged."
+          } else {
+            Write-Host "ONNX Runtime linkage: static/self-contained; no onnxruntime.dll required."
+          }
+
+          Get-ChildItem $portable | Select-Object Name, Length
       - name: Upload portable executable and OCR runtime
         uses: actions/upload-artifact@v4
         with:
           name: TFTGOLDENCHANCHAN-Windows-portable
-          path: |
-            desktop/src-tauri/target/release/tftgoldenchanchan-overlay.exe
-            desktop/src-tauri/target/release/*.dll
+          path: desktop/portable/**
           if-no-files-found: error
