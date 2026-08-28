@@ -8,7 +8,7 @@ function uniq(values) {
   return [...new Set(values.filter(Boolean))];
 }
 
-function contextMatches(text, pattern, radius = 420) {
+function contextMatches(text, pattern, radius = 360) {
   const out = [];
   for (const match of text.matchAll(pattern)) {
     const index = match.index ?? 0;
@@ -19,7 +19,7 @@ function contextMatches(text, pattern, radius = 420) {
 
 function quotedLiterals(js) {
   const values = [];
-  const pattern = /(["'`])((?:\\.|(?!\1).){1,260})\1/g;
+  const pattern = /(["'`])([^\n\r]{1,220}?)\1/g;
   let match;
   while ((match = pattern.exec(js)) !== null) values.push(match[2]);
   return uniq(values);
@@ -30,8 +30,8 @@ function printFocusedBundle(label, src, js) {
   const literals = quotedLiterals(js);
   const paths = literals.filter((v) => /^\/[A-Za-z0-9_?&=\-./{}:[\]]+/.test(v) && v.length < 220);
   const keys = literals.filter((v) => /(rank|tier|version|patch|day|time|server|region|filter|query|stat|match|hero|unit|comp|augment|equip|result)/i.test(v) && v.length < 160);
-  for (const value of uniq(paths).slice(0, 250)) console.log(`PATH ${value}`);
-  for (const value of uniq(keys).slice(0, 250)) console.log(`KEY ${value}`);
+  for (const value of uniq(paths).slice(0, 160)) console.log(`PATH ${value}`);
+  for (const value of uniq(keys).slice(0, 160)) console.log(`KEY ${value}`);
 
   const specs = [
     ["IMPORT", /^import[^;]+;?/g],
@@ -39,14 +39,14 @@ function printFocusedBundle(label, src, js) {
     ["GRANDMASTER", /grandmaster/ig],
     ["RANK", /(?:rank|tier)(?:Type|Level|Key|Id|Band|Range)?\s*[:=]/ig],
     ["VERSION", /(?:version|patch)(?:Id|Key|Name|Code)?\s*[:=]/ig],
-    ["POSTISH", /(?:post|request|query|explore|statistics)\s*\(/ig],
-    ["AWAIT_CALL", /await\s+[A-Za-z_$][\w$]*\s*\(/ig],
-    ["FILTER_PAYLOAD", /(?:filter|conditions|condition|params|payload|body|data)\s*[:=]/ig]
+    ["CALL", /[A-Za-z_$][\w$]*\s*\(\s*["'`]\/[A-Za-z]/g],
+    ["AWAIT", /await\s+[A-Za-z_$][\w$]*\s*\(/ig],
+    ["PAYLOAD", /(?:filter|conditions|condition|params|payload|body|data)\s*[:=]/ig]
   ];
   for (const [name, pattern] of specs) {
-    const contexts = contextMatches(js, pattern).slice(0, 80);
+    const contexts = contextMatches(js, pattern).slice(0, 40);
     console.log(`${name}_COUNT=${contexts.length}`);
-    for (const value of contexts) console.log(`${name}_CTX ${value.replace(/\s+/g, " ").slice(0, 1100)}`);
+    for (const value of contexts) console.log(`${name}_CTX ${value.replace(/\s+/g, " ").slice(0, 1000)}`);
   }
 }
 
@@ -63,17 +63,18 @@ for (const src of scriptSrcs) {
     const js = await fetchText(src, { retries: 0, timeoutMs: 20000 });
     console.log(`MAIN ${src} ${js.length}`);
 
-    const baseContexts = contextMatches(js, /baseURL="https:\/\/api\.datatft\.com"/ig).slice(0, 4);
-    for (const value of baseContexts) console.log(`BASE_CTX ${value.replace(/\s+/g, " ").slice(0, 1400)}`);
-    const rankContexts = contextMatches(js, /TS=Gi\.filter\([^)]*grandmaster[^)]*\)/ig).slice(0, 4);
-    for (const value of rankContexts) console.log(`JCC_RANK_CTX ${value.replace(/\s+/g, " ").slice(0, 1800)}`);
+    for (const value of contextMatches(js, /baseURL="https:\/\/api\.datatft\.com"/ig).slice(0, 2)) {
+      console.log(`BASE_CTX ${value.replace(/\s+/g, " ").slice(0, 1200)}`);
+    }
+    for (const value of contextMatches(js, /TS=Gi\.filter\([^)]*grandmaster[^)]*\)/ig).slice(0, 2)) {
+      console.log(`JCC_RANK_CTX ${value.replace(/\s+/g, " ").slice(0, 1400)}`);
+    }
 
-    const assets = quotedLiterals(js)
-      .filter((v) => /^assets\/.+\.js$/.test(v))
-      .filter((v) => /(ExplorerView|FilterResult|FilterSelect|StatisticsListResult|Match-|CompView|CompRankView)/i.test(v));
-
+    const assetMatches = js.match(/assets\/(?:ExplorerView|FilterResult|FilterSelect|StatisticsListResult|Match-|CompView|CompRankView)[A-Za-z0-9_.\-]+\.js/g) ?? [];
+    const assets = uniq(assetMatches);
     console.log(`FOCUSED_ASSETS=${assets.length}`);
-    for (const asset of uniq(assets)) {
+
+    for (const asset of assets) {
       const assetUrl = new URL(`/${asset}`, BASE).toString();
       try {
         const chunk = await fetchText(assetUrl, { retries: 0, timeoutMs: 20000 });
