@@ -5,14 +5,23 @@ const urls = [
   "https://www.dataj.cc/comp",
   "https://www.dataj.cc/database",
   "https://www.dataj.cc/equip",
+  "https://www.dataj.cc/augment",
   "https://www.dataj.cc/comp/91"
 ];
 
 const needles = [
+  "heroId",
+  "heroName",
+  "heroIcon",
+  "avatar",
+  "image",
+  "imageUrl",
+  "icon",
+  "iconUrl",
   "equipId",
   "equipName",
-  "equipmentId",
-  "equipmentName",
+  "augmentId",
+  "augmentName",
   "stage",
   "level",
   "运营",
@@ -65,36 +74,59 @@ function collectEquipmentPairs(payloads) {
   return pairs;
 }
 
-for (const url of urls) {
-  const html = await fetchText(url, { retries: 1, timeoutMs: 20000 });
-  const $ = cheerio.load(html);
-  const payloads = nextFlightPayloads(html);
-  const pairs = collectEquipmentPairs(payloads);
-
-  console.log(`\n===== PAGE ${url} BYTES=${html.length} FLIGHT=${payloads.length} =====`);
-  console.log(`TITLE=${$("title").text().replace(/\s+/g, " ").trim()}`);
-  console.log(`EQUIPMENT_PAIRS=${JSON.stringify([...pairs.entries()].slice(0, 120))}`);
-
-  for (const needle of needles) {
-    const contexts = [];
-    for (const payload of payloads) {
-      let from = 0;
-      while (contexts.length < 5) {
-        const index = payload.indexOf(needle, from);
-        if (index < 0) break;
-        contexts.push(payload.slice(Math.max(0, index - 260), Math.min(payload.length, index + 620)).replace(/\s+/g, " "));
-        from = index + needle.length;
-      }
-      if (contexts.length >= 5) break;
+function collectAssetLikeValues(payloads) {
+  const hits = [];
+  const pattern = /\"([^\"]*(?:icon|image|avatar)[^\"]*)\"\s*:\s*\"([^\"]+)\"/gi;
+  for (const payload of payloads) {
+    pattern.lastIndex = 0;
+    let match;
+    while ((match = pattern.exec(payload)) !== null && hits.length < 160) {
+      const [, key, value] = match;
+      if (!value || value.length > 500) continue;
+      hits.push([key, value]);
     }
-    if (contexts.length) console.log(`NEEDLE ${needle} ${JSON.stringify(contexts)}`);
+    if (hits.length >= 160) break;
   }
+  return hits;
+}
 
-  const pageText = $.root().text().replace(/\s+/g, " ").trim();
-  for (const word of ["运营", "过渡", "搜牌", "升人口"]) {
-    const index = pageText.indexOf(word);
-    if (index >= 0) {
-      console.log(`TEXT_CTX ${word} ${pageText.slice(Math.max(0, index - 220), index + 700)}`);
+for (const url of urls) {
+  try {
+    const html = await fetchText(url, { retries: 1, timeoutMs: 20000 });
+    const $ = cheerio.load(html);
+    const payloads = nextFlightPayloads(html);
+    const pairs = collectEquipmentPairs(payloads);
+    const assetValues = collectAssetLikeValues(payloads);
+
+    console.log(`\n===== PAGE ${url} BYTES=${html.length} FLIGHT=${payloads.length} =====`);
+    console.log(`TITLE=${$("title").text().replace(/\s+/g, " ").trim()}`);
+    console.log(`EQUIPMENT_PAIRS=${JSON.stringify([...pairs.entries()].slice(0, 120))}`);
+    console.log(`ASSET_FIELDS=${JSON.stringify(assetValues.slice(0, 120))}`);
+
+    for (const needle of needles) {
+      const contexts = [];
+      for (const payload of payloads) {
+        let from = 0;
+        while (contexts.length < 5) {
+          const index = payload.indexOf(needle, from);
+          if (index < 0) break;
+          contexts.push(payload.slice(Math.max(0, index - 260), Math.min(payload.length, index + 620)).replace(/\s+/g, " "));
+          from = index + needle.length;
+        }
+        if (contexts.length >= 5) break;
+      }
+      if (contexts.length) console.log(`NEEDLE ${needle} ${JSON.stringify(contexts)}`);
     }
+
+    const pageText = $.root().text().replace(/\s+/g, " ").trim();
+    for (const word of ["运营", "过渡", "搜牌", "升人口"]) {
+      const index = pageText.indexOf(word);
+      if (index >= 0) {
+        console.log(`TEXT_CTX ${word} ${pageText.slice(Math.max(0, index - 220), index + 700)}`);
+      }
+    }
+  } catch (error) {
+    console.log(`\n===== PAGE ${url} ERROR =====`);
+    console.log(error instanceof Error ? error.message : String(error));
   }
 }
