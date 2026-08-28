@@ -1,59 +1,401 @@
 [
   {
-    "id": "rift-7",
-    "name": "7峡谷野怪",
-    "tier": "S",
-    "patch": "18.1b",
-    "rankBand": "铂金-大师",
-    "avgPlace": 3.79,
-    "top4Rate": 63.3,
-    "winRate": 17.3,
-    "playRate": 0.52,
-    "sampleSize": 3500,
-    "trend": "up",
-    "trend24h": 4.2,
-    "coreUnits": ["深红锋喙鸟", "石甲虫", "远古巨龙"],
-    "flexUnits": ["宝石", "纳尔"],
-    "keyItems": ["羊刀", "锐利之刃", "海妖", "狂徒"],
-    "itemCarriers": {"深红锋喙鸟": ["羊刀", "锐利之刃", "海妖"], "石甲虫": ["狂徒"]},
-    "stagePlan": ["2阶段胡峡谷野怪时优先保体系牌，7级补质量，经济允许再冲9。"]
-  },
-  {
-    "id": "cass-guardian",
-    "name": "护卫蛇女",
-    "tier": "S",
-    "patch": "18.1b",
-    "rankBand": "铂金-大师",
+    "id": "dataj-赌蛇女",
+    "name": "赌蛇女",
+    "tier": "A",
     "avgPlace": 4.28,
-    "top4Rate": 54.3,
-    "winRate": 10.2,
     "playRate": 1.26,
-    "sampleSize": 4200,
-    "trend": "surging",
-    "trend24h": 8.4,
-    "coreUnits": ["蛇女", "稻草人", "索拉卡"],
-    "flexUnits": ["洛"],
-    "keyItems": ["青龙刀", "纳什", "狂徒", "板甲"],
-    "itemCarriers": {"蛇女": ["青龙刀", "纳什"], "稻草人": ["狂徒", "板甲"]},
-    "stagePlan": ["中期围绕蛇女和稻草人补两星质量，确认同行少时再投入追三。"]
+    "winRate": 10.2,
+    "top4Rate": 54.3,
+    "sampleSize": 26752,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [
+      "蛇女",
+      "稻草人",
+      "索拉卡"
+    ],
+    "flexUnits": [
+      "洛"
+    ],
+    "keyItems": [
+      "青龙刀",
+      "纳什",
+      "狂徒",
+      "板甲"
+    ],
+    "itemCarriers": {
+      "蛇女": [
+        "青龙刀",
+        "纳什"
+      ],
+      "稻草人": [
+        "狂徒",
+        "板甲"
+      ]
+    },
+    "stagePlan": [
+      "中期围绕蛇女和稻草人补两星质量，确认同行少时再投入追三。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": false
   },
   {
-    "id": "dragon-95",
+    "id": "dataj-莲华阿狸",
+    "name": "莲华阿狸",
+    "tier": "C",
+    "avgPlace": 4.72,
+    "playRate": 1.06,
+    "winRate": 13.3,
+    "top4Rate": 45.1,
+    "sampleSize": 22506,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [],
+    "flexUnits": [],
+    "keyItems": [],
+    "itemCarriers": {},
+    "stagePlan": [
+      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": true
+  },
+  {
+    "id": "dataj-裁决奶妈",
+    "name": "裁决奶妈",
+    "tier": "A",
+    "avgPlace": 4.42,
+    "playRate": 0.53,
+    "winRate": 16.1,
+    "top4Rate": 51.8,
+    "sampleSize": 11253,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [],
+    "flexUnits": [],
+    "keyItems": [],
+    "itemCarriers": {},
+    "stagePlan": [
+      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": true
+  },
+  {
+    "id": "dataj-7野怪鸡哥",
+    "name": "7野怪鸡哥",
+    "tier": "S",
+    "avgPlace": 3.79,
+    "playRate": 0.52,
+    "winRate": 17.3,
+    "top4Rate": 63.3,
+    "sampleSize": 11041,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [
+      "深红锋喙鸟",
+      "石甲虫",
+      "远古巨龙"
+    ],
+    "flexUnits": [
+      "宝石",
+      "纳尔"
+    ],
+    "keyItems": [
+      "羊刀",
+      "锐利之刃",
+      "海妖",
+      "狂徒"
+    ],
+    "itemCarriers": {
+      "深红锋喙鸟": [
+        "羊刀",
+        "锐利之刃",
+        "海妖"
+      ],
+      "石甲虫": [
+        "狂徒"
+      ]
+    },
+    "stagePlan": [
+      "2阶段胡峡谷野怪时优先保体系牌，7级补质量，经济允许再冲9。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": false
+  },
+  {
+    "id": "dataj-重装琉斯",
+    "name": "重装琉斯",
+    "tier": "B",
+    "avgPlace": 4.48,
+    "playRate": 0.48,
+    "winRate": 10.1,
+    "top4Rate": 51.3,
+    "sampleSize": 10191,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [],
+    "flexUnits": [],
+    "keyItems": [],
+    "itemCarriers": {},
+    "stagePlan": [
+      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": true
+  },
+  {
+    "id": "dataj-神器天使",
+    "name": "神器天使",
+    "tier": "D",
+    "avgPlace": 4.97,
+    "playRate": 0.47,
+    "winRate": 10.3,
+    "top4Rate": 41.9,
+    "sampleSize": 9979,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [],
+    "flexUnits": [],
+    "keyItems": [],
+    "itemCarriers": {},
+    "stagePlan": [
+      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": true
+  },
+  {
+    "id": "dataj-剑圣大嘴",
+    "name": "剑圣大嘴",
+    "tier": "B",
+    "avgPlace": 4.47,
+    "playRate": 0.44,
+    "winRate": 11.8,
+    "top4Rate": 51.2,
+    "sampleSize": 9342,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [],
+    "flexUnits": [],
+    "keyItems": [],
+    "itemCarriers": {},
+    "stagePlan": [
+      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": true
+  },
+  {
+    "id": "dataj-重装女警",
+    "name": "重装女警",
+    "tier": "A",
+    "avgPlace": 4.25,
+    "playRate": 0.34,
+    "winRate": 9.2,
+    "top4Rate": 55.8,
+    "sampleSize": 7219,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [],
+    "flexUnits": [],
+    "keyItems": [],
+    "itemCarriers": {},
+    "stagePlan": [
+      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": true
+  },
+  {
+    "id": "dataj-黑豹轮",
+    "name": "黑豹轮",
+    "tier": "D",
+    "avgPlace": 5.11,
+    "playRate": 0.21,
+    "winRate": 7.2,
+    "top4Rate": 38.8,
+    "sampleSize": 4459,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [],
+    "flexUnits": [],
+    "keyItems": [],
+    "itemCarriers": {},
+    "stagePlan": [
+      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": true
+  },
+  {
+    "id": "dataj-巨龙95",
     "name": "巨龙95",
     "tier": "S",
-    "patch": "18.1b",
-    "rankBand": "铂金-大师",
     "avgPlace": 3.96,
-    "top4Rate": 57.5,
-    "winRate": 19.6,
     "playRate": 0.08,
-    "sampleSize": 1200,
-    "trend": "up",
-    "trend24h": 3.1,
-    "coreUnits": ["远古巨龙", "德莱文", "宝石"],
-    "flexUnits": ["凯南", "大树", "艾翁", "阿木木"],
-    "keyItems": ["无尽", "血手", "羊刀", "轻语"],
-    "itemCarriers": {"远古巨龙": ["无尽", "血手"], "德莱文": ["羊刀"]},
-    "stagePlan": ["仅在血量和经济都健康时走9人口路线；劣势局不要强行95。"]
+    "winRate": 19.6,
+    "top4Rate": 57.5,
+    "sampleSize": 1699,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [
+      "远古巨龙",
+      "德莱文",
+      "宝石"
+    ],
+    "flexUnits": [
+      "凯南",
+      "大树",
+      "艾翁",
+      "阿木木"
+    ],
+    "keyItems": [
+      "无尽",
+      "血手",
+      "羊刀",
+      "轻语"
+    ],
+    "itemCarriers": {
+      "远古巨龙": [
+        "无尽",
+        "血手"
+      ],
+      "德莱文": [
+        "羊刀"
+      ]
+    },
+    "stagePlan": [
+      "仅在血量和经济都健康时走9人口路线；劣势局不要强行95。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": false
+  },
+  {
+    "id": "dataj-重装豹女",
+    "name": "重装豹女",
+    "tier": "D",
+    "avgPlace": 5.1,
+    "playRate": 0.07,
+    "winRate": 6.1,
+    "top4Rate": 38.1,
+    "sampleSize": 1486,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [],
+    "flexUnits": [],
+    "keyItems": [],
+    "itemCarriers": {},
+    "stagePlan": [
+      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": true
+  },
+  {
+    "id": "dataj-世纪和解",
+    "name": "世纪和解",
+    "tier": "D",
+    "avgPlace": 5.17,
+    "playRate": 0.05,
+    "winRate": 10,
+    "top4Rate": 37.5,
+    "sampleSize": 1062,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [],
+    "flexUnits": [],
+    "keyItems": [],
+    "itemCarriers": {},
+    "stagePlan": [
+      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": true
+  },
+  {
+    "id": "dataj-花仙小炮",
+    "name": "花仙小炮",
+    "tier": "D",
+    "avgPlace": 5.31,
+    "playRate": 0.04,
+    "winRate": 2,
+    "top4Rate": 34.7,
+    "sampleSize": 849,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [],
+    "flexUnits": [],
+    "keyItems": [],
+    "itemCarriers": {},
+    "stagePlan": [
+      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": true
+  },
+  {
+    "id": "dataj-永森95",
+    "name": "永森95",
+    "tier": "S",
+    "avgPlace": 3.31,
+    "playRate": 0.02,
+    "winRate": 18.2,
+    "top4Rate": 72.7,
+    "sampleSize": 425,
+    "patch": "18.1b",
+    "rankBand": "all",
+    "trend": "flat",
+    "trend24h": 0,
+    "coreUnits": [],
+    "flexUnits": [],
+    "keyItems": [],
+    "itemCarriers": {},
+    "stagePlan": [
+      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+    ],
+    "dataSource": "dataj",
+    "fetchedAt": "2026-08-28T06:36:43.197Z",
+    "needsEnrichment": true
   }
 ]

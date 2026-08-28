@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-08-28T06:33:36.907Z",
+  "fetchedAt": "2026-08-28T06:36:43.197Z",
   "authoritativePatch": "18.1b",
-  "liveCompDataAccepted": false,
+  "liveCompDataAccepted": true,
   "sources": {
     "official": {
       "id": "official-taptap",
       "ok": false,
       "patch": null,
       "url": "https://www.taptap.cn/forum/g213275",
-      "fetchedAt": "2026-08-28T06:33:36.907Z",
+      "fetchedAt": "2026-08-28T06:36:43.197Z",
       "mode": "patch-authority",
       "error": "https://www.taptap.cn/forum/g213275: patch not found | https://www.taptap.cn/app/176937/topic?group_label_id=521740: patch not found"
     },
@@ -17,7 +17,7 @@
       "ok": false,
       "patch": null,
       "url": "https://jcc.datatft.com/explorer",
-      "fetchedAt": "2026-08-28T06:33:33.337Z",
+      "fetchedAt": "2026-08-28T06:36:42.027Z",
       "mode": "metadata-only",
       "rankLabel": null,
       "supportsRankFilter": false,
@@ -25,21 +25,160 @@
     },
     "dataj": {
       "id": "dataj",
-      "ok": false,
+      "ok": true,
       "url": "https://www.dataj.cc/comp",
-      "fetchedAt": "2026-08-28T06:33:35.365Z",
+      "fetchedAt": "2026-08-28T06:36:41.223Z",
       "mode": "comp-stats",
       "rankBand": "all",
       "patch": "18.1b",
       "totalGames": 21232,
-      "comps": [],
-      "parserDebug": "排行与评级 - 金铲铲大数据金铲铲大数据首页阵容排行检索器数据统计 赛季资料 赞助S18 自然之力搜索Ctrl + K阵容排行基于对局样本的阵容梯度与数据统计版本18.1b（21,232 局）最小样本平均排名出场率登顶率前四率A赌蛇女平均排名4.28出场率1.26登顶率10.2%前四率54.3%C莲华阿狸平均排名4.72出场率1.06登顶率13.3%前四率45.1%A裁决奶妈平均排名4.42出场率0.53登顶率16.1%前四率51.8%S7野怪鸡哥平均排名3.79出场率0.52登顶率17.3%前四率63.3%B重装琉斯平均排名4.48出场率0.48登顶率10.1%前四率51.3%D神器天使平均排名4.97出场率0.47登顶率10.3%前四率",
-      "error": "parse incomplete: patch=18.1b, comps=0"
+      "comps": [
+        {
+          "id": "dataj-赌蛇女",
+          "name": "赌蛇女",
+          "tier": "A",
+          "avgPlace": 4.28,
+          "playRate": 1.26,
+          "winRate": 10.2,
+          "top4Rate": 54.3,
+          "sampleSize": 26752
+        },
+        {
+          "id": "dataj-莲华阿狸",
+          "name": "莲华阿狸",
+          "tier": "C",
+          "avgPlace": 4.72,
+          "playRate": 1.06,
+          "winRate": 13.3,
+          "top4Rate": 45.1,
+          "sampleSize": 22506
+        },
+        {
+          "id": "dataj-裁决奶妈",
+          "name": "裁决奶妈",
+          "tier": "A",
+          "avgPlace": 4.42,
+          "playRate": 0.53,
+          "winRate": 16.1,
+          "top4Rate": 51.8,
+          "sampleSize": 11253
+        },
+        {
+          "id": "dataj-7野怪鸡哥",
+          "name": "7野怪鸡哥",
+          "tier": "S",
+          "avgPlace": 3.79,
+          "playRate": 0.52,
+          "winRate": 17.3,
+          "top4Rate": 63.3,
+          "sampleSize": 11041
+        },
+        {
+          "id": "dataj-重装琉斯",
+          "name": "重装琉斯",
+          "tier": "B",
+          "avgPlace": 4.48,
+          "playRate": 0.48,
+          "winRate": 10.1,
+          "top4Rate": 51.3,
+          "sampleSize": 10191
+        },
+        {
+          "id": "dataj-神器天使",
+          "name": "神器天使",
+          "tier": "D",
+          "avgPlace": 4.97,
+          "playRate": 0.47,
+          "winRate": 10.3,
+          "top4Rate": 41.9,
+          "sampleSize": 9979
+        },
+        {
+          "id": "dataj-剑圣大嘴",
+          "name": "剑圣大嘴",
+          "tier": "B",
+          "avgPlace": 4.47,
+          "playRate": 0.44,
+          "winRate": 11.8,
+          "top4Rate": 51.2,
+          "sampleSize": 9342
+        },
+        {
+          "id": "dataj-重装女警",
+          "name": "重装女警",
+          "tier": "A",
+          "avgPlace": 4.25,
+          "playRate": 0.34,
+          "winRate": 9.2,
+          "top4Rate": 55.8,
+          "sampleSize": 7219
+        },
+        {
+          "id": "dataj-黑豹轮",
+          "name": "黑豹轮",
+          "tier": "D",
+          "avgPlace": 5.11,
+          "playRate": 0.21,
+          "winRate": 7.2,
+          "top4Rate": 38.8,
+          "sampleSize": 4459
+        },
+        {
+          "id": "dataj-巨龙95",
+          "name": "巨龙95",
+          "tier": "S",
+          "avgPlace": 3.96,
+          "playRate": 0.08,
+          "winRate": 19.6,
+          "top4Rate": 57.5,
+          "sampleSize": 1699
+        },
+        {
+          "id": "dataj-重装豹女",
+          "name": "重装豹女",
+          "tier": "D",
+          "avgPlace": 5.1,
+          "playRate": 0.07,
+          "winRate": 6.1,
+          "top4Rate": 38.1,
+          "sampleSize": 1486
+        },
+        {
+          "id": "dataj-世纪和解",
+          "name": "世纪和解",
+          "tier": "D",
+          "avgPlace": 5.17,
+          "playRate": 0.05,
+          "winRate": 10,
+          "top4Rate": 37.5,
+          "sampleSize": 1062
+        },
+        {
+          "id": "dataj-花仙小炮",
+          "name": "花仙小炮",
+          "tier": "D",
+          "avgPlace": 5.31,
+          "playRate": 0.04,
+          "winRate": 2,
+          "top4Rate": 34.7,
+          "sampleSize": 849
+        },
+        {
+          "id": "dataj-永森95",
+          "name": "永森95",
+          "tier": "S",
+          "avgPlace": 3.31,
+          "playRate": 0.02,
+          "winRate": 18.2,
+          "top4Rate": 72.7,
+          "sampleSize": 425
+        }
+      ]
     }
   },
   "rankCoverage": [
     "all"
   ],
   "targetRankCoverage": false,
-  "note": "阵容统计源与当前国服版本不一致或抓取失败，本轮拒绝覆盖排行榜，保留上一份已验证快照。"
+  "note": "实时阵容统计已通过版本一致性校验。当前 DataJ 适配器提供全段位阵容统计；DataTFT 已验证存在段位筛选，但 V0.2 不猜测其未公开内部 API。"
 }
