@@ -1,0 +1,13 @@
+{
+  "fetchedAt": "2026-08-28T06:06:00.000Z",
+  "authoritativePatch": "18.1b",
+  "liveCompDataAccepted": false,
+  "rankCoverage": ["seed"],
+  "targetRankCoverage": false,
+  "note": "V0.2 采集器已部署；等待 GitHub Actions 首次联网刷新后切换为真实统计快照。",
+  "sources": {
+    "official": {"id": "official-taptap", "ok": true, "patch": "18.1b", "mode": "patch-authority"},
+    "datatft": {"id": "datatft", "ok": true, "patch": "18.1b", "mode": "metadata-only"},
+    "dataj": {"id": "dataj", "ok": false, "patch": null, "mode": "comp-stats", "error": "pending first scheduled refresh"}
+  }
+}
