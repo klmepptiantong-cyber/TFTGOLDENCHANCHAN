@@ -3,7 +3,8 @@ import snapshotJson from "../../../data/latest.json";
 import { discoveryScore, metaScore } from "../../../lib/scoring";
 import { MetaSnapshot } from "../../../lib/types";
 
-const snapshot = snapshotJson as MetaSnapshot;
+// data/latest.json is validated by scripts/check-data.mjs before commit/build.
+const snapshot = snapshotJson as unknown as MetaSnapshot;
 
 export async function GET() {
   const comps = snapshot.comps
