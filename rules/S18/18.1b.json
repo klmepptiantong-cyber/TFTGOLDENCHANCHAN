@@ -1,0 +1,39 @@
+{
+  "season": "S18",
+  "patch": "18.1b",
+  "region": "CN",
+  "verification": {
+    "status": "provisional",
+    "precisionUse": "blocked",
+    "reviewedAt": "2026-08-28T14:15:00Z",
+    "note": "Current public S18 sources disagree on exact pool sizes and shop odds. The EV engine may expose these values for diagnostics but must not present precise hit-rate / placement probabilities as verified until an authoritative or independently reproducible rule source is confirmed."
+  },
+  "poolSizeByCost": {
+    "1": 29,
+    "2": 22,
+    "3": 18,
+    "4": 12,
+    "5": 10
+  },
+  "shopOddsByLevel": {},
+  "sources": [
+    {
+      "kind": "current-s18-community",
+      "url": "https://www.360rjy.com/jcgl/8477.html",
+      "claim": "S18 pool sizes 29/22/18/12/10",
+      "confidence": "medium"
+    },
+    {
+      "kind": "conflicting-current-s18-community",
+      "url": "https://www.njeis.cn/news/3162.html",
+      "claim": "S18 article reports a different pool table",
+      "confidence": "low"
+    },
+    {
+      "kind": "historical-official-system-reference",
+      "url": "https://bbs.4399.cn/thread-view-tid-42290244",
+      "claim": "Historical official announcement documents pool and shop-odds changes; useful for schema provenance but not treated as S18 proof",
+      "confidence": "high-historical"
+    }
+  ]
+}
