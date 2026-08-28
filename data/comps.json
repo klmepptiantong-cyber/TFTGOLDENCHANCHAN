@@ -69,6 +69,32 @@
         "2028"
       ]
     },
+    "sourceEquipmentNamesByHero": {
+      "塔里克": [
+        "狂徒铠甲",
+        "石像鬼石板甲",
+        "振奋盔甲"
+      ],
+      "德莱文": [
+        "鬼索的狂暴之刃",
+        "海妖之怒"
+      ],
+      "伊泽瑞尔": [
+        "朔极之矛",
+        "锐利之刃",
+        "强袭者的链枷"
+      ],
+      "茂凯": [
+        "薄暮法袍",
+        "狂徒铠甲",
+        "石像鬼石板甲"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 11,
+      "total": 11
+    },
     "sourceLineup": [
       {
         "name": "伊泽瑞尔",
@@ -176,7 +202,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/91",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -245,6 +271,33 @@
         "2028",
         "2034"
       ]
+    },
+    "sourceEquipmentNamesByHero": {
+      "远古石甲虫": [
+        "振奋盔甲",
+        "石像鬼石板甲",
+        "狂徒铠甲"
+      ],
+      "深红锋喙鸟": [
+        "鬼索的狂暴之刃",
+        "海妖之怒",
+        "锐利之刃"
+      ],
+      "绯红印记树怪": [
+        "斯特拉克的挑战护手",
+        "水银",
+        "锐利之刃"
+      ],
+      "苍蓝雕纹魔像": [
+        "圣盾使的誓约",
+        "石像鬼石板甲",
+        "狂徒铠甲"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 12,
+      "total": 12
     },
     "sourceLineup": [
       {
@@ -363,7 +416,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/99",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -441,6 +494,32 @@
         "2028",
         "2023"
       ]
+    },
+    "sourceEquipmentNamesByHero": {
+      "远古巨龙": [
+        "无尽之刃",
+        "强袭者的链枷",
+        "最后的轻语"
+      ],
+      "德莱文": [
+        "鬼索的狂暴之刃",
+        "海妖之怒"
+      ],
+      "茂凯": [
+        "狂徒铠甲",
+        "石像鬼石板甲",
+        "振奋盔甲"
+      ],
+      "苍蓝雕纹魔像": [
+        "狂徒铠甲",
+        "石像鬼石板甲",
+        "圣盾使的誓约"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 11,
+      "total": 11
     },
     "sourceLineup": [
       {
@@ -551,7 +630,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/89",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -622,6 +701,28 @@
         "2034",
         "2032"
       ]
+    },
+    "sourceEquipmentNamesByHero": {
+      "伊莉丝": [
+        "振奋盔甲",
+        "石像鬼石板甲",
+        "狂徒铠甲"
+      ],
+      "凯特琳": [
+        "锐利之刃",
+        "海妖之怒",
+        "鬼索的狂暴之刃"
+      ],
+      "赫卡里姆": [
+        "日炎斗篷",
+        "狂徒铠甲",
+        "薄暮法袍"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 9,
+      "total": 9
     },
     "sourceLineup": [
       {
@@ -720,7 +821,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/100",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -795,6 +896,33 @@
         "2014",
         "2004"
       ]
+    },
+    "sourceEquipmentNamesByHero": {
+      "拉莫斯": [
+        "狂徒铠甲",
+        "离子火花",
+        "日炎斗篷"
+      ],
+      "费德提克": [
+        "狂徒铠甲",
+        "石像鬼石板甲",
+        "振奋盔甲"
+      ],
+      "卡西奥佩娅": [
+        "海克斯科技枪刃",
+        "珠光护手",
+        "朔极之矛"
+      ],
+      "阿狸": [
+        "珠光护手",
+        "纳什之牙",
+        "朔极之矛"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 12,
+      "total": 12
     },
     "sourceLineup": [
       {
@@ -894,7 +1022,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/101",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -971,6 +1099,28 @@
         "2014",
         "2016"
       ]
+    },
+    "sourceEquipmentNamesByHero": {
+      "墨菲特": [
+        "石像鬼石板甲",
+        "狂徒铠甲",
+        "振奋盔甲"
+      ],
+      "婕拉": [
+        "虚空之杖",
+        "朔极之矛",
+        "裁决使纹章"
+      ],
+      "索拉卡": [
+        "朔极之矛",
+        "纳什之牙",
+        "班克斯的魔法帽"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 9,
+      "total": 9
     },
     "sourceLineup": [
       {
@@ -1079,7 +1229,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/90",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1158,6 +1308,33 @@
         "2032",
         "2034"
       ]
+    },
+    "sourceEquipmentNamesByHero": {
+      "厄斐琉斯": [
+        "鬼索的狂暴之刃",
+        "海妖之怒",
+        "锐利之刃"
+      ],
+      "深红锋喙鸟": [
+        "鬼索的狂暴之刃",
+        "海妖之怒",
+        "锐利之刃"
+      ],
+      "苍蓝雕纹魔像": [
+        "狂徒铠甲",
+        "石像鬼石板甲",
+        "圣盾使的誓约"
+      ],
+      "赫卡里姆": [
+        "日炎斗篷",
+        "薄暮法袍",
+        "狂徒铠甲"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 12,
+      "total": 12
     },
     "sourceLineup": [
       {
@@ -1256,7 +1433,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/95",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1328,6 +1505,28 @@
         "2034",
         "2028"
       ]
+    },
+    "sourceEquipmentNamesByHero": {
+      "易": [
+        "泰坦的坚决",
+        "夜之锋刃",
+        "鬼索的狂暴之刃"
+      ],
+      "克格莫": [
+        "无尽之刃",
+        "红霸符",
+        "朔极之矛"
+      ],
+      "远古石甲虫": [
+        "振奋盔甲",
+        "狂徒铠甲",
+        "石像鬼石板甲"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 9,
+      "total": 9
     },
     "sourceLineup": [
       {
@@ -1426,7 +1625,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/86",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1504,6 +1703,31 @@
         "2004",
         "2009"
       ]
+    },
+    "sourceEquipmentNamesByHero": {
+      "瑟提": [
+        "振奋盔甲",
+        "狂徒铠甲",
+        "石像鬼石板甲"
+      ],
+      "阿狸": [
+        "强袭者的链枷",
+        "珠光护手",
+        "朔极之矛"
+      ],
+      "婕拉": [
+        "虚空之杖"
+      ],
+      "艾希": [
+        "最后的轻语",
+        "朔极之矛",
+        "红霸符"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 10,
+      "total": 10
     },
     "sourceLineup": [
       {
@@ -1612,7 +1836,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/84",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1688,6 +1912,33 @@
         "2038",
         "2010"
       ]
+    },
+    "sourceEquipmentNamesByHero": {
+      "奥恩": [
+        "狂徒铠甲",
+        "振奋盔甲",
+        "石像鬼石板甲"
+      ],
+      "蕾欧娜": [
+        "狂徒铠甲",
+        "振奋盔甲",
+        "石像鬼石板甲"
+      ],
+      "霞": [
+        "巨人捕手",
+        "海妖之怒",
+        "鬼索的狂暴之刃"
+      ],
+      "凯尔": [
+        "班克斯的魔法帽",
+        "珠光护手",
+        "鬼索的狂暴之刃"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 12,
+      "total": 12
     },
     "sourceLineup": [
       {
@@ -1776,7 +2027,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/88",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1853,6 +2104,27 @@
         "2038",
         "2042"
       ]
+    },
+    "sourceEquipmentNamesByHero": {
+      "墨菲特": [
+        "石像鬼石板甲",
+        "狂徒铠甲"
+      ],
+      "希维尔": [
+        "无尽之刃",
+        "朔极之矛",
+        "锐利之刃"
+      ],
+      "奈德丽": [
+        "鬼索的狂暴之刃",
+        "珠光护手",
+        "强袭者的链枷"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 8,
+      "total": 8
     },
     "sourceLineup": [
       {
@@ -1961,7 +2233,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/102",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -2034,6 +2306,28 @@
         "2034",
         "2023"
       ]
+    },
+    "sourceEquipmentNamesByHero": {
+      "奈德丽": [
+        "鬼索的狂暴之刃",
+        "珠光护手",
+        "班克斯的魔法帽"
+      ],
+      "莫甘娜": [
+        "虚空之杖",
+        "莫雷洛秘典",
+        "蓝霸符"
+      ],
+      "苍蓝雕纹魔像": [
+        "石像鬼石板甲",
+        "狂徒铠甲",
+        "圣盾使的誓约"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 9,
+      "total": 9
     },
     "sourceLineup": [
       {
@@ -2132,7 +2426,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/83",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -2206,6 +2500,33 @@
         "2012",
         "2005"
       ]
+    },
+    "sourceEquipmentNamesByHero": {
+      "黛安娜": [
+        "石像鬼石板甲",
+        "日炎斗篷",
+        "薄暮法袍"
+      ],
+      "赫卡里姆": [
+        "狂徒铠甲",
+        "石像鬼石板甲",
+        "振奋盔甲"
+      ],
+      "卡兹克": [
+        "正义之手",
+        "夜之锋刃",
+        "班克斯的魔法帽"
+      ],
+      "雷恩加尔": [
+        "鬼索的狂暴之刃",
+        "泰坦的坚决",
+        "夜之锋刃"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 12,
+      "total": 12
     },
     "sourceLineup": [
       {
@@ -2294,7 +2615,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/93",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -2360,6 +2681,28 @@
         "2037",
         "2009"
       ]
+    },
+    "sourceEquipmentNamesByHero": {
+      "拉莫斯": [
+        "振奋盔甲",
+        "石像鬼石板甲",
+        "狂徒铠甲"
+      ],
+      "崔丝塔娜": [
+        "海克斯科技枪刃",
+        "鬼索的狂暴之刃",
+        "海妖之怒"
+      ],
+      "希维尔": [
+        "无尽之刃",
+        "最后的轻语",
+        "红霸符"
+      ]
+    },
+    "sourceEquipmentNamesComplete": true,
+    "sourceEquipmentNameCoverage": {
+      "mapped": 9,
+      "total": 9
     },
     "sourceLineup": [
       {
@@ -2458,7 +2801,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/98",
-    "fetchedAt": "2026-08-28T07:15:10.621Z",
+    "fetchedAt": "2026-08-28T07:18:06.922Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
