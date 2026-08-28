@@ -45,6 +45,25 @@ async function find24hBaseline(patch, rankBand, nowMs) {
   return candidates[0]?.snapshot ?? null;
 }
 
+function verifiedSourceItems(raw) {
+  if (!raw.sourceEquipmentNamesComplete) return { keyItems: [], itemCarriers: {}, verified: false };
+  const itemCarriers = {};
+  const keyItems = [];
+
+  for (const [hero, rawItems] of Object.entries(raw.sourceEquipmentNamesByHero ?? {})) {
+    const items = [...new Set((rawItems ?? []).map((item) => String(item).trim()).filter(Boolean))];
+    if (!items.length) continue;
+    itemCarriers[hero] = items;
+    for (const item of items) if (!keyItems.includes(item)) keyItems.push(item);
+  }
+
+  return {
+    keyItems,
+    itemCarriers,
+    verified: keyItems.length > 0 && Object.keys(itemCarriers).length > 0
+  };
+}
+
 function mergeMetrics(stats, library, baseline, patch, fetchedAt) {
   const baselineMap = new Map((baseline?.comps ?? []).map((comp) => [normalizeName(comp.name), comp]));
   return stats.map((raw) => {
@@ -52,10 +71,13 @@ function mergeMetrics(stats, library, baseline, patch, fetchedAt) {
     const sourceCoreUnits = Array.isArray(raw.sourceCoreUnits) ? raw.sourceCoreUnits : [];
     const sourceFlexUnits = Array.isArray(raw.sourceFlexUnits) ? raw.sourceFlexUnits : [];
     const hasVerifiedRoster = sourceCoreUnits.length > 0;
+    const sourceItems = verifiedSourceItems(raw);
     const before = baselineMap.get(normalizeName(raw.name));
     const trend24h = before ? Number((performance(raw) - performance(before)).toFixed(2)) : 0;
     const enrichmentStatus = enrichment ? "full" : hasVerifiedRoster ? "partial" : "pending";
     const sourceCompUrl = raw.datajCompId ? `https://www.dataj.cc/comp/${raw.datajCompId}` : null;
+    const partialVerifiedFields = ["coreUnits", "flexUnits", "carries", "traits", "equipmentIds"];
+    if (sourceItems.verified) partialVerifiedFields.push("keyItems", "itemCarriers");
 
     return {
       ...raw,
@@ -65,9 +87,13 @@ function mergeMetrics(stats, library, baseline, patch, fetchedAt) {
       trend24h,
       coreUnits: enrichment?.coreUnits ?? sourceCoreUnits,
       flexUnits: enrichment?.flexUnits ?? sourceFlexUnits,
-      keyItems: enrichment?.keyItems ?? [],
-      itemCarriers: enrichment?.itemCarriers ?? {},
-      stagePlan: enrichment?.stagePlan ?? ["阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"],
+      keyItems: enrichment?.keyItems ?? sourceItems.keyItems,
+      itemCarriers: enrichment?.itemCarriers ?? sourceItems.itemCarriers,
+      stagePlan: enrichment?.stagePlan ?? [
+        sourceItems.verified
+          ? "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
+          : "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
+      ],
       dataSource: "dataj",
       sourceCompUrl,
       fetchedAt,
@@ -75,7 +101,7 @@ function mergeMetrics(stats, library, baseline, patch, fetchedAt) {
       enrichmentVerifiedFields: enrichment
         ? ["coreUnits", "flexUnits", "keyItems", "itemCarriers", "stagePlan"]
         : hasVerifiedRoster
-          ? ["coreUnits", "flexUnits", "carries", "traits", "equipmentIds"]
+          ? partialVerifiedFields
           : [],
       needsEnrichment: !enrichment
     };
@@ -186,7 +212,7 @@ const sourceStatus = {
   rankStatus,
   targetRankCoverage: false,
   note: versionsAgree
-    ? `实时阵容统计已通过独立版本校验（${authority?.mode}）。DataJ 当前提供全段位阵容统计与公开序列化阵容结构；DataTFT 国服公共页面已验证宗师及以上能力，但铂金→大师目标分段并未在国服公共选择器中开放，因此不伪造分段数据。`
+    ? `实时阵容统计已通过独立版本校验（${authority?.mode}）。DataJ 当前提供全段位阵容统计、公开序列化阵容结构与装备名称字典；DataTFT 国服公共页面已验证宗师及以上能力，但铂金→大师目标分段并未在国服公共选择器中开放，因此不伪造分段数据。`
     : "阵容统计源未通过独立国服版本校验或抓取失败，本轮拒绝覆盖排行榜，保留上一份已验证快照。"
 };
 await fs.writeFile(STATUS_PATH, JSON.stringify(sourceStatus, null, 2) + "\n", "utf8");
@@ -239,4 +265,5 @@ await fs.writeFile(COMPS_PATH, JSON.stringify(comps, null, 2) + "\n", "utf8");
 const historyName = fetchedAt.replace(/[:.]/g, "-") + ".json";
 await fs.writeFile(path.join(HISTORY_DIR, historyName), JSON.stringify(snapshot, null, 2) + "\n", "utf8");
 
-console.log(`accepted patch ${authoritativePatch} via ${authority?.id}: ${comps.length} comps, ${dataj.totalGames ?? "?"} games, parser=${dataj.parserMode}, enrichment pending=${enrichmentQueue.pendingCount}, partial=${enrichmentQueue.partialCount}`);
+const equipmentReady = comps.filter((comp) => comp.enrichmentVerifiedFields?.includes("keyItems") && comp.enrichmentStatus === "partial").length;
+console.log(`accepted patch ${authoritativePatch} via ${authority?.id}: ${comps.length} comps, ${dataj.totalGames ?? "?"} games, parser=${dataj.parserMode}, enrichment pending=${enrichmentQueue.pendingCount}, partial=${enrichmentQueue.partialCount}, source-items=${equipmentReady}`);
