@@ -10,19 +10,31 @@ const slugify = (value) => value
   .replace(/[^a-z0-9\u4e00-\u9fff-]/g, "")
   .slice(0, 80);
 
-function parsePage(html) {
+function normalizeText(html) {
   const $ = cheerio.load(html);
-  const text = $.root().text().replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim();
+  return $.root()
+    .text()
+    .replace(/\u00a0/g, " ")
+    .replace(/[\r\n\t]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function parsePage(html) {
+  const text = normalizeText(html);
   const patchMatch = text.match(/版本\s*([0-9]+(?:\.[0-9]+)?[a-z]?)\s*[（(]\s*([\d,]+)\s*局\s*[)）]/i);
   const patch = patchMatch?.[1] ?? null;
   const totalGames = patchMatch ? Number(patchMatch[2].replace(/,/g, "")) : null;
 
   const comps = [];
-  const pattern = /(?:^|\s)([SABCD])\s*(.{2,50}?)\s*平均排名\s*([\d.]+)\s*出场率\s*([\d.]+)\s*登顶率\s*([\d.]+)%\s*前四率\s*([\d.]+)%/g;
+  const metric = "平均(?:排名|名次)\\s*[:：]?\\s*([\\d.]+)\\s*出场率\\s*[:：]?\\s*([\\d.]+)%?\\s*登顶率\\s*[:：]?\\s*([\\d.]+)%\\s*前四率\\s*[:：]?\\s*([\\d.]+)%";
+  const pattern = new RegExp(`(?:^|\\s)([SABCD])\\s*(.{1,80}?)\\s*${metric}`, "g");
+
   let match;
   while ((match = pattern.exec(text)) !== null) {
     const [, tier, rawName, avgPlace, playRate, winRate, top4Rate] = match;
     const name = rawName.trim().replace(/^New\s*/i, "").trim();
+    if (!name || name.includes("阵容排行")) continue;
     const play = Number(playRate);
     comps.push({
       id: `dataj-${slugify(name)}`,
@@ -36,7 +48,12 @@ function parsePage(html) {
     });
   }
 
-  return { patch, totalGames, comps };
+  return {
+    patch,
+    totalGames,
+    comps,
+    parserDebug: comps.length ? undefined : text.match(/.{0,100}平均(?:排名|名次).{0,220}/)?.[0] ?? text.slice(0, 500)
+  };
 }
 
 export async function fetchDataJComps() {
