@@ -21,21 +21,22 @@ function beijingTime(value: string) {
   }).format(new Date(value));
 }
 
-function hasVerifiedBuild(comp: Comp) {
-  const verified = new Set(comp.enrichmentVerifiedFields ?? []);
-  return verified.has("keyItems") && verified.has("itemCarriers");
-}
-
 function enrichmentBadge(comp: Comp) {
-  if (!comp.needsEnrichment || comp.enrichmentStatus === "full") return "READY";
-  if (comp.enrichmentStatus === "partial" && hasVerifiedBuild(comp)) return "BUILD ✓";
+  if (!comp.needsEnrichment || comp.enrichmentStatus === "full") {
+    return comp.stagePlanSource === "derived-economy-v1" ? "AUTO READY" : "READY";
+  }
+  if (comp.enrichmentStatus === "partial" && comp.enrichmentVerifiedFields?.includes("keyItems")) return "BUILD ✓";
   if (comp.enrichmentStatus === "partial") return "ROSTER ✓";
   return "NEW";
 }
 
 function enrichmentText(comp: Comp) {
-  if (!comp.needsEnrichment || comp.enrichmentStatus === "full") return "已可进入推荐候选";
-  if (comp.enrichmentStatus === "partial" && hasVerifiedBuild(comp)) return "阵容与装备已自动核验，运营节奏待补";
+  if (!comp.needsEnrichment || comp.enrichmentStatus === "full") {
+    return comp.stagePlanSource === "derived-economy-v1"
+      ? "装备已核验，运营节奏由可审计经济规则推导，已进入推荐候选"
+      : "已可进入推荐候选";
+  }
+  if (comp.enrichmentStatus === "partial" && comp.enrichmentVerifiedFields?.includes("keyItems")) return "英雄与装备已自动补全，运营节奏待补";
   if (comp.enrichmentStatus === "partial") return "英雄阵容已自动补全，装备名称/运营待补";
   return "待补阵容细节";
 }
@@ -43,6 +44,7 @@ function enrichmentText(comp: Comp) {
 export default function Home() {
   const verifiedRankBands = sourceStatus.rankStatus?.verifiedPublicBands ?? snapshot.verifiedPublicRankBands ?? [];
   const partialCount = sourceStatus.enrichmentQueue?.partialCount ?? snapshot.enrichmentPartial ?? 0;
+  const pendingCount = sourceStatus.enrichmentQueue?.pendingCount ?? snapshot.enrichmentPending ?? 0;
 
   return (
     <main className="shell">
@@ -110,7 +112,7 @@ export default function Home() {
               实际统计覆盖：{sourceStatus.rankCoverage.join(" / ")} · 已核验国服公共高分段：{verifiedRankBands.length ? verifiedRankBands.join(" / ") : "无"}
             </p>
             <p className="muted">
-              铂金→大师目标分段：{sourceStatus.targetRankCoverage ? "已接入" : "未发现国服公开入口"} · 自动补全中的阵容：{partialCount}
+              铂金→大师目标分段：{sourceStatus.targetRankCoverage ? "已接入" : "未发现国服公开入口"} · 待补全：{pendingCount}（partial {partialCount}）
             </p>
             <p className="muted">解析模式：{snapshot.parserMode ?? "legacy"} · 样本口径：{snapshot.sampleSizeMethod ?? "未标注"}</p>
           </div>
