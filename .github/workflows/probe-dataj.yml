@@ -1,0 +1,28 @@
+name: Probe DataJ
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: node scripts/probe-dataj.mjs
+      - name: Validate production DataJ adapter pictures
+        run: |
+          node --input-type=module <<'NODE'
+          import { fetchDataJComps } from './scripts/sources/dataj.mjs';
+          const result = await fetchDataJComps();
+          const heroPictures = result.comps.reduce((sum, comp) => sum + (comp.sourceLineup ?? []).filter((hero) => hero.picture).length, 0);
+          const itemPictures = new Set(result.comps.flatMap((comp) => Object.values(comp.sourceEquipmentPicturesByName ?? {}))).size;
+          console.log(JSON.stringify({ ok: result.ok, patch: result.patch, comps: result.comps.length, heroPictureCount: result.heroPictureCount, equipmentPictureCount: result.equipmentPictureCount, heroPicturesInComps: heroPictures, uniqueItemPicturesInComps: itemPictures, compsWithHeroPictures: result.compsWithHeroPictures }, null, 2));
+          if (!result.ok || result.comps.length < 3 || heroPictures < 10 || itemPictures < 5) process.exit(1);
+          NODE

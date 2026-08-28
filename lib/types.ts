@@ -22,6 +22,7 @@ export type SourceLineupUnit = {
   isSubCarry: boolean;
   price: number | null;
   targetStars: number | null;
+  picture?: string | null;
 };
 
 export type EquipmentNameCoverage = {
@@ -58,6 +59,8 @@ export type Comp = {
   sourceTraits?: string[];
   sourceEquipmentIdsByHero?: Record<string, string[]>;
   sourceEquipmentNamesByHero?: Record<string, string[]>;
+  sourceEquipmentPicturesById?: Record<string, string>;
+  sourceEquipmentPicturesByName?: Record<string, string>;
   sourceEquipmentNamesComplete?: boolean;
   sourceEquipmentNameCoverage?: EquipmentNameCoverage;
   sourceLineup?: SourceLineupUnit[];

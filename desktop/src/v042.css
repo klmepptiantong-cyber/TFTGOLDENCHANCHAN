@@ -1,0 +1,126 @@
+.session-pill {
+  max-width: 130px;
+}
+
+.history-action {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.history-action:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.danger-action[data-confirming="1"] {
+  border-color: rgba(255, 108, 108, .55);
+  color: #ffc1c1;
+  background: rgba(255, 91, 91, .14);
+}
+
+.v042-picture {
+  display: block;
+  object-fit: cover;
+  flex: 0 0 auto;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.09);
+}
+
+.hero-picture {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+}
+
+.item-picture {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+}
+
+.picker-tile.has-real-picture .picker-avatar,
+.picker-tile.has-real-picture .picker-item-glyph,
+.shop-slot.has-real-picture .shop-avatar,
+.selection-chip.has-real-picture .chip-avatar,
+.selection-chip.has-real-picture .item-glyph {
+  display: none;
+}
+
+.picker-tile.has-real-picture {
+  grid-template-columns: auto 1fr;
+}
+
+.shop-slot.has-real-picture {
+  position: relative;
+  overflow: hidden;
+}
+
+.shop-slot.has-real-picture .hero-picture {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+}
+
+.selection-chip.has-real-picture {
+  padding-left: 4px;
+}
+
+.selection-chip.has-real-picture .hero-picture,
+.selection-chip.has-real-picture .item-picture {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+}
+
+.augment-panel {
+  min-width: 0;
+}
+
+.augment-chip {
+  border: 1px solid rgba(255,255,255,.1);
+  color: #dfe5ff;
+  background: rgba(117, 94, 255, .12);
+  padding: 5px 8px;
+}
+
+.augment-chip:hover {
+  background: rgba(117, 94, 255, .22);
+}
+
+.augment-tile {
+  min-height: 54px;
+}
+
+.augment-glyph {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(117, 94, 255, .18);
+  color: #d9d0ff;
+  font-size: 16px;
+}
+
+.augment-empty {
+  grid-column: 1 / -1;
+  padding: 24px 14px;
+  border: 1px dashed rgba(255,255,255,.12);
+  border-radius: 10px;
+  color: #8e98a8;
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.overlay-shell.compact .session-pill,
+.overlay-shell.compact .history-action,
+.overlay-shell.compact .augment-panel {
+  display: none;
+}
+
+@media (max-width: 430px) {
+  .session-pill { display: none; }
+  .decision-row { flex-wrap: wrap; }
+  .history-action { flex: 1 1 42%; }
+}
