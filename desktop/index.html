@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>TFTGOLDENCHANCHAN Overlay</title>
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <main id="overlay" class="overlay-shell">
+      <header id="drag-handle" class="titlebar">
+        <div>
+          <strong>GOLDEN CHANCHAN</strong>
+          <span id="snapshot-status" class="status-pill">载入数据…</span>
+        </div>
+        <nav class="window-actions" aria-label="窗口控制">
+          <button id="refresh-data" type="button" title="刷新快照">↻</button>
+          <button id="toggle-compact" type="button" title="紧凑模式 Alt+E">▣</button>
+          <button id="toggle-click" type="button" title="鼠标穿透 Alt+W">◌</button>
+          <button id="hide-overlay" type="button" title="隐藏 Alt+Q">—</button>
+        </nav>
+      </header>
+
+      <section class="quick-state">
+        <label>阶段<input id="stage" value="3-2" /></label>
+        <label>人口<input id="level" type="number" min="1" max="10" value="6" /></label>
+        <label>金币<input id="gold" type="number" min="0" max="200" value="42" /></label>
+        <label>血量<input id="hp" type="number" min="0" max="100" value="78" /></label>
+        <label>连胜/败<input id="streak" type="number" min="-20" max="20" value="0" /></label>
+      </section>
+
+      <section class="primary-inputs">
+        <label class="wide">当前商店（最多5张）<input id="shop" placeholder="蛇女, 稻草人, 洛, 女警, 蜘蛛" /></label>
+        <label class="wide">场上棋子<textarea id="units" rows="2" placeholder="蛇女=2, 稻草人=2, 洛=2"></textarea></label>
+      </section>
+
+      <details id="advanced-panel" open>
+        <summary>更多状态</summary>
+        <div class="advanced-grid">
+          <label>替补席<textarea id="bench" rows="2" placeholder="阿木木=1, 德莱文=1"></textarea></label>
+          <label>装备<textarea id="items" rows="2" placeholder="眼泪, 朔极之矛, 狂徒铠甲"></textarea></label>
+          <label>强化符文<textarea id="augments" rows="2" placeholder="永恒之森之徽, 经济类强化"></textarea></label>
+          <label>已装备<textarea id="equipped" rows="2" placeholder="蛇女:朔极之矛/法爆"></textarea></label>
+        </div>
+      </details>
+
+      <div class="decision-row">
+        <button id="decide" class="primary" type="button">生成本回合决策</button>
+        <button id="unlock" class="ghost" type="button" hidden>解除锁阵</button>
+      </div>
+
+      <section id="results" class="results" aria-live="polite">
+        <div class="empty-state">输入当前来牌后点击“生成本回合决策”。</div>
+      </section>
+
+      <footer>
+        <span>Alt+Q 显示/隐藏</span>
+        <span>Alt+W 鼠标穿透</span>
+        <span>Alt+E 紧凑模式</span>
+      </footer>
+    </main>
+  </body>
+</html>
