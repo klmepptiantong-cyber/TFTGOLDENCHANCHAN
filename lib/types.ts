@@ -1,9 +1,11 @@
 export type Trend = "surging" | "up" | "flat" | "down";
+export type Tier = "S" | "A" | "B" | "C" | "D";
+export type RankBand = "all" | "platinum" | "emerald" | "diamond" | "master" | "grandmaster+";
 
 export type Comp = {
   id: string;
   name: string;
-  tier: "S" | "A" | "B" | "C";
+  tier: Tier;
   patch: string;
   rankBand: string;
   avgPlace: number;
@@ -18,6 +20,42 @@ export type Comp = {
   keyItems: string[];
   itemCarriers: Record<string, string[]>;
   stagePlan: string[];
+  dataSource?: string;
+  fetchedAt?: string;
+  needsEnrichment?: boolean;
+};
+
+export type MetaSnapshot = {
+  schemaVersion: number;
+  season: string;
+  patch: string;
+  fetchedAt: string;
+  isLive: boolean;
+  rankBand: RankBand | string;
+  rankCoverage: string[];
+  targetRankCoverage: boolean;
+  totalGames: number | null;
+  source: string;
+  sourceUrl?: string;
+  patchAuthority?: string;
+  comps: Comp[];
+};
+
+export type SourceStatus = {
+  fetchedAt: string;
+  authoritativePatch: string | null;
+  liveCompDataAccepted: boolean;
+  rankCoverage: string[];
+  targetRankCoverage: boolean;
+  note: string;
+  sources: Record<string, {
+    id: string;
+    ok: boolean;
+    patch?: string | null;
+    url?: string;
+    mode?: string;
+    error?: string;
+  }>;
 };
 
 export type GameState = {
