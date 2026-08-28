@@ -1,3 +1,4 @@
+import { getRuntimeScouting } from "./scouting-runtime";
 import { GameState, UnitCollection, UnitState } from "./types";
 
 const asFiniteNumber = (value: unknown, fallback: number) => {
@@ -69,6 +70,14 @@ function normalizeFractionMap(value: unknown, maxEntries = 80): Record<string, n
   );
 }
 
+function mergeMaxMaps(...maps: Record<string, number>[]): Record<string, number> {
+  const merged: Record<string, number> = {};
+  for (const map of maps) {
+    for (const [key, value] of Object.entries(map)) merged[key] = Math.max(merged[key] ?? 0, value);
+  }
+  return merged;
+}
+
 export function parseGameState(input: unknown): GameState {
   const body = input && typeof input === "object" ? input as Record<string, unknown> : {};
   const stage = String(body.stage ?? "2-1").trim().slice(0, 12) || "2-1";
@@ -77,6 +86,7 @@ export function parseGameState(input: unknown): GameState {
   const hp = clamp(Math.round(asFiniteNumber(body.hp, 100)), 0, 100);
   const streak = body.streak === undefined ? undefined : clamp(Math.round(asFiniteNumber(body.streak, 0)), -20, 20);
   const xp = body.xp === undefined ? undefined : clamp(Math.round(asFiniteNumber(body.xp, 0)), 0, 100);
+  const runtimeScouting = getRuntimeScouting();
 
   return {
     stage,
@@ -89,8 +99,14 @@ export function parseGameState(input: unknown): GameState {
     items: normalizeStrings(body.items, 30),
     equippedItems: normalizeEquipped(body.equippedItems),
     augments: normalizeStrings(body.augments, 8),
-    contestedComps: normalizeCountMap(body.contestedComps),
-    poolPressureByHero: normalizeFractionMap(body.poolPressureByHero),
+    contestedComps: mergeMaxMaps(
+      normalizeCountMap(body.contestedComps),
+      normalizeCountMap(runtimeScouting.contestedComps)
+    ),
+    poolPressureByHero: mergeMaxMaps(
+      normalizeFractionMap(body.poolPressureByHero),
+      normalizeFractionMap(runtimeScouting.poolPressureByHero)
+    ),
     ...(streak !== undefined ? { streak } : {}),
     ...(xp !== undefined ? { xp } : {}),
     ...(body.rankBand ? { rankBand: String(body.rankBand).trim().slice(0, 30) } : {}),
