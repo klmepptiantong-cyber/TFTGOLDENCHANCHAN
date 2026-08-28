@@ -30,6 +30,7 @@ export function recommend(comps: Comp[], state: GameState): Recommendation[] {
   const owned = Object.keys(state.units);
 
   return comps
+    .filter((comp) => !comp.needsEnrichment && comp.coreUnits.length > 0 && comp.stagePlan.length > 0)
     .map((comp) => {
       const fit = fitScore(comp, state);
       const meta = metaScore(comp);
