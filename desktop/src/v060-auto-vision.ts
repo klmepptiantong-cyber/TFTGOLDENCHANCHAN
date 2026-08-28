@@ -1,18 +1,11 @@
 import "./v060.css";
 import { activeRules, ruleStatusLabel } from "../../lib/rules";
 
-type TauriGlobal = {
+type VisionTauriGlobal = {
   core?: {
     invoke<T = unknown>(command: string, args?: Record<string, unknown>): Promise<T>;
   };
 };
-
-declare global {
-  interface Window {
-    __TAURI__?: TauriGlobal;
-    __TFT_LATEST_VISION_FRAME__?: CaptureFrame;
-  }
-}
 
 type CaptureWindowInfo = {
   id: string;
@@ -32,6 +25,12 @@ type CaptureFrame = {
   data_url: string;
 };
 
+declare global {
+  interface Window {
+    __TFT_LATEST_VISION_FRAME__?: CaptureFrame;
+  }
+}
+
 const WINDOW_KEY = "tftgolden.vision.window.v060";
 const ENABLED_KEY = "tftgolden.vision.enabled.v060";
 const POLL_MS = 1000;
@@ -46,8 +45,12 @@ let captureCount = 0;
 let windowRefreshTimer = 0;
 let captureTimer = 0;
 
+function tauriGlobal(): VisionTauriGlobal | undefined {
+  return (window as Window & { __TAURI__?: VisionTauriGlobal }).__TAURI__;
+}
+
 function invoke<T>(command: string, args?: Record<string, unknown>): Promise<T> {
-  const fn = window.__TAURI__?.core?.invoke;
+  const fn = tauriGlobal()?.core?.invoke;
   if (!fn) return Promise.reject(new Error("tauri_unavailable"));
   return fn<T>(command, args);
 }
@@ -237,7 +240,7 @@ function mountPanel() {
 
 async function boot() {
   mountPanel();
-  if (!window.__TAURI__?.core?.invoke) {
+  if (!tauriGlobal()?.core?.invoke) {
     setStatus("自动视觉仅在 Windows 桌面版启用", "warn");
     return;
   }
