@@ -2,6 +2,7 @@ import * as cheerio from "cheerio";
 import { fetchText } from "../lib/http.mjs";
 
 const URL = "https://www.dataj.cc/comp";
+const EQUIP_URL = "https://www.dataj.cc/equip";
 
 const slugify = (value) => value
   .trim()
@@ -66,25 +67,46 @@ function nextFlightPayloads(html) {
   return payloads;
 }
 
-function extractInitialRows(html) {
+function extractRows(html, keys) {
   for (const payload of nextFlightPayloads(html)) {
-    for (const key of ["initialRows", "initialCompRows"]) {
+    for (const key of keys) {
       const marker = `\"${key}\":`;
-      const markerIndex = payload.indexOf(marker);
-      if (markerIndex < 0) continue;
-      const arrayStart = payload.indexOf("[", markerIndex + marker.length);
-      if (arrayStart < 0) continue;
-      const json = extractBalancedJson(payload, arrayStart);
-      if (!json) continue;
-      try {
-        const rows = JSON.parse(json);
-        if (Array.isArray(rows) && rows.length >= 3) return rows;
-      } catch {
-        // Keep looking through other flight chunks.
+      let searchFrom = 0;
+      while (searchFrom < payload.length) {
+        const markerIndex = payload.indexOf(marker, searchFrom);
+        if (markerIndex < 0) break;
+        const arrayStart = payload.indexOf("[", markerIndex + marker.length);
+        if (arrayStart < 0) break;
+        const json = extractBalancedJson(payload, arrayStart);
+        if (json) {
+          try {
+            const rows = JSON.parse(json);
+            if (Array.isArray(rows) && rows.length >= 3) return rows;
+          } catch {
+            // Keep looking through later occurrences/flight chunks.
+          }
+        }
+        searchFrom = markerIndex + marker.length;
       }
     }
   }
   return [];
+}
+
+function extractInitialRows(html) {
+  return extractRows(html, ["initialRows", "initialCompRows"]);
+}
+
+function equipmentDictionary(html) {
+  const rows = extractRows(html, ["initialRows", "initialEquipRows"]);
+  const dictionary = new Map();
+  for (const row of rows) {
+    if (row?.equipId == null || !row?.name) continue;
+    const id = String(row.equipId);
+    const name = String(row.name).trim();
+    if (id && name) dictionary.set(id, name);
+  }
+  return dictionary;
 }
 
 function groupEquipmentByHero(row) {
@@ -99,13 +121,40 @@ function groupEquipmentByHero(row) {
   return grouped;
 }
 
-function structuredComps(rows) {
+function resolveEquipmentNames(idsByHero, namesById) {
+  const namesByHero = {};
+  let mapped = 0;
+  let total = 0;
+
+  for (const [hero, ids] of Object.entries(idsByHero ?? {})) {
+    const names = [];
+    for (const rawId of ids ?? []) {
+      total += 1;
+      const name = namesById.get(String(rawId));
+      if (!name) continue;
+      mapped += 1;
+      if (!names.includes(name)) names.push(name);
+    }
+    if (names.length) namesByHero[hero] = names;
+  }
+
+  return {
+    namesByHero,
+    mapped,
+    total,
+    complete: total > 0 && mapped === total
+  };
+}
+
+function structuredComps(rows, equipmentNamesById = new Map()) {
   return rows
     .filter((row) => row && row.name && Number.isFinite(Number(row.avgPlacement)))
     .map((row) => {
       const heroes = Array.isArray(row.heroes) ? row.heroes : [];
       const core = heroes.filter((hero) => hero.isCore || hero.isCarry || hero.isSubCarry);
       const flex = heroes.filter((hero) => !core.includes(hero));
+      const equipmentIdsByHero = groupEquipmentByHero(row);
+      const resolvedEquipment = resolveEquipmentNames(equipmentIdsByHero, equipmentNamesById);
       return {
         id: `dataj-${slugify(row.name)}`,
         datajCompId: row.compId ? String(row.compId) : null,
@@ -128,7 +177,13 @@ function structuredComps(rows) {
             price: hero.price ?? null
           })),
         sourceTraits: (row.traits ?? []).map((trait) => String(trait.name)).filter(Boolean),
-        sourceEquipmentIdsByHero: groupEquipmentByHero(row),
+        sourceEquipmentIdsByHero: equipmentIdsByHero,
+        sourceEquipmentNamesByHero: resolvedEquipment.namesByHero,
+        sourceEquipmentNamesComplete: resolvedEquipment.complete,
+        sourceEquipmentNameCoverage: {
+          mapped: resolvedEquipment.mapped,
+          total: resolvedEquipment.total
+        },
         sourceLineup: heroes.map((hero) => ({
           name: String(hero.heroName),
           heroId: String(hero.heroId),
@@ -142,7 +197,7 @@ function structuredComps(rows) {
     });
 }
 
-function parsePage(html) {
+function parsePage(html, equipmentNamesById = new Map()) {
   const text = pageText(html);
   const compact = text.replace(/\s+/g, "");
   const patchMatch = compact.match(/版本([0-9]+(?:\.[0-9]+)?[a-z]?)[（(]([\d,]+)局[)）]/i);
@@ -150,7 +205,7 @@ function parsePage(html) {
   const totalGames = patchMatch ? Number(patchMatch[2].replace(/\D/g, "")) : null;
 
   const rows = extractInitialRows(html);
-  const structured = structuredComps(rows);
+  const structured = structuredComps(rows, equipmentNamesById);
   if (structured.length >= 3) {
     return {
       patch,
@@ -184,6 +239,9 @@ function parsePage(html) {
       sourceCarries: [],
       sourceTraits: [],
       sourceEquipmentIdsByHero: {},
+      sourceEquipmentNamesByHero: {},
+      sourceEquipmentNamesComplete: false,
+      sourceEquipmentNameCoverage: { mapped: 0, total: 0 },
       sourceLineup: []
     });
   }
@@ -199,15 +257,24 @@ function parsePage(html) {
 
 export async function fetchDataJComps() {
   try {
-    const html = await fetchText(URL);
-    const parsed = parsePage(html);
+    const [html, equipHtmlResult] = await Promise.all([
+      fetchText(URL),
+      fetchText(EQUIP_URL).catch(() => null)
+    ]);
+    const equipmentNamesById = equipHtmlResult ? equipmentDictionary(equipHtmlResult) : new Map();
+    const parsed = parsePage(html, equipmentNamesById);
     const ok = Boolean(parsed.patch && parsed.comps.length >= 3);
+    const structuredCompsWithEquipment = parsed.comps.filter((comp) => comp.sourceEquipmentNamesComplete).length;
     return {
       id: "dataj",
       ok,
       url: URL,
+      equipmentUrl: EQUIP_URL,
+      equipmentDictionaryOk: equipmentNamesById.size > 0,
+      equipmentDictionarySize: equipmentNamesById.size,
+      structuredCompsWithEquipment,
       fetchedAt: new Date().toISOString(),
-      mode: "comp-stats-and-lineups",
+      mode: "comp-stats-lineups-and-equipment",
       rankBand: "all",
       ...parsed,
       error: ok ? undefined : `parse incomplete: patch=${parsed.patch ?? "none"}, comps=${parsed.comps.length}`
@@ -220,8 +287,12 @@ export async function fetchDataJComps() {
       totalGames: null,
       comps: [],
       url: URL,
+      equipmentUrl: EQUIP_URL,
+      equipmentDictionaryOk: false,
+      equipmentDictionarySize: 0,
+      structuredCompsWithEquipment: 0,
       fetchedAt: new Date().toISOString(),
-      mode: "comp-stats-and-lineups",
+      mode: "comp-stats-lineups-and-equipment",
       rankBand: "all",
       error: error instanceof Error ? error.message : String(error)
     };
