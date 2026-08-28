@@ -14,6 +14,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - run: npm install
       - name: Block high-severity production dependency vulnerabilities
         run: npm audit --omit=dev --audit-level=high
@@ -22,4 +25,6 @@ jobs:
         run: npm run check:rules
       - name: Guard vision model activation
         run: npm run check:vision-model
+      - name: Compile-check vision Python tools
+        run: python -m py_compile scripts/train-vision-model.py scripts/evaluate-vision-model.py
       - run: npm run build
