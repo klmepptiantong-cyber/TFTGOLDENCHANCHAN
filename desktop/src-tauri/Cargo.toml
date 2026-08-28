@@ -17,6 +17,6 @@ serde_json = "1"
 base64 = "0.22"
 xcap = { version = "0.9.8", features = ["wgc"] }
 image = "0.25"
-paddleocr_rs_onnx = "0.2.7"
+paddleocr_rs_onnx = { git = "https://github.com/Craun718/PaddleOCR-rs", rev = "3f528d2b2d7924d8e8c651d4fd02d278bdd64476" }
 reqwest = { version = "0.12", default-features = false, features = ["blocking", "rustls-tls"] }
 sha2 = "0.10"
