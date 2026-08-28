@@ -18,7 +18,7 @@ function parsePage(html) {
   const totalGames = patchMatch ? Number(patchMatch[2].replace(/,/g, "")) : null;
 
   const comps = [];
-  const pattern = /(?:^|\s)([SABCD])\s*([^\d]{2,40}?)\s*平均排名\s*([\d.]+)\s*出场率\s*([\d.]+)\s*登顶率\s*([\d.]+)%\s*前四率\s*([\d.]+)%/g;
+  const pattern = /(?:^|\s)([SABCD])\s*(.{2,50}?)\s*平均排名\s*([\d.]+)\s*出场率\s*([\d.]+)\s*登顶率\s*([\d.]+)%\s*前四率\s*([\d.]+)%/g;
   let match;
   while ((match = pattern.exec(text)) !== null) {
     const [, tier, rawName, avgPlace, playRate, winRate, top4Rate] = match;
