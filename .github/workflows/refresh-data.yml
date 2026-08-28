@@ -4,6 +4,12 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "5 0,4,8,12,16,20 * * *"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - "data/comp-library.json"
+      - ".github/workflows/refresh-data.yml"
 
 permissions:
   contents: write
