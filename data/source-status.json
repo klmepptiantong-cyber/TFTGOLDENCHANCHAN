@@ -1,23 +1,28 @@
 {
-  "fetchedAt": "2026-08-28T06:36:43.197Z",
+  "fetchedAt": "2026-08-28T06:41:28.878Z",
   "authoritativePatch": "18.1b",
+  "patchAuthority": {
+    "id": "official-taptap",
+    "patch": "18.1b",
+    "url": "https://www.taptap.cn/moment/841982769956390376",
+    "mode": "live-official"
+  },
   "liveCompDataAccepted": true,
   "sources": {
     "official": {
       "id": "official-taptap",
-      "ok": false,
-      "patch": null,
-      "url": "https://www.taptap.cn/forum/g213275",
-      "fetchedAt": "2026-08-28T06:36:43.197Z",
-      "mode": "patch-authority",
-      "error": "https://www.taptap.cn/forum/g213275: patch not found | https://www.taptap.cn/app/176937/topic?group_label_id=521740: patch not found"
+      "ok": true,
+      "patch": "18.1b",
+      "url": "https://www.taptap.cn/moment/841982769956390376",
+      "fetchedAt": "2026-08-28T06:41:28.878Z",
+      "mode": "patch-authority"
     },
     "datatft": {
       "id": "datatft",
       "ok": false,
       "patch": null,
       "url": "https://jcc.datatft.com/explorer",
-      "fetchedAt": "2026-08-28T06:36:42.027Z",
+      "fetchedAt": "2026-08-28T06:41:28.689Z",
       "mode": "metadata-only",
       "rankLabel": null,
       "supportsRankFilter": false,
@@ -27,7 +32,7 @@
       "id": "dataj",
       "ok": true,
       "url": "https://www.dataj.cc/comp",
-      "fetchedAt": "2026-08-28T06:36:41.223Z",
+      "fetchedAt": "2026-08-28T06:41:28.844Z",
       "mode": "comp-stats",
       "rankBand": "all",
       "patch": "18.1b",
@@ -180,5 +185,5 @@
     "all"
   ],
   "targetRankCoverage": false,
-  "note": "实时阵容统计已通过版本一致性校验。当前 DataJ 适配器提供全段位阵容统计；DataTFT 已验证存在段位筛选，但 V0.2 不猜测其未公开内部 API。"
+  "note": "实时阵容统计已通过独立版本校验（live-official）。当前 DataJ 适配器提供全段位阵容统计；DataTFT 已验证存在段位筛选，但 V0.2 不猜测其未公开内部 API。"
 }
