@@ -31,7 +31,7 @@ function loadScouts(): OpponentScoutSnapshot[] {
     if (!Array.isArray(parsed)) return [];
     return parsed
       .filter((item): item is OpponentScoutSnapshot => Boolean(item) && typeof item === "object")
-      .map((item) => ({
+      .map((item): OpponentScoutSnapshot => ({
         playerId: String(item.playerId ?? "").trim().slice(0, 24),
         alive: item.alive !== false,
         units: normalizeUnitMap(item.units),
