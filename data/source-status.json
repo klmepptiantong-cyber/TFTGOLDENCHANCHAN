@@ -1,13 +1,44 @@
 {
-  "fetchedAt": "2026-08-28T06:06:00.000Z",
+  "fetchedAt": "2026-08-28T06:31:01.898Z",
   "authoritativePatch": "18.1b",
   "liveCompDataAccepted": false,
-  "rankCoverage": ["seed"],
-  "targetRankCoverage": false,
-  "note": "V0.2 采集器已部署；等待 GitHub Actions 首次联网刷新后切换为真实统计快照。",
   "sources": {
-    "official": {"id": "official-taptap", "ok": true, "patch": "18.1b", "mode": "patch-authority"},
-    "datatft": {"id": "datatft", "ok": true, "patch": "18.1b", "mode": "metadata-only"},
-    "dataj": {"id": "dataj", "ok": false, "patch": null, "mode": "comp-stats", "error": "pending first scheduled refresh"}
-  }
+    "official": {
+      "id": "official-taptap",
+      "ok": false,
+      "patch": null,
+      "url": "https://www.taptap.cn/forum/g213275",
+      "fetchedAt": "2026-08-28T06:31:01.898Z",
+      "mode": "patch-authority",
+      "error": "https://www.taptap.cn/forum/g213275: patch not found | https://www.taptap.cn/app/176937/topic?group_label_id=521740: patch not found"
+    },
+    "datatft": {
+      "id": "datatft",
+      "ok": false,
+      "patch": null,
+      "url": "https://jcc.datatft.com/explorer",
+      "fetchedAt": "2026-08-28T06:30:59.623Z",
+      "mode": "metadata-only",
+      "rankLabel": null,
+      "supportsRankFilter": false,
+      "note": "公开页面可验证版本与段位筛选能力；V0.2 暂不猜测未公开的内部统计 API。"
+    },
+    "dataj": {
+      "id": "dataj",
+      "ok": false,
+      "url": "https://www.dataj.cc/comp",
+      "fetchedAt": "2026-08-28T06:31:01.195Z",
+      "mode": "comp-stats",
+      "rankBand": "all",
+      "patch": "18.1b",
+      "totalGames": 21232,
+      "comps": [],
+      "error": "parse incomplete: patch=18.1b, comps=0"
+    }
+  },
+  "rankCoverage": [
+    "all"
+  ],
+  "targetRankCoverage": false,
+  "note": "阵容统计源与当前国服版本不一致或抓取失败，本轮拒绝覆盖排行榜，保留上一份已验证快照。"
 }
