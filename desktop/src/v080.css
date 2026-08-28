@@ -1,0 +1,117 @@
+.v080-block {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(111, 213, 255, 0.14);
+}
+
+.v080-head,
+.v080-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+}
+
+.v080-head > div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.v080-head strong {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+#v080-status {
+  font-size: 9px;
+  opacity: 0.82;
+}
+
+#v080-status[data-kind="ok"] { color: #85f5b2; }
+#v080-status[data-kind="warn"] { color: #ffd778; }
+#v080-status[data-kind="error"] { color: #ff9c9c; }
+
+#v080-auto-board,
+.v080-actions button {
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 7px;
+  background: rgba(255,255,255,0.06);
+  color: inherit;
+  padding: 5px 7px;
+  font-size: 9px;
+  cursor: pointer;
+}
+
+#v080-auto-board[data-enabled="1"] {
+  border-color: rgba(80, 238, 153, 0.4);
+  color: #a3f7c1;
+}
+
+.v080-actions button:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+.v080-states {
+  display: grid;
+  gap: 4px;
+  margin-top: 7px;
+  padding: 7px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.035);
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.v080-actions {
+  margin-top: 6px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.v080-note {
+  display: block;
+  margin-top: 6px;
+  font-size: 8px;
+  line-height: 1.35;
+  opacity: 0.6;
+}
+
+.v080-region-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.v080-region-box {
+  position: absolute;
+  border: 1px dashed rgba(102, 218, 255, 0.56);
+  border-radius: 5px;
+  box-sizing: border-box;
+  background: rgba(90, 210, 255, 0.025);
+}
+
+.v080-region-box.bench {
+  border-style: dotted;
+  border-color: rgba(255, 216, 116, 0.56);
+  background: rgba(255, 216, 116, 0.02);
+}
+
+.v080-region-box span {
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  padding: 1px 3px;
+  border-radius: 3px;
+  background: rgba(3, 10, 16, 0.72);
+  font-size: 6px;
+  letter-spacing: 0.06em;
+  opacity: 0.82;
+}
+
+.compact .v080-block,
+.compact .v080-region-overlay {
+  display: none;
+}
