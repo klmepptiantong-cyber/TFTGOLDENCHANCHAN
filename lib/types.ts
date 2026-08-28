@@ -3,6 +3,7 @@ export type Tier = "S" | "A" | "B" | "C" | "D";
 export type RankBand = "all" | "platinum" | "emerald" | "diamond" | "master" | "grandmaster+";
 export type EnrichmentStatus = "full" | "partial" | "pending";
 export type SampleSizeSource = "dataj-sampleCount" | "estimated-from-play-rate" | "unknown";
+export type StagePlanConfidence = "high" | "medium" | "low";
 
 export type SourceCarry = {
   name: string;
@@ -46,6 +47,9 @@ export type Comp = {
   keyItems: string[];
   itemCarriers: Record<string, string[]>;
   stagePlan: string[];
+  stagePlanSource?: "library-curated" | "derived-economy-v1" | string;
+  stagePlanConfidence?: StagePlanConfidence;
+  stagePlanEvidence?: string[];
   sourceCoreUnits?: string[];
   sourceFlexUnits?: string[];
   sourceCarries?: SourceCarry[];
