@@ -1,10 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
-import compsData from "../../../data/comps.json";
+import snapshotJson from "../../../data/latest.json";
 import { recommend } from "../../../lib/recommender";
-import { Comp, GameState } from "../../../lib/types";
+import { GameState, MetaSnapshot } from "../../../lib/types";
+
+const snapshot = snapshotJson as MetaSnapshot;
 
 export async function POST(request: NextRequest) {
   const state = (await request.json()) as GameState;
-  const result = recommend(compsData as Comp[], state);
-  return NextResponse.json({ generatedAt: new Date().toISOString(), result });
+  const eligible = snapshot.comps.filter((comp) => !comp.needsEnrichment || comp.coreUnits.length > 0);
+  const result = recommend(eligible, state);
+  return NextResponse.json({
+    generatedAt: new Date().toISOString(),
+    patch: snapshot.patch,
+    snapshotAt: snapshot.fetchedAt,
+    live: snapshot.isLive,
+    rankBand: snapshot.rankBand,
+    result
+  });
 }
