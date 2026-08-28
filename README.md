@@ -2,6 +2,25 @@
 
 金铲铲之战（中国大陆服）实时阵容与对局决策助手。
 
+## V0.8：Board Vision 棋盘状态层
+
+V0.8.0 在 V0.6.1 的本地 OCR 与 V0.7 的侦察/卡池基础上，把**己方场上、备战席和装备候选**接入同一个视觉状态协议，并继续复用现有 `GameState` / `lib/recommender.ts`，不建立第二套推荐器。
+
+- `lib/board-vision.ts` 将受支持的横屏画面划分为 BOARD / BENCH / SHOP GUARD 区域
+- 从本地 PP-OCRv5 blocks 中提取高置信英雄文本，并按位置区分场上与备战席
+- 识别 `2星 / 二星 / ★★`、`3星 / 三星 / ★★★` 等星级文字证据，并转换为 3 / 9 张等价持有量
+- 使用当前可信 Meta 快照中的装备名称进行模糊匹配；只有距离和置信度同时达标时才把装备关联到英雄，否则保持为 loose candidate
+- 最近最多 8 帧做时间衰减 + 组成一致性融合
+- 场上自动覆盖必须同时满足：**识别身份数=当前人口、同一组成至少连续 3 帧、融合置信度≥80%**
+- 备战席与装备在 V0.8.0 保持 candidate-first，默认需要用户点击“应用/合并候选”
+- 窄屏 / 竖屏布局标记为 unsupported，不会自动写入
+- Windows Overlay 预览新增 BOARD / BENCH 诊断区域，并新增 `V0.8 BOARD VISION` 面板
+- 新增 `tft-board-vision-state` 事件，为下一层本地像素分类器保留统一接口
+
+**边界：**V0.8.0 已完成区域协议、多帧稳定、安全写入和文字证据识别，但不宣称在完全没有英雄名称/装备文字可见时，已经能仅凭 3D 棋子像素稳定识别全部英雄。像素级本地英雄分类器已进入 V0.8.1 路线，见 Issue #11。
+
+V0.8.0 已通过 Web CI、TypeScript/Vite、Rust check、Windows portable `.exe`、OCR runtime 组装校验和 artifact 上传。
+
 ## V0.7：对手侦察 + 相对卡池压力
 
 V0.7 把 V0.6 的视觉/卡池基础正式接入实战推荐器：记录对手棋盘后，系统会重建同行重合与核心英雄的相对卡池压力，并直接影响 Fit、D牌止损、锁阵与转阵建议。
@@ -198,7 +217,7 @@ targetRankCoverage=false
 
 - Web：Next.js 15.5.x / React 19.2.x / TypeScript / Cheerio 1.2.x
 - Desktop：Tauri 2 / Rust / Vite / TypeScript
-- Data / CI：GitHub Actions + 纯函数 Meta / Discovery / Fit / Round Decision / Trajectory / Vision / Scouting 引擎
+- Data / CI：GitHub Actions + 纯函数 Meta / Discovery / Fit / Round Decision / Trajectory / Vision / Scouting / Board Vision 引擎
 
 ## 自动数据刷新
 
@@ -217,4 +236,6 @@ GitHub Actions 每天 6 次：UTC 00:05 / 04:05 / 08:05 / 12:05 / 16:05 / 20:05�
 - V0.5：整局动态运营、连续回合轨迹、止损/追三/提人口/冲9判断 ✅
 - V0.6：自动窗口捕获、时间融合、卡池模型、Guarded EV ✅
 - V0.6.1：本地 OCR 自动阶段/人口/金币/HP/完整5格商店识别 ✅
-- **V0.7：对手侦察账本、同行重建、相对卡池压力驱动决策 ✅**
+- V0.7：对手侦察账本、同行重建、相对卡池压力驱动决策 ✅
+- **V0.8.0：BOARD/BENCH 区域视觉协议、英雄/星级/装备文字候选、多帧稳定与安全写入 ✅**
+- **V0.8.1：本地槽位式 3D 英雄像素分类器 → Issue #11**
