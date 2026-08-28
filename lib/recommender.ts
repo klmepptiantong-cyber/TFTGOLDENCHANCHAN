@@ -72,6 +72,32 @@ function contestedCount(comp: Comp, state: GameState): number {
   return Math.max(0, Math.min(7, Math.round(state.contestedComps?.[comp.id] ?? 0)));
 }
 
+type PoolPressureAssessment = {
+  average: number;
+  peak: number;
+  penalty: number;
+  heroes: Array<{ hero: string; pressure: number }>;
+};
+
+function poolPressureAssessment(comp: Comp, state: GameState): PoolPressureAssessment {
+  const targets = unique(comp.coreUnits);
+  if (!targets.length) return { average: 0, peak: 0, penalty: 0, heroes: [] };
+  const values = targets.map((hero) => ({
+    hero,
+    pressure: Math.max(0, Math.min(1, Number(state.poolPressureByHero?.[hero] ?? 0)))
+  }));
+  const average = values.reduce((sum, item) => sum + item.pressure, 0) / targets.length;
+  const peak = values.reduce((max, item) => Math.max(max, item.pressure), 0);
+  const penalty = Math.min(18, Math.max(0, Math.round(
+    Math.max(0, average - 0.12) * 10 + Math.max(0, peak - 0.30) * 16
+  )));
+  const heroes = values
+    .filter((item) => item.pressure >= 0.18)
+    .sort((a, b) => b.pressure - a.pressure)
+    .slice(0, 3);
+  return { average, peak, penalty, heroes };
+}
+
 function targetLevel(comp: Comp): number {
   const fiveCosts = (comp.sourceLineup ?? []).filter((unit) => unit.price === 5).length;
   const highCap = /95|九五/.test(comp.name) || fiveCosts >= 3 || comp.stagePlan.some((line) => /9\s*人口|九人口/.test(line));
@@ -102,15 +128,21 @@ function fitScore(comp: Comp, state: GameState, augmentScore: number): number {
   const hpScore = state.hp >= 70 ? 10 : state.hp >= 45 ? 7 : state.hp >= 25 ? 4 : 1;
   const lockBonus = state.lockedCompId === comp.id ? 10 : 0;
   const contestPenalty = Math.min(24, contestedCount(comp, state) * 6);
+  const poolPenalty = poolPressureAssessment(comp, state).penalty;
 
   return Math.max(0, Math.min(100, Math.round(
-    unitScore + shopScore + itemScore + augmentFitScore + economyScore + hpScore + lockBonus - contestPenalty
+    unitScore + shopScore + itemScore + augmentFitScore + economyScore + hpScore + lockBonus - contestPenalty - poolPenalty
   )));
 }
 
 function rollAdvice(comp: Comp, state: GameState): string {
   const levelTarget = targetLevel(comp);
+  const pressure = poolPressureAssessment(comp, state);
   if (state.hp <= 25) return `血量仅 ${state.hp}：立即D牌止血，先把当前可用前排/核心补到两星，不再为50利息硬扛。`;
+  if (pressure.peak >= 0.65 && state.gold >= 20) {
+    const hero = pressure.heroes[0]?.hero ?? "核心牌";
+    return `${hero} 的相对卡池压力很高：本轮D牌必须设止损线，优先补通用两星战力；若连续两轮核心断档，不要把全部经济锁死在单一路线。`;
+  }
   if (state.hp <= 40 && state.gold >= 20) return `血量偏低：在 ${state.level} 级做一轮有上限的搜牌，优先两星核心和前排；质量稳定后停手存钱。`;
   if (state.level < levelTarget && state.gold >= 40) return `当前更需要人口而不是空D：保留经济，向 ${levelTarget} 级推进后再集中搜 ${comp.name} 的核心。`;
   if (state.level >= levelTarget && state.gold >= 30) return `已到主要搜牌人口：可在 ${state.level} 级分批D牌，优先主C/主坦两星，避免一次把经济打空。`;
@@ -130,11 +162,17 @@ function levelAdvice(comp: Comp, state: GameState): string {
 
 function pivotAdvice(comp: Comp, state: GameState, fit: number, keep: string[]): string {
   const contested = contestedCount(comp, state);
+  const pressure = poolPressureAssessment(comp, state);
+  const pressureHero = pressure.heroes[0]?.hero;
   if (state.lockedCompId === comp.id && contested >= 3) {
     return `你已锁定 ${comp.name}，但侦察到 ${contested} 家同行：优先保血并观察核心牌库存，若持续断档应开放转阵。`;
   }
+  if (state.lockedCompId === comp.id && pressure.peak >= 0.70) {
+    return `你已锁定 ${comp.name}，但 ${pressureHero ?? "核心牌"} 的相对卡池压力已经很高：保留现有成型质量，同时准备一套共享装备的备选方向。`;
+  }
   if (state.lockedCompId === comp.id) return `你已锁定 ${comp.name}：除非核心牌完全断档或血量进入危险线，否则围绕现有体系继续补强。`;
   if (contested >= 3 && fit < 78) return `${comp.name} 当前有 ${contested} 家同行且你的完成度优势不足，不建议硬挤；优先保留其他候选路线。`;
+  if (pressure.peak >= 0.70 && fit < 80) return `${pressureHero ?? "核心牌"} 的相对卡池压力很高，且当前契合度没有形成明显优势；建议开放转阵，不为榜单排名硬追。`;
   if (fit >= 75) return `阵容契合度高：优先沿 ${comp.name} 收束，不建议因为单次商店不来牌就转阵。`;
   if (fit >= 58 || keep.length >= 3) return `具备转入 ${comp.name} 的基础，但还没到必须锁死的程度；观察未来1–2轮核心牌和装备命中再决定。`;
   return `当前对 ${comp.name} 的沉没成本低，把它作为备选而不是强转目标；若另一套候选命中更多两星/装备，优先保血。`;
@@ -183,6 +221,7 @@ function buildActions(
   items: string[]
 ): DecisionAction[] {
   const actions: DecisionAction[] = [];
+  const pressure = poolPressureAssessment(comp, state);
   if (buy.length) actions.push({
     kind: "buy",
     priority: comp.coreUnits.some((unit) => buy.includes(unit)) ? "high" : "medium",
@@ -201,9 +240,19 @@ function buildActions(
     text: `若确定转入该阵容，可优先清理低投入非体系牌：${sell.join(" / ")}`,
     evidence: ["这些棋子不在该阵容核心或功能位中", "两星/高投入过渡牌不会被自动列为卖牌"]
   });
-  actions.push({ kind: "roll", priority: state.hp <= 40 ? "high" : "medium", text: roll, evidence: [`血量=${state.hp}`, `金币=${state.gold}`, `人口=${state.level}`] });
+  actions.push({
+    kind: "roll",
+    priority: state.hp <= 40 ? "high" : "medium",
+    text: roll,
+    evidence: [
+      `血量=${state.hp}`,
+      `金币=${state.gold}`,
+      `人口=${state.level}`,
+      ...(pressure.heroes.length ? [`相对卡池压力：${pressure.heroes.map((item) => `${item.hero} ${(item.pressure * 100).toFixed(0)}%`).join(" / ")}`] : [])
+    ]
+  });
   actions.push({ kind: "level", priority: state.gold >= 40 && state.hp > 30 ? "medium" : "low", text: level, evidence: [`目标人口≈${targetLevel(comp)}`, `当前人口=${state.level}`] });
-  actions.push({ kind: "pivot", priority: "medium", text: pivot, evidence: ["依据现有体系牌、装备、商店命中、同行侦察和阵容锁定状态"] });
+  actions.push({ kind: "pivot", priority: "medium", text: pivot, evidence: ["依据现有体系牌、装备、商店命中、同行侦察、相对卡池压力和阵容锁定状态"] });
   if (items.length) actions.push({ kind: "item", priority: "medium", text: items[0], evidence: ["依据实时快照中的已核验装备持有者"] });
   return actions;
 }
@@ -233,6 +282,7 @@ export function recommend(comps: Comp[], state: GameState): Recommendation[] {
       const matchedItems = overlap(comp.keyItems, allItems(state));
       const completion = completionScore(comp, state);
       const contested = contestedCount(comp, state);
+      const pressure = poolPressureAssessment(comp, state);
       const reasons: string[] = [];
       const blendedFit = Math.round(rawFit * 0.65 + meta * 0.35);
 
@@ -242,6 +292,9 @@ export function recommend(comps: Comp[], state: GameState): Recommendation[] {
       if (augment.hits.length) reasons.push(`强化符文与羁绊方向匹配：${augment.hits.join(" / ")}`);
       else if ((state.augments ?? []).length) reasons.push(`强化符文结构化得分 ${augment.score}/100`);
       if (contested > 0) reasons.push(`侦察记录：${contested} 家同行，已计入阵容竞争惩罚`);
+      if (pressure.heroes.length) {
+        reasons.push(`相对卡池压力：${pressure.heroes.map((item) => `${item.hero} ${(item.pressure * 100).toFixed(0)}%`).join(" / ")}（不输出未核验精确命中率）`);
+      }
       if (completion >= 60) reasons.push(`当前阵容完成度 ${completion}%`);
       if (comp.trend24h > 0) reasons.push(`最近24小时表现提升 ${comp.trend24h.toFixed(1)}%`);
       if (comp.sampleSize >= 2000) reasons.push("样本量达到可参考区间");
