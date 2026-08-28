@@ -2,135 +2,123 @@
 
 金铲铲之战（中国大陆服）实时阵容与对局决策助手。
 
-## V0.3：实战输入 + 回合决策层
+## V0.4：Windows 桌面悬浮助手
 
-V0.3 在 V0.2.1 的真实数据、安全刷新和阵容 enrichment 基础上加入可交互的实战决策工作台。
+V0.4 在 V0.3 实战决策引擎之上增加独立 Windows Overlay。桌面端不复制另一套算法，而是直接复用仓库中的：
 
-当前可以输入：
+- `lib/game-state.ts`
+- `lib/recommender.ts`
+- `lib/scoring.ts`
+- `lib/types.ts`
 
-- 阶段（如 `3-2`）
-- 人口
-- 金币
-- 血量
-- 连胜 / 连败
-- 场上棋子与张数
-- 替补席棋子与张数
-- 当前商店最多 5 张牌
-- 散件 / 成装
-- 已装备英雄与装备
-- 强化符文
-- 锁定阵容
+因此网页和桌面端使用同一套输入归一化、阵容评分、买/留/卖/D牌/升人口/转阵/装备逻辑。
 
-决策引擎输出：
+### 桌面端能力
 
-- `buy`：当前商店建议购买
-- `keep`：体系牌继续保留
-- `sell`：确定转入目标阵容后，可优先清理的低投入非体系牌
-- `roll`：当前是否应该 D 牌以及原因
-- `level`：是否应该升级人口以及目标人口
-- `pivot`：继续当前阵容还是保留转阵空间
-- `item`：当前装备的终局携带者建议
+- Always-on-top 悬浮窗
+- 半透明无边框窗口
+- `Alt+Q`：全局显示 / 隐藏
+- `Alt+W`：全局鼠标穿透开关
+- `Alt+E`：全局紧凑 / 展开模式
+- 当前回合输入：阶段、人口、金币、血量、连胜/连败、场上棋子、替补席、商店、装备、强化符文
+- Top 3 实时阵容候选
+- 锁阵后跨回合持续决策
+- 每条建议继续输出证据，而不是黑箱结果
 
-每一类动作都带 `evidence`，用于说明推荐依据，而不是只返回黑箱结论。
+### 独立运行与数据更新
 
-### 连续回合决策
+Windows 程序不要求额外启动 Next.js 服务。
 
-网页中的候选阵容可以点击“锁定这套阵容，继续下一回合”。
+1. 打包时内置当前已经通过 V0.2.1 数据门禁的 `data/latest.json`；
+2. 启动后从本仓库 `main/data/latest.json` 获取最新可信快照；
+3. GitHub 数据刷新仍按每天 6 次运行；
+4. 网络异常时自动回退到程序内置快照，决策引擎仍可继续运行。
 
-锁定后：
+桌面端只消费本项目已经经过版本一致性校验的数据，不直接绕过第三方站点访问控制。
 
-1. 该阵容只要仍满足安全推荐门禁，就会被强制保留为下一回合返回结果的第一候选；
-2. 同时继续显示另外两套高分替代方案；
-3. 若核心牌完全断档、血量进入危险线或其他阵容明显更胡，用户仍可主动解除锁定后重新比较。
+### 安全边界
 
-锁定只是决策偏好，不会修改游戏客户端，也不会自动操作游戏。
+V0.4 仍坚持：
 
-## V0.3 评分输入
-
-当前 `Fit Score` 同时考虑：
-
-- 场上 + 替补席已有体系英雄
-- 核心英雄张数
-- 当前商店命中
-- 已有核心装备
-- 已装备物品
-- 强化符文与阵容羁绊文本命中
-- 当前金币
-- 当前血量
-- 锁定阵容状态
-- V0.2.1 的 Meta Score
-
-最终结果仍以当前实时阵容统计为基础，而不是只看单局来牌。
-
-## 经济与搜牌规则
-
-V0.3 不再给所有阵容同一套 D 牌节奏。
-
-- 低血量：优先用金币换即时战力，不强保 50 利息。
-- 血量偏低：允许当前人口做一轮有上限的搜牌，质量稳定后停手。
-- 未到目标人口且经济健康：优先升级人口，再集中搜核心。
-- 已到主要搜牌人口：分批 D 主C / 主坦两星，避免一次打空经济。
-- `95 / 九五`、5费主C或明显高费结构：继续按 9 人口路线处理。
-
-目标人口来自 V0.2.1 已核验阵容费用结构与 `stagePlan`，而不是根据阵容名称随意猜测。
-
-## 输入安全与边界
-
-`POST /api/recommend` 会在服务端归一化用户输入：
-
-- 人口限制在 `1–10`
-- 金币限制在 `0–200`
-- 血量限制在 `0–100`
-- 连胜 / 连败限制在 `-20–20`
-- 商店最多 5 张牌
-- 英雄、装备和强化数量都有上限
-- 异常数字会被截断到安全范围
-- 非法 JSON 返回 `400 invalid_json`
-
-项目仍坚持：
-
-- 不注入游戏客户端
 - 不读取游戏进程内存
-- 不模拟点击或自动操作
-- V0.3 输入由用户主动填写
+- 不 DLL 注入
+- 不修改游戏客户端
+- 不模拟点击或自动操作游戏
+- 不自动替玩家执行购买、D牌或站位
 
-后续如增加截图识别，会作为独立能力评估，不与当前核心决策引擎耦合。
+它是独立的决策辅助窗口，而不是游戏自动化工具。
+
+## Windows 开发 / 构建
+
+```bash
+cd desktop
+npm install
+npm run tauri:dev
+```
+
+Portable Windows 构建：
+
+```bash
+cd desktop
+npm run build:portable
+```
+
+输出：
+
+```text
+desktop/src-tauri/target/release/tftgoldenchanchan-overlay.exe
+```
+
+`.github/workflows/desktop-ci.yml` 会在真实 `windows-latest` runner 上执行：
+
+1. npm dependency audit
+2. TypeScript + Vite build
+3. Rust `cargo check`
+4. Tauri portable `.exe` 编译
+5. 上传 `TFTGOLDENCHANCHAN-Windows-portable` artifact
+
+详细桌面说明见 `desktop/README.md`。
 
 ---
 
+## V0.3：实战输入 + 回合决策层
+
+V0.3 已支持：
+
+- 阶段 / 人口 / 金币 / 血量 / 连胜连败
+- 场上棋子 / 替补席 / 当前商店
+- 散件 / 成装 / 已装备英雄
+- 强化符文
+- 锁定阵容并继续下一回合
+
+决策动作：
+
+- `buy`
+- `keep`
+- `sell`
+- `roll`
+- `level`
+- `pivot`
+- `item`
+
+每项动作均带 `evidence`。
+
 ## V0.2.1：真实数据 + 安全推荐层
 
-V0.2.1 已完成：
+已完成：
 
-- 自动识别 / 核验当前国服版本
+- 国服当前版本核验
 - 多源版本一致性闸门
-- DataJ 公开 Next.js 结构化阵容解析
+- DataJ 公开结构化阵容解析
 - 原始 `sampleCount`
-- 核心 / 功能英雄结构
-- Carry / SubCarry
-- 羁绊
-- 装备 ID → 中文装备名 100% 映射门禁
-- 可审计 `derived-economy-v1` 阶段规则
+- 核心 / 功能英雄、Carry、羁绊
+- 装备 ID → 中文名称完整映射门禁
+- `derived-economy-v1` 可审计运营节奏
 - 自动 enrichment
-- 24H 历史快照
-- 冷门阵容雷达
-- CI 安全门禁
+- 历史快照 / 24H 趋势 / 冷门阵容雷达
+- CI 数据门禁
 
-当前真实快照只有在统计源版本与独立版本权威一致时才会被接受；失败时保留上一份可信数据。
-
-## 数据源
-
-当前多源架构：
-
-1. **官方 / TapTap**：版本权威。
-2. **DataTFT / jcc**：验证中国大陆服高分段公开能力。
-3. **DataJ**：阵容统计、阵容结构、装备名称字典等公开数据。
-4. `data/patch-authority.json`：独立版本安全锁。
-5. `data/rank-capability.json`：已核验国服公共段位能力。
-
-## 段位数据边界
-
-当前正式快照仍是：
+### 当前段位数据边界
 
 ```text
 rankCoverage=["all"]
@@ -138,57 +126,40 @@ verifiedPublicRankBands=["grandmaster+"]
 targetRankCoverage=false
 ```
 
-即：
+当前 DataJ 为全段位汇总；已核验 DataTFT 国服公共页面存在“宗师及以上”能力，但仍没有找到无需绕过访问控制、可以稳定使用的国服铂金+ / 翡翠+ / 钻石+ / 大师+精确统计入口。
 
-- 当前 DataJ 阵容统计为全段位汇总；
-- 已核验 DataTFT 国服公共页面存在“宗师及以上”统计能力；
-- 尚未找到无需绕过访问控制、可稳定公开使用的国服铂金+ / 翡翠+ / 钻石+ / 大师+精确统计入口。
+## Web API
 
-项目不会把前端通用段位枚举伪装成已经接入的国服数据。
+- `GET /api/meta`
+- `GET /api/status`
+- `POST /api/recommend`
 
-## API
+网页与桌面端共享核心推荐逻辑。
 
-### `GET /api/meta`
+## 技术栈
 
-返回当前可信快照与阵容 Meta / Discovery 数据。
+### Web
 
-### `GET /api/status`
+- Next.js 15.5.x
+- React 19.2.x
+- TypeScript
+- Cheerio 1.2.x
 
-返回当前版本权威、数据源健康状态、段位覆盖和实时快照状态。
+### Desktop
 
-### `POST /api/recommend`
+- Tauri 2
+- Rust
+- Vite
+- TypeScript
 
-V0.3 示例：
+### Data / CI
 
-```json
-{
-  "stage": "3-2",
-  "level": 6,
-  "gold": 42,
-  "hp": 78,
-  "streak": 2,
-  "units": {
-    "蛇女": 2,
-    "稻草人": 2,
-    "洛": 2
-  },
-  "bench": {
-    "索拉卡": 1
-  },
-  "shop": ["蛇女", "洛", "女警", "阿木木", "德莱文"],
-  "items": ["眼泪", "朔极之矛", "狂徒铠甲"],
-  "equippedItems": {
-    "蛇女": ["朔极之矛"]
-  },
-  "augments": ["经济类强化"]
-}
-```
+- GitHub Actions
+- 纯函数 Meta / Discovery / Fit / Round Decision 引擎
 
-接口返回 3 套候选阵容，以及 Fit / Meta / Discovery / Confidence、买卖留牌、D牌、升级、转阵、装备建议与证据。
+## 自动数据刷新
 
-## 自动刷新
-
-GitHub Actions 每天刷新 6 次：
+GitHub Actions 每天 6 次：
 
 ```text
 UTC 00:05 / 04:05 / 08:05 / 12:05 / 16:05 / 20:05
@@ -200,61 +171,10 @@ UTC 00:05 / 04:05 / 08:05 / 12:05 / 16:05 / 20:05
 08:05 / 12:05 / 16:05 / 20:05 / 00:05 / 04:05
 ```
 
-刷新过程采用版本闸门、历史快照、并发锁和 push 前 rebase。
-
-## 技术栈
-
-- Next.js 15.5.x
-- React 19.2.x
-- TypeScript
-- Cheerio 1.2.x
-- GitHub Actions
-- 纯函数数据评分 / 推荐引擎
-
-核心推荐逻辑与 UI 解耦，后续可以复用到 Tauri Windows 悬浮助手。
-
-## 本地运行
-
-```bash
-npm install
-npm run check:data
-npm run dev
-```
-
-打开：
-
-```text
-http://localhost:3000
-```
-
-手动刷新数据：
-
-```bash
-npm run refresh:data
-npm run check:data
-```
-
-## 目录
-
-```text
-app/                       Next.js 页面与 API
-app/LiveAdvisor.tsx        V0.3 实战决策台
-lib/game-state.ts          实战输入归一化 / 边界校验
-lib/recommender.ts         实时阵容与动作决策引擎
-lib/scoring.ts             Meta / Discovery 等评分
-lib/types.ts               公共类型
-data/latest.json           最新可信快照
-data/source-status.json    数据源健康状态
-data/history/              历史快照
-scripts/                    数据采集 / 校验
-.github/workflows/          CI 与自动刷新
-```
-
 ## 当前里程碑
 
 - V0.1：基础 Meta / 推荐骨架 ✅
 - V0.2：真实国服数据流水线 ✅
 - V0.2.1：结构化阵容、装备语义、自动 enrichment、安全推荐 ✅
-- **V0.3：实战输入、跨回合锁阵、买/留/卖/D/升级/转阵/装备动作决策 ✅**
-
-下一阶段可进入 V0.3.x / V0.4：强化符文结构化评分、对手/同行信息、商店购买后的经济模拟，以及 Windows 悬浮助手。
+- V0.3：实战输入、跨回合锁阵、动作决策 ✅
+- **V0.4：Windows 独立悬浮助手、全局快捷键、portable 构建 🚧**
