@@ -64,6 +64,71 @@ function verifiedSourceItems(raw) {
   };
 }
 
+function deriveEconomyStagePlan(raw) {
+  const carries = (raw.sourceCarries ?? []).filter((carry) => Number.isFinite(Number(carry?.price)));
+  const primary = carries.find((carry) => carry.role === "carry") ?? carries[0];
+  if (!primary) return { verified: false, plan: [], confidence: "low", evidence: [] };
+
+  const price = Number(primary.price);
+  if (!Number.isInteger(price) || price < 1 || price > 5) {
+    return { verified: false, plan: [], confidence: "low", evidence: [] };
+  }
+
+  const targetStars = Number.isFinite(Number(primary.targetStars)) ? Number(primary.targetStars) : null;
+  const targetLevel = Math.min(9, price + 4);
+  const evidence = [
+    `DataJ carry=${primary.name}`,
+    `cost=${price}`,
+    `targetStars=${targetStars ?? "unspecified"}`
+  ];
+
+  if (targetStars !== null && targetStars >= 3 && price <= 3) {
+    return {
+      verified: true,
+      confidence: "high",
+      evidence,
+      plan: [
+        `${primary.name} 为 ${price} 费主C且源数据目标 ${targetStars} 星：优先在 ${targetLevel} 人口作为主要搜牌层，先完成主C追三，再继续升人口。`,
+        `追三阶段以保经济和补核心两星为主；主C达标后再升人口，按实时阵容表补齐高费功能牌与前排。`
+      ]
+    };
+  }
+
+  if (price === 5) {
+    return {
+      verified: true,
+      confidence: "medium",
+      evidence,
+      plan: [
+        `${primary.name} 为 5 费主C且源数据未要求追三：路线以高人口成型为主，经济与血量允许时优先升到 9 人口再集中寻找主C。`,
+        `中期只做保血性质的必要搜牌；主C与关键前排两星后，再用剩余经济补齐阵容表中的高费功能位。`
+      ]
+    };
+  }
+
+  if (price === 4) {
+    return {
+      verified: true,
+      confidence: "medium",
+      evidence,
+      plan: [
+        `${primary.name} 为 4 费主C且源数据未要求追三：以 8 人口作为主要成型搜牌层，低人口阶段优先保血和积累升级经济。`,
+        `8 人口先完成主C与核心前排两星，再根据血量和经济决定继续补质量或升 9 增加高费功能位。`
+      ]
+    };
+  }
+
+  return {
+    verified: true,
+    confidence: "medium",
+    evidence,
+    plan: [
+      `${primary.name} 为 ${price} 费主C且源数据未要求追三：以 ${targetLevel} 人口作为首个稳定质量层，优先完成主C两星和核心羁绊。`,
+      `质量稳定后继续升人口补齐阵容；除非源数据明确要求三星，否则不把大量经济消耗在无目标的低费追三。`
+    ]
+  };
+}
+
 function mergeMetrics(stats, library, baseline, patch, fetchedAt) {
   const baselineMap = new Map((baseline?.comps ?? []).map((comp) => [normalizeName(comp.name), comp]));
   return stats.map((raw) => {
@@ -72,12 +137,15 @@ function mergeMetrics(stats, library, baseline, patch, fetchedAt) {
     const sourceFlexUnits = Array.isArray(raw.sourceFlexUnits) ? raw.sourceFlexUnits : [];
     const hasVerifiedRoster = sourceCoreUnits.length > 0;
     const sourceItems = verifiedSourceItems(raw);
+    const derivedStagePlan = deriveEconomyStagePlan(raw);
     const before = baselineMap.get(normalizeName(raw.name));
     const trend24h = before ? Number((performance(raw) - performance(before)).toFixed(2)) : 0;
-    const enrichmentStatus = enrichment ? "full" : hasVerifiedRoster ? "partial" : "pending";
+    const autoReady = !enrichment && hasVerifiedRoster && sourceItems.verified && derivedStagePlan.verified;
+    const enrichmentStatus = enrichment || autoReady ? "full" : hasVerifiedRoster ? "partial" : "pending";
     const sourceCompUrl = raw.datajCompId ? `https://www.dataj.cc/comp/${raw.datajCompId}` : null;
-    const partialVerifiedFields = ["coreUnits", "flexUnits", "carries", "traits", "equipmentIds"];
-    if (sourceItems.verified) partialVerifiedFields.push("keyItems", "itemCarriers");
+    const sourceVerifiedFields = ["coreUnits", "flexUnits", "carries", "traits", "equipmentIds"];
+    if (sourceItems.verified) sourceVerifiedFields.push("keyItems", "itemCarriers");
+    if (derivedStagePlan.verified) sourceVerifiedFields.push("stagePlanDerived");
 
     return {
       ...raw,
@@ -89,11 +157,14 @@ function mergeMetrics(stats, library, baseline, patch, fetchedAt) {
       flexUnits: enrichment?.flexUnits ?? sourceFlexUnits,
       keyItems: enrichment?.keyItems ?? sourceItems.keyItems,
       itemCarriers: enrichment?.itemCarriers ?? sourceItems.itemCarriers,
-      stagePlan: enrichment?.stagePlan ?? [
+      stagePlan: enrichment?.stagePlan ?? (derivedStagePlan.verified ? derivedStagePlan.plan : [
         sourceItems.verified
-          ? "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
+          ? "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可审计规则或可信来源补全。"
           : "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
-      ],
+      ]),
+      stagePlanSource: enrichment ? "library-curated" : derivedStagePlan.verified ? "derived-economy-v1" : undefined,
+      stagePlanConfidence: enrichment ? "high" : derivedStagePlan.confidence,
+      stagePlanEvidence: enrichment ? ["data/comp-library.json"] : derivedStagePlan.evidence,
       dataSource: "dataj",
       sourceCompUrl,
       fetchedAt,
@@ -101,9 +172,9 @@ function mergeMetrics(stats, library, baseline, patch, fetchedAt) {
       enrichmentVerifiedFields: enrichment
         ? ["coreUnits", "flexUnits", "keyItems", "itemCarriers", "stagePlan"]
         : hasVerifiedRoster
-          ? partialVerifiedFields
+          ? sourceVerifiedFields
           : [],
-      needsEnrichment: !enrichment
+      needsEnrichment: enrichmentStatus !== "full"
     };
   });
 }
@@ -118,8 +189,9 @@ function enrichmentPriority(comp) {
 
 function missingEnrichmentFields(comp) {
   const verified = new Set(comp.enrichmentVerifiedFields ?? []);
+  const stageReady = verified.has("stagePlan") || verified.has("stagePlanDerived");
   return ["coreUnits", "flexUnits", "keyItems", "itemCarriers", "stagePlan"]
-    .filter((field) => !verified.has(field));
+    .filter((field) => field === "stagePlan" ? !stageReady : !verified.has(field));
 }
 
 function buildEnrichmentQueue(comps, previousQueue, patch, fetchedAt, sourceUrl) {
@@ -212,7 +284,7 @@ const sourceStatus = {
   rankStatus,
   targetRankCoverage: false,
   note: versionsAgree
-    ? `实时阵容统计已通过独立版本校验（${authority?.mode}）。DataJ 当前提供全段位阵容统计、公开序列化阵容结构与装备名称字典；DataTFT 国服公共页面已验证宗师及以上能力，但铂金→大师目标分段并未在国服公共选择器中开放，因此不伪造分段数据。`
+    ? `实时阵容统计已通过独立版本校验（${authority?.mode}）。DataJ 当前提供全段位阵容统计、公开序列化阵容结构与装备名称字典；运营节奏仅在可由主C费用/目标星级审计推导时生成，并明确标记 derived-economy-v1。DataTFT 国服公共页面已验证宗师及以上能力，但铂金→大师目标分段并未在国服公共选择器中开放，因此不伪造分段数据。`
     : "阵容统计源未通过独立国服版本校验或抓取失败，本轮拒绝覆盖排行榜，保留上一份已验证快照。"
 };
 await fs.writeFile(STATUS_PATH, JSON.stringify(sourceStatus, null, 2) + "\n", "utf8");
@@ -265,5 +337,6 @@ await fs.writeFile(COMPS_PATH, JSON.stringify(comps, null, 2) + "\n", "utf8");
 const historyName = fetchedAt.replace(/[:.]/g, "-") + ".json";
 await fs.writeFile(path.join(HISTORY_DIR, historyName), JSON.stringify(snapshot, null, 2) + "\n", "utf8");
 
-const equipmentReady = comps.filter((comp) => comp.enrichmentVerifiedFields?.includes("keyItems") && comp.enrichmentStatus === "partial").length;
-console.log(`accepted patch ${authoritativePatch} via ${authority?.id}: ${comps.length} comps, ${dataj.totalGames ?? "?"} games, parser=${dataj.parserMode}, enrichment pending=${enrichmentQueue.pendingCount}, partial=${enrichmentQueue.partialCount}, source-items=${equipmentReady}`);
+const equipmentReady = comps.filter((comp) => comp.enrichmentVerifiedFields?.includes("keyItems")).length;
+const derivedStageReady = comps.filter((comp) => comp.stagePlanSource === "derived-economy-v1" && !comp.needsEnrichment).length;
+console.log(`accepted patch ${authoritativePatch} via ${authority?.id}: ${comps.length} comps, ${dataj.totalGames ?? "?"} games, parser=${dataj.parserMode}, enrichment pending=${enrichmentQueue.pendingCount}, partial=${enrichmentQueue.partialCount}, source-items=${equipmentReady}, derived-stage=${derivedStageReady}`);
