@@ -64,25 +64,44 @@ function verifiedSourceItems(raw) {
   };
 }
 
+function validCost(value) {
+  if (value === null || value === undefined || value === "") return null;
+  const cost = Number(value);
+  return Number.isInteger(cost) && cost >= 1 && cost <= 5 ? cost : null;
+}
+
 function deriveEconomyStagePlan(raw) {
-  const carries = (raw.sourceCarries ?? []).filter((carry) => Number.isFinite(Number(carry?.price)));
+  const carries = (raw.sourceCarries ?? []).filter((carry) => validCost(carry?.price) !== null);
   const primary = carries.find((carry) => carry.role === "carry") ?? carries[0];
   if (!primary) return { verified: false, plan: [], confidence: "low", evidence: [] };
 
-  const price = Number(primary.price);
-  if (!Number.isInteger(price) || price < 1 || price > 5) {
-    return { verified: false, plan: [], confidence: "low", evidence: [] };
-  }
+  const price = validCost(primary.price);
+  if (price === null) return { verified: false, plan: [], confidence: "low", evidence: [] };
 
-  const targetStars = Number.isFinite(Number(primary.targetStars)) ? Number(primary.targetStars) : null;
+  const targetStars = primary.targetStars !== null
+    && primary.targetStars !== undefined
+    && primary.targetStars !== ""
+    && Number.isFinite(Number(primary.targetStars))
+      ? Number(primary.targetStars)
+      : null;
   const targetLevel = Math.min(9, price + 4);
+  const lineup = (raw.sourceLineup ?? []).filter((unit) => validCost(unit?.price) !== null);
+  const fiveCostUnits = lineup.filter((unit) => validCost(unit.price) === 5).map((unit) => unit.name);
+  const hasFiveCostSecondaryCarry = carries.some((carry) => carry.role === "subcarry" && validCost(carry.price) === 5);
+  const rerollRoute = targetStars !== null && targetStars >= 3 && price <= 3;
+  const highCapRoute = !rerollRoute && (
+    /95|九五/.test(String(raw.name ?? ""))
+    || fiveCostUnits.length >= 3
+    || (price >= 4 && hasFiveCostSecondaryCarry)
+  );
   const evidence = [
     `DataJ carry=${primary.name}`,
     `cost=${price}`,
-    `targetStars=${targetStars ?? "unspecified"}`
+    `targetStars=${targetStars ?? "unspecified"}`,
+    `fiveCostUnits=${fiveCostUnits.length}`
   ];
 
-  if (targetStars !== null && targetStars >= 3 && price <= 3) {
+  if (rerollRoute) {
     return {
       verified: true,
       confidence: "high",
@@ -94,14 +113,17 @@ function deriveEconomyStagePlan(raw) {
     };
   }
 
-  if (price === 5) {
+  if (price === 5 || highCapRoute) {
+    const capEvidence = fiveCostUnits.length
+      ? `源阵容包含 ${fiveCostUnits.length} 张5费单位`
+      : "源阵容包含5费核心/副C";
     return {
       verified: true,
       confidence: "medium",
       evidence,
       plan: [
-        `${primary.name} 为 5 费主C且源数据未要求追三：路线以高人口成型为主，经济与血量允许时优先升到 9 人口再集中寻找主C。`,
-        `中期只做保血性质的必要搜牌；主C与关键前排两星后，再用剩余经济补齐阵容表中的高费功能位。`
+        `${primary.name} 为 ${price} 费主C，且${capEvidence}：路线按高人口阵容处理，经济与血量允许时优先向 9 人口推进。`,
+        `中期只做保血性质的必要搜牌；到高人口后集中补齐主C、5费功能位与关键前排两星，再决定是否继续追求上限。`
       ]
     };
   }
@@ -284,7 +306,7 @@ const sourceStatus = {
   rankStatus,
   targetRankCoverage: false,
   note: versionsAgree
-    ? `实时阵容统计已通过独立版本校验（${authority?.mode}）。DataJ 当前提供全段位阵容统计、公开序列化阵容结构与装备名称字典；运营节奏仅在可由主C费用/目标星级审计推导时生成，并明确标记 derived-economy-v1。DataTFT 国服公共页面已验证宗师及以上能力，但铂金→大师目标分段并未在国服公共选择器中开放，因此不伪造分段数据。`
+    ? `实时阵容统计已通过独立版本校验（${authority?.mode}）。DataJ 当前提供全段位阵容统计、公开序列化阵容结构与装备名称字典；运营节奏仅在可由主C费用、目标星级及阵容费用结构审计推导时生成，并明确标记 derived-economy-v1。DataTFT 国服公共页面已验证宗师及以上能力，但铂金→大师目标分段并未在国服公共选择器中开放，因此不伪造分段数据。`
     : "阵容统计源未通过独立国服版本校验或抓取失败，本轮拒绝覆盖排行榜，保留上一份已验证快照。"
 };
 await fs.writeFile(STATUS_PATH, JSON.stringify(sourceStatus, null, 2) + "\n", "utf8");
