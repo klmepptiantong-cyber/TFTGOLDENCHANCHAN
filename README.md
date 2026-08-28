@@ -2,6 +2,41 @@
 
 金铲铲之战（中国大陆服）实时阵容与对局决策助手。
 
+## V0.7：对手侦察 + 相对卡池压力
+
+V0.7 把 V0.6 的视觉/卡池基础正式接入实战推荐器：记录对手棋盘后，系统会重建同行重合与核心英雄的相对卡池压力，并直接影响 Fit、D牌止损、锁阵与转阵建议。
+
+- Windows Overlay 新增 `V0.7 OPPONENT SCOUTING` 面板，最多保存 7 名对手快照
+- 支持存活 / 淘汰状态；淘汰玩家不会继续从共享卡池中扣除棋子
+- 手工记录英雄张数是可信主路径，例如 `蛇女=2, 洛=2, 阿木木=1`
+- V0.6.1 OCR 可提供对手棋盘英雄候选，但候选默认只展示，必须显式保存后才进入侦察账本
+- 根据已观察棋盘自动推导阵容同行数，并注入现有 `lib/recommender.ts`
+- `lib/scouting.ts` + `lib/pool.ts` 计算核心英雄的**相对卡池压力**，用于路线拥挤、D牌止损和转阵判断
+- 存活对手快照超过 5 分钟未刷新会过期，降低陈旧信息污染
+- `GameState` 新增 `poolPressureByHero`，网页/桌面共享同一推荐状态模型
+- 精确 D牌命中率 / Top1 / Top4 / Expected Placement 仍受 `rules/S18/18.1b.json` 门禁；规则未核验前只输出相对压力，不伪造精确概率
+
+V0.7 已通过 Web CI、TypeScript/Vite、Rust check、Windows portable `.exe`、OCR runtime 组装校验和 artifact 上传。
+
+## V0.6.1：本地 OCR 自动状态识别
+
+- 在 V0.6 Windows 原生窗口抓帧上接入本地 PaddleOCR/ONNX OCR
+- 自动识别阶段、人口、金币、HP；高置信多帧融合后可回填状态
+- 商店仅在完整识别 5 格且达到置信度门槛时自动应用，避免部分读数造成槽位漂移
+- OCR 模型本地下载、校验并随 portable runtime 组织，不把游戏画面上传到外部识别服务
+- OCR 输出继续通过 `lib/vision.ts` 做时间衰减与多帧融合
+- 不读取游戏进程内存、不注入、不抓取或解密客户端网络协议、不自动替玩家操作游戏
+
+## V0.6：Auto Vision + Guarded EV Foundation
+
+- Windows 原生窗口枚举 + `xcap` / Windows Graphics Capture（WGC）低频抓帧
+- 自动优先匹配“金铲铲 / JCC / 常见安卓模拟器”窗口，并保留手工选择 fallback
+- `lib/vision.ts`：多帧置信度 + 时间衰减融合
+- `lib/pool.ts`：观察张数、存活状态、淘汰返池、识别置信度衰减和相对卡池压力
+- `lib/ev.ts`：相对路线 EV 与精确概率 guardrail
+- `rules/S18/18.1b.json`：版本化规则入口；冲突或未核验规则保持 `provisional / precisionUse=blocked`
+- `check:rules` CI 门禁阻止未核验规则开启伪精确模式
+
 ## V0.5：整局动态运营决策
 
 V0.5 从“当前回合建议”升级为“连续回合运营判断”。它复用 V0.4.2 已保存的历史状态，把最近最多 7 个状态点重新交给同一份 `lib/recommender.ts` 回放，再由共享 `lib/trajectory.ts` 分析趋势。
@@ -107,13 +142,14 @@ npm run build:portable
 desktop/src-tauri/target/release/tftgoldenchanchan-overlay.exe
 ```
 
-`.github/workflows/desktop-ci.yml` 会在真实 `windows-latest` runner 上执行：
+`.github/workflows/desktop-ci.yml` 会在真实 Windows runner 上执行：
 
 1. npm dependency audit
 2. TypeScript + Vite build
 3. Rust `cargo check`
 4. Tauri portable `.exe` 编译
-5. 上传 `TFTGOLDENCHANCHAN-Windows-portable` artifact
+5. OCR runtime 组装与验证
+6. 上传 `TFTGOLDENCHANCHAN-Windows-portable` artifact
 
 详细桌面说明见 `desktop/README.md`。
 
@@ -162,7 +198,7 @@ targetRankCoverage=false
 
 - Web：Next.js 15.5.x / React 19.2.x / TypeScript / Cheerio 1.2.x
 - Desktop：Tauri 2 / Rust / Vite / TypeScript
-- Data / CI：GitHub Actions + 纯函数 Meta / Discovery / Fit / Round Decision / Trajectory 引擎
+- Data / CI：GitHub Actions + 纯函数 Meta / Discovery / Fit / Round Decision / Trajectory / Vision / Scouting 引擎
 
 ## 自动数据刷新
 
@@ -178,4 +214,7 @@ GitHub Actions 每天 6 次：UTC 00:05 / 04:05 / 08:05 / 12:05 / 16:05 / 20:05�
 - V0.4.1：5格商店、快速点选、同行与完成度 ✅
 - V0.4.2：真实图标、回合历史、强化最近使用 ✅
 - V0.4.3：一眼决策、商店优先级、转阵风险、装备冲突 ✅
-- **V0.5：整局动态运营、连续回合轨迹、止损/追三/提人口/冲9判断 ✅**
+- V0.5：整局动态运营、连续回合轨迹、止损/追三/提人口/冲9判断 ✅
+- V0.6：自动窗口捕获、时间融合、卡池模型、Guarded EV ✅
+- V0.6.1：本地 OCR 自动阶段/人口/金币/HP/完整5格商店识别 ✅
+- **V0.7：对手侦察账本、同行重建、相对卡池压力驱动决策 ✅**
