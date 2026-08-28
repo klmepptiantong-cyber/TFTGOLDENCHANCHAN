@@ -2,13 +2,6 @@ name: Probe DataJ
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - feature/v0.4.2-visual-input
-    paths:
-      - scripts/probe-dataj.mjs
-      - scripts/sources/dataj.mjs
-      - .github/workflows/probe-dataj.yml
 
 permissions:
   contents: read
