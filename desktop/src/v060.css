@@ -1,0 +1,124 @@
+.v060-panel {
+  margin: 10px 0 12px;
+  padding: 10px;
+  border: 1px solid rgba(120, 210, 255, 0.24);
+  border-radius: 12px;
+  background: rgba(7, 18, 28, 0.82);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+
+.v060-head,
+.v060-controls,
+.v060-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.v060-head > div {
+  display: grid;
+  gap: 2px;
+}
+
+.v060-head strong {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+#vision-status {
+  font-size: 10px;
+  opacity: 0.82;
+}
+
+#vision-status[data-kind="ok"] { color: #85f5b2; }
+#vision-status[data-kind="warn"] { color: #ffd778; }
+#vision-status[data-kind="error"] { color: #ff9c9c; }
+
+#vision-toggle,
+#vision-refresh-windows {
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  color: inherit;
+  padding: 6px 8px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+#vision-toggle[data-running="1"] {
+  border-color: rgba(80, 238, 153, 0.38);
+}
+
+.v060-controls {
+  margin-top: 8px;
+}
+
+#vision-window-select {
+  min-width: 0;
+  flex: 1;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.11);
+  background: rgba(5, 12, 18, 0.9);
+  color: inherit;
+  padding: 6px 8px;
+  font-size: 10px;
+}
+
+.v060-preview-wrap {
+  position: relative;
+  margin-top: 8px;
+  min-height: 92px;
+  max-height: 170px;
+  overflow: hidden;
+  border-radius: 9px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #05080c;
+}
+
+#vision-preview {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 170px;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+}
+
+#vision-preview:not([src]) { display: none; }
+
+.v060-preview-empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  opacity: 0.45;
+}
+
+.v060-foot {
+  margin-top: 7px;
+  font-size: 9px;
+  opacity: 0.68;
+  align-items: flex-start;
+}
+
+.v060-foot span:last-child {
+  text-align: right;
+}
+
+.v060-rule-status {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 9px;
+  color: #ffd778;
+}
+
+.compact .v060-preview-wrap,
+.compact .v060-controls,
+.compact .v060-foot,
+.compact .v060-rule-status {
+  display: none;
+}

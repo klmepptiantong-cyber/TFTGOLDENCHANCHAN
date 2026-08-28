@@ -1,6 +1,32 @@
-# TFTGOLDENCHANCHAN Overlay V0.5
+# TFTGOLDENCHANCHAN Overlay V0.6
 
 Windows 桌面悬浮助手，基于 Tauri 2 + Vite。
+
+## V0.6.0 Auto Vision Foundation
+
+- Windows 原生窗口枚举 + `xcap` / Windows Graphics Capture（WGC）窗口抓帧
+- Overlay 启动后默认低频持续捕获，优先自动匹配“金铲铲 / JCC / 常见安卓模拟器”窗口
+- 自动匹配失败时保留一次性手动选择窗口的 fallback；选择结果会持久化
+- 捕获帧通过本地 Tauri IPC 返回，前端发出 `tft-vision-frame` 事件，供 OCR / 英雄模板识别继续消费
+- 当前捕获频率约 1 FPS，避免为了决策辅助无意义占用 60 FPS
+- 视觉帧只来自玩家屏幕已显示内容；不读取游戏进程内存、不注入、不抓取/解密客户端网络协议
+- `lib/vision.ts` 提供多帧置信度 + 时间衰减融合，避免单帧 OCR 误识别直接污染状态
+- `lib/pool.ts` 提供自己/对手持牌、同行压力、淘汰返池和识别置信度衰减模型
+- `lib/ev.ts` 提供当前相对路线 EV；未核准规则下明确禁止伪精确 Top1 / Top4 / D牌命中概率
+- `rules/S18/18.1b.json` 为版本化规则入口；当前 S18 公开卡池资料存在冲突，因此标记 `provisional / precisionUse=blocked`
+- CI 新增 `check:rules` 门禁：只有规则状态为 `verified` 且存在完整商店概率时才允许开启精确概率模式
+
+### 当前 V0.6 状态
+
+- Capture / Window Tracking：✅
+- Temporal Vision Fusion：✅
+- Pool Pressure Engine：✅
+- Relative EV Guardrail：✅
+- OCR（阶段/金币/HP/人口）：下一步
+- 商店5格英雄识别：下一步
+- 场上/备战席/装备识别：下一步
+- 对手数据库自动重建：后续 V0.6.x
+- 精确 Top1 / Top4 / Expected Placement：等待规则核验 + 视觉状态输入
 
 ## V0.5 整局动态运营
 
