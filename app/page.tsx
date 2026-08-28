@@ -1,7 +1,7 @@
 import snapshotJson from "../data/latest.json";
 import sourceStatusJson from "../data/source-status.json";
 import { discoveryScore, metaScore } from "../lib/scoring";
-import { MetaSnapshot, SourceStatus } from "../lib/types";
+import { Comp, MetaSnapshot, SourceStatus } from "../lib/types";
 
 // JSON snapshots are validated by scripts/check-data.mjs before build/commit.
 const snapshot = snapshotJson as unknown as MetaSnapshot;
@@ -21,12 +21,27 @@ function beijingTime(value: string) {
   }).format(new Date(value));
 }
 
+function enrichmentBadge(comp: Comp) {
+  if (!comp.needsEnrichment || comp.enrichmentStatus === "full") return "READY";
+  if (comp.enrichmentStatus === "partial") return "ROSTER ✓";
+  return "NEW";
+}
+
+function enrichmentText(comp: Comp) {
+  if (!comp.needsEnrichment || comp.enrichmentStatus === "full") return "已可进入推荐候选";
+  if (comp.enrichmentStatus === "partial") return "英雄阵容已自动补全，装备名称/运营待补";
+  return "待补阵容细节";
+}
+
 export default function Home() {
+  const verifiedRankBands = sourceStatus.rankStatus?.verifiedPublicBands ?? snapshot.verifiedPublicRankBands ?? [];
+  const partialCount = sourceStatus.enrichmentQueue?.partialCount ?? snapshot.enrichmentPartial ?? 0;
+
   return (
     <main className="shell">
       <section className="hero">
         <div>
-          <p className="eyebrow">TFTGOLDENCHANCHAN · V0.2 REAL DATA LAYER</p>
+          <p className="eyebrow">TFTGOLDENCHANCHAN · V0.2.1 STRUCTURED DATA</p>
           <h1>金铲铲实时决策助手</h1>
           <p className="muted">
             {snapshot.isLive
@@ -50,13 +65,13 @@ export default function Home() {
                   <div className="line">
                     <strong>{comp.name}</strong>
                     <span className="tier">{comp.tier}</span>
-                    {comp.needsEnrichment ? <span className="tier">NEW</span> : null}
+                    <span className="tier">{enrichmentBadge(comp)}</span>
                   </div>
                   <div className="stats">
                     <span>前四 {comp.top4Rate}%</span>
                     <span>登顶 {comp.winRate}%</span>
                     <span>均名 {comp.avgPlace}</span>
-                    <span>样本≈{comp.sampleSize}</span>
+                    <span>样本 {comp.sampleSize}</span>
                     <span>24h {comp.trend24h > 0 ? "+" : ""}{comp.trend24h}</span>
                   </div>
                 </div>
@@ -72,7 +87,7 @@ export default function Home() {
             <div className="discovery" key={comp.id}>
               <div>
                 <strong>{comp.name}</strong>
-                <p>出场 {comp.playRate} · 24h {comp.trend24h > 0 ? "+" : ""}{comp.trend24h} · {comp.needsEnrichment ? "待补阵容细节" : "已可推荐"}</p>
+                <p>出场 {comp.playRate} · 24h {comp.trend24h > 0 ? "+" : ""}{comp.trend24h} · {enrichmentText(comp)}</p>
               </div>
               <b>{discoveryScore(comp)}</b>
             </div>
@@ -85,8 +100,12 @@ export default function Home() {
             <p className="muted">当前权威版本：{sourceStatus.authoritativePatch ?? "未知"}</p>
             <p className="muted">{sourceStatus.note}</p>
             <p className="muted">
-              分段覆盖：{sourceStatus.rankCoverage.join(" / ")} · 铂金→大师精确分段：{sourceStatus.targetRankCoverage ? "已接入" : "待接入公开统计端点"}
+              实际统计覆盖：{sourceStatus.rankCoverage.join(" / ")} · 已核验国服公共高分段：{verifiedRankBands.length ? verifiedRankBands.join(" / ") : "无"}
             </p>
+            <p className="muted">
+              铂金→大师目标分段：{sourceStatus.targetRankCoverage ? "已接入" : "未发现国服公开入口"} · 自动补全中的阵容：{partialCount}
+            </p>
+            <p className="muted">解析模式：{snapshot.parserMode ?? "legacy"} · 样本口径：{snapshot.sampleSizeMethod ?? "未标注"}</p>
           </div>
           <pre>{`POST /api/recommend
 {
@@ -96,7 +115,7 @@ export default function Home() {
   "hp": 78,
   "units": { "蛇女": 2, "稻草人": 2, "洛": 2 },
   "items": ["眼泪", "青龙刀", "狂徒"],
-  "rankBand": "platinum"
+  "rankBand": "all"
 }`}</pre>
         </article>
       </section>
