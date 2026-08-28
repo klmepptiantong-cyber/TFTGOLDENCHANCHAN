@@ -13,6 +13,7 @@ const COMPS_PATH = path.join(DATA_DIR, "comps.json");
 const LIBRARY_PATH = path.join(DATA_DIR, "comp-library.json");
 const PATCH_LOCK_PATH = path.join(DATA_DIR, "patch-authority.json");
 const ENRICHMENT_QUEUE_PATH = path.join(DATA_DIR, "enrichment-queue.json");
+const RANK_CAPABILITY_PATH = path.join(DATA_DIR, "rank-capability.json");
 
 const normalizeName = (value = "") => value.toLowerCase().replace(/[\s·・\-_/]/g, "").replace(/[()（）]/g, "");
 const performance = (comp) => comp.top4Rate * 0.65 + comp.winRate * 0.35;
@@ -120,6 +121,12 @@ function buildEnrichmentQueue(comps, previousQueue, patch, fetchedAt, sourceUrl)
 
 await fs.mkdir(HISTORY_DIR, { recursive: true });
 const patchLock = await readJson(PATCH_LOCK_PATH);
+const rankCapability = await readJson(RANK_CAPABILITY_PATH, {
+  verifiedPublicBands: [],
+  requestedTargetBands: ["platinum+", "emerald+", "diamond+", "master+"],
+  targetBandsPubliclyAvailable: false,
+  dataIngested: false
+});
 const [official, datatft, dataj] = await Promise.all([
   fetchOfficialPatch(),
   fetchDataTFTMetadata(),
@@ -137,16 +144,27 @@ const authority = official.ok && official.patch
 
 const authoritativePatch = authority?.patch ?? null;
 const versionsAgree = Boolean(dataj.ok && authoritativePatch && dataj.patch === authoritativePatch);
+const rankCoverage = ["all"];
+const rankStatus = {
+  ingestedBands: rankCoverage,
+  verifiedPublicBands: rankCapability.verifiedPublicBands ?? [],
+  requestedTargetBands: rankCapability.requestedTargetBands ?? [],
+  targetRankCoverage: false,
+  semantics: rankCapability.semantics ?? "cumulative-and-above",
+  cnPublicSelectorLockedTo: rankCapability.cnPublicSelectorLockedTo ?? null,
+  note: rankCapability.note ?? null
+};
 const sourceStatus = {
   fetchedAt,
   authoritativePatch,
   patchAuthority: authority,
   liveCompDataAccepted: versionsAgree,
   sources: { official, datatft, dataj },
-  rankCoverage: ["all"],
+  rankCoverage,
+  rankStatus,
   targetRankCoverage: false,
   note: versionsAgree
-    ? `实时阵容统计已通过独立版本校验（${authority?.mode}）。当前 DataJ 适配器提供全段位阵容统计；DataTFT 已验证存在段位筛选，但 V0.2.1 仍只接入可稳定复现的公开数据。`
+    ? `实时阵容统计已通过独立版本校验（${authority?.mode}）。DataJ 当前提供全段位阵容统计；DataTFT 国服公共页面已验证宗师及以上能力，但铂金→大师目标分段并未在国服公共选择器中开放，因此不伪造分段数据。`
     : "阵容统计源未通过独立国服版本校验或抓取失败，本轮拒绝覆盖排行榜，保留上一份已验证快照。"
 };
 await fs.writeFile(STATUS_PATH, JSON.stringify(sourceStatus, null, 2) + "\n", "utf8");
@@ -169,7 +187,8 @@ const snapshot = {
   fetchedAt,
   isLive: true,
   rankBand: "all",
-  rankCoverage: ["all"],
+  rankCoverage,
+  verifiedPublicRankBands: rankStatus.verifiedPublicBands,
   targetRankCoverage: false,
   totalGames: dataj.totalGames,
   sampleSizeMethod: "estimated appearances: totalGames × lobby appearance rate percentage / 100",
