@@ -152,6 +152,7 @@ export type GameState = {
   rankBand?: string;
   lockedCompId?: string | null;
   contestedComps?: Record<string, number>;
+  poolPressureByHero?: Record<string, number>;
 };
 
 export type DecisionAction = {

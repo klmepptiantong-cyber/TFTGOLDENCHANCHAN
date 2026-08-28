@@ -1,0 +1,130 @@
+.v070-block {
+  margin: 10px 0 0;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 10px;
+  background: rgba(5, 9, 18, 0.55);
+  display: grid;
+  gap: 8px;
+}
+
+.v070-head,
+.v070-entry,
+.v070-scout-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.v070-head > div {
+  display: grid;
+  gap: 2px;
+}
+
+.v070-head strong {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.v070-head span,
+.v070-candidate,
+.v070-summary,
+.v070-empty {
+  font-size: 11px;
+  color: rgba(235, 242, 255, 0.7);
+}
+
+.v070-head span[data-kind="ok"] {
+  color: #8de6b3;
+}
+
+.v070-head button,
+.v070-entry button,
+.v070-scout-row button,
+.v070-save {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+
+.v070-entry input[type="text"],
+.v070-entry > input:not([type]),
+.v070-block textarea {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.22);
+  color: inherit;
+}
+
+.v070-entry > input:not([type]) {
+  min-width: 58px;
+  width: 64px;
+  padding: 5px 7px;
+}
+
+.v070-alive {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.v070-block textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 7px 8px;
+  box-sizing: border-box;
+  font: inherit;
+}
+
+.v070-candidate {
+  min-height: 16px;
+}
+
+.v070-save {
+  width: 100%;
+  font-weight: 700;
+  background: rgba(93, 151, 255, 0.14);
+}
+
+.v070-summary {
+  display: grid;
+  gap: 4px;
+  padding: 7px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.v070-summary small {
+  color: rgba(235, 242, 255, 0.55);
+  line-height: 1.35;
+}
+
+.v070-list {
+  display: grid;
+  gap: 5px;
+}
+
+.v070-scout-row {
+  padding: 5px 7px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.035);
+  font-size: 11px;
+}
+
+.v070-scout-row span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.v070-scout-row button {
+  flex: 0 0 auto;
+  padding: 3px 6px;
+  font-size: 10px;
+}
