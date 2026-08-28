@@ -22,6 +22,9 @@ function fitScore(comp: Comp, state: GameState): number {
 
 function nextStep(comp: Comp, state: GameState): string {
   if (state.hp <= 35) return `血量危险：当前阶段 ${state.stage} 优先D出两星核心，质量达标后再存钱。`;
+  if (comp.stagePlanSource === "derived-economy-v1") {
+    return comp.stagePlan[0] ?? "优先补齐核心两星与关键羁绊。";
+  }
   if (state.gold >= 50 && state.level < 8) return `经济健康：维持利息，按 ${comp.name} 的节奏升级人口，避免无目的刷新。`;
   return comp.stagePlan[0] ?? "优先补齐核心两星与关键羁绊。";
 }
@@ -43,6 +46,7 @@ export function recommend(comps: Comp[], state: GameState): Recommendation[] {
       if (overlap(comp.keyItems, state.items).length) reasons.push("当前装备与核心装备方向匹配");
       if (comp.trend24h > 0) reasons.push(`最近24小时表现提升 ${comp.trend24h.toFixed(1)}%`);
       if (comp.sampleSize >= 2000) reasons.push("样本量达到可参考区间");
+      if (comp.stagePlanSource === "derived-economy-v1") reasons.push("运营节奏由已核验费用/目标星级规则推导");
 
       return {
         comp,
