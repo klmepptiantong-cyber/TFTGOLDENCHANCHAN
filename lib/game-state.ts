@@ -59,6 +59,16 @@ function normalizeCountMap(value: unknown, maxEntries = 40, maxValue = 7): Recor
   );
 }
 
+function normalizeFractionMap(value: unknown, maxEntries = 80): Record<string, number> {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  return Object.fromEntries(
+    Object.entries(value as Record<string, unknown>)
+      .map(([key, raw]) => [key.trim(), clamp(asFiniteNumber(raw, 0), 0, 1)] as const)
+      .filter(([key, pressure]) => Boolean(key) && pressure > 0)
+      .slice(0, maxEntries)
+  );
+}
+
 export function parseGameState(input: unknown): GameState {
   const body = input && typeof input === "object" ? input as Record<string, unknown> : {};
   const stage = String(body.stage ?? "2-1").trim().slice(0, 12) || "2-1";
@@ -80,6 +90,7 @@ export function parseGameState(input: unknown): GameState {
     equippedItems: normalizeEquipped(body.equippedItems),
     augments: normalizeStrings(body.augments, 8),
     contestedComps: normalizeCountMap(body.contestedComps),
+    poolPressureByHero: normalizeFractionMap(body.poolPressureByHero),
     ...(streak !== undefined ? { streak } : {}),
     ...(xp !== undefined ? { xp } : {}),
     ...(body.rankBand ? { rankBand: String(body.rankBand).trim().slice(0, 30) } : {}),
