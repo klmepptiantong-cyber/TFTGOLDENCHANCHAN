@@ -10,31 +10,25 @@ const slugify = (value) => value
   .replace(/[^a-z0-9\u4e00-\u9fff-]/g, "")
   .slice(0, 80);
 
-function normalizeText(html) {
+function pageText(html) {
   const $ = cheerio.load(html);
-  return $.root()
-    .text()
-    .replace(/\u00a0/g, " ")
-    .replace(/[\r\n\t]+/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+  return $.root().text().replace(/\u00a0/g, " ").replace(/[\r\n\t]+/g, " ").replace(/\s+/g, " ").trim();
 }
 
 function parsePage(html) {
-  const text = normalizeText(html);
-  const patchMatch = text.match(/版本\s*([0-9]+(?:\.[0-9]+)?[a-z]?)\s*[（(]\s*([\d,]+)\s*局\s*[)）]/i);
+  const text = pageText(html);
+  const compact = text.replace(/\s+/g, "");
+  const patchMatch = compact.match(/版本([0-9]+(?:\.[0-9]+)?[a-z]?)[（(]([\d,]+)局[)）]/i);
   const patch = patchMatch?.[1] ?? null;
-  const totalGames = patchMatch ? Number(patchMatch[2].replace(/,/g, "")) : null;
+  const totalGames = patchMatch ? Number(patchMatch[2].replace(/\D/g, "")) : null;
 
   const comps = [];
-  const metric = "平均(?:排名|名次)\\s*[:：]?\\s*([\\d.]+)\\s*出场率\\s*[:：]?\\s*([\\d.]+)%?\\s*登顶率\\s*[:：]?\\s*([\\d.]+)%\\s*前四率\\s*[:：]?\\s*([\\d.]+)%";
-  const pattern = new RegExp(`(?:^|\\s)([SABCD])\\s*(.{1,80}?)\\s*${metric}`, "g");
-
+  const pattern = /([SABCD])([^SABCD]{1,60}?)平均(?:排名|名次)([\d.]+)出场率([\d.]+)%?登顶率([\d.]+)%前四率([\d.]+)%/g;
   let match;
-  while ((match = pattern.exec(text)) !== null) {
+  while ((match = pattern.exec(compact)) !== null) {
     const [, tier, rawName, avgPlace, playRate, winRate, top4Rate] = match;
-    const name = rawName.trim().replace(/^New\s*/i, "").trim();
-    if (!name || name.includes("阵容排行")) continue;
+    const name = rawName.replace(/^New/i, "").trim();
+    if (!name || name.includes("阵容排行") || name.includes("最小样本")) continue;
     const play = Number(playRate);
     comps.push({
       id: `dataj-${slugify(name)}`,
@@ -52,7 +46,7 @@ function parsePage(html) {
     patch,
     totalGames,
     comps,
-    parserDebug: comps.length ? undefined : text.match(/.{0,100}平均(?:排名|名次).{0,220}/)?.[0] ?? text.slice(0, 500)
+    parserDebug: comps.length ? undefined : compact.slice(Math.max(0, compact.indexOf("平均排名") - 160), compact.indexOf("平均排名") + 700)
   };
 }
 
