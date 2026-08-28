@@ -97,16 +97,32 @@ function extractInitialRows(html) {
   return extractRows(html, ["initialRows", "initialCompRows"]);
 }
 
-function equipmentDictionary(html) {
+function equipmentCatalog(html) {
   const rows = extractRows(html, ["initialRows", "initialEquipRows"]);
-  const dictionary = new Map();
+  const namesById = new Map();
+  const picturesById = new Map();
+  const heroPicturesById = new Map();
+
   for (const row of rows) {
-    if (row?.equipId == null || !row?.name) continue;
-    const id = String(row.equipId);
-    const name = String(row.name).trim();
-    if (id && name) dictionary.set(id, name);
+    if (row?.equipId != null && row?.name) {
+      const id = String(row.equipId);
+      const name = String(row.name).trim();
+      if (id && name) namesById.set(id, name);
+      if (id && typeof row.picture === "string" && /^https:\/\//.test(row.picture)) {
+        picturesById.set(id, row.picture);
+      }
+    }
+
+    for (const hero of row?.recommendedHeroes ?? []) {
+      const heroId = hero?.heroId == null ? "" : String(hero.heroId);
+      const picture = typeof hero?.picture === "string" ? hero.picture : "";
+      if (heroId && /^https:\/\//.test(picture) && !heroPicturesById.has(heroId)) {
+        heroPicturesById.set(heroId, picture);
+      }
+    }
   }
-  return dictionary;
+
+  return { namesById, picturesById, heroPicturesById };
 }
 
 function groupEquipmentByHero(row) {
@@ -121,8 +137,10 @@ function groupEquipmentByHero(row) {
   return grouped;
 }
 
-function resolveEquipmentNames(idsByHero, namesById) {
+function resolveEquipment(idsByHero, catalog) {
   const namesByHero = {};
+  const picturesById = {};
+  const picturesByName = {};
   let mapped = 0;
   let total = 0;
 
@@ -130,23 +148,31 @@ function resolveEquipmentNames(idsByHero, namesById) {
     const names = [];
     for (const rawId of ids ?? []) {
       total += 1;
-      const name = namesById.get(String(rawId));
+      const id = String(rawId);
+      const name = catalog.namesById.get(id);
+      const picture = catalog.picturesById.get(id);
       if (!name) continue;
       mapped += 1;
       if (!names.includes(name)) names.push(name);
+      if (picture) {
+        picturesById[id] = picture;
+        picturesByName[name] = picture;
+      }
     }
     if (names.length) namesByHero[hero] = names;
   }
 
   return {
     namesByHero,
+    picturesById,
+    picturesByName,
     mapped,
     total,
     complete: total > 0 && mapped === total
   };
 }
 
-function structuredComps(rows, equipmentNamesById = new Map()) {
+function structuredComps(rows, catalog = { namesById: new Map(), picturesById: new Map(), heroPicturesById: new Map() }) {
   return rows
     .filter((row) => row && row.name && Number.isFinite(Number(row.avgPlacement)))
     .map((row) => {
@@ -154,7 +180,7 @@ function structuredComps(rows, equipmentNamesById = new Map()) {
       const core = heroes.filter((hero) => hero.isCore || hero.isCarry || hero.isSubCarry);
       const flex = heroes.filter((hero) => !core.includes(hero));
       const equipmentIdsByHero = groupEquipmentByHero(row);
-      const resolvedEquipment = resolveEquipmentNames(equipmentIdsByHero, equipmentNamesById);
+      const resolvedEquipment = resolveEquipment(equipmentIdsByHero, catalog);
       return {
         id: `dataj-${slugify(row.name)}`,
         datajCompId: row.compId ? String(row.compId) : null,
@@ -179,6 +205,8 @@ function structuredComps(rows, equipmentNamesById = new Map()) {
         sourceTraits: (row.traits ?? []).map((trait) => String(trait.name)).filter(Boolean),
         sourceEquipmentIdsByHero: equipmentIdsByHero,
         sourceEquipmentNamesByHero: resolvedEquipment.namesByHero,
+        sourceEquipmentPicturesById: resolvedEquipment.picturesById,
+        sourceEquipmentPicturesByName: resolvedEquipment.picturesByName,
         sourceEquipmentNamesComplete: resolvedEquipment.complete,
         sourceEquipmentNameCoverage: {
           mapped: resolvedEquipment.mapped,
@@ -191,13 +219,14 @@ function structuredComps(rows, equipmentNamesById = new Map()) {
           isCarry: Boolean(hero.isCarry),
           isSubCarry: Boolean(hero.isSubCarry),
           price: hero.price ?? null,
-          targetStars: hero.heroStarNum ?? null
+          targetStars: hero.heroStarNum ?? null,
+          picture: catalog.heroPicturesById.get(String(hero.heroId)) ?? null
         }))
       };
     });
 }
 
-function parsePage(html, equipmentNamesById = new Map()) {
+function parsePage(html, catalog = { namesById: new Map(), picturesById: new Map(), heroPicturesById: new Map() }) {
   const text = pageText(html);
   const compact = text.replace(/\s+/g, "");
   const patchMatch = compact.match(/版本([0-9]+(?:\.[0-9]+)?[a-z]?)[（(]([\d,]+)局[)）]/i);
@@ -205,7 +234,7 @@ function parsePage(html, equipmentNamesById = new Map()) {
   const totalGames = patchMatch ? Number(patchMatch[2].replace(/\D/g, "")) : null;
 
   const rows = extractInitialRows(html);
-  const structured = structuredComps(rows, equipmentNamesById);
+  const structured = structuredComps(rows, catalog);
   if (structured.length >= 3) {
     return {
       patch,
@@ -240,6 +269,8 @@ function parsePage(html, equipmentNamesById = new Map()) {
       sourceTraits: [],
       sourceEquipmentIdsByHero: {},
       sourceEquipmentNamesByHero: {},
+      sourceEquipmentPicturesById: {},
+      sourceEquipmentPicturesByName: {},
       sourceEquipmentNamesComplete: false,
       sourceEquipmentNameCoverage: { mapped: 0, total: 0 },
       sourceLineup: []
@@ -261,20 +292,24 @@ export async function fetchDataJComps() {
       fetchText(URL),
       fetchText(EQUIP_URL).catch(() => null)
     ]);
-    const equipmentNamesById = equipHtmlResult ? equipmentDictionary(equipHtmlResult) : new Map();
-    const parsed = parsePage(html, equipmentNamesById);
+    const catalog = equipHtmlResult ? equipmentCatalog(equipHtmlResult) : { namesById: new Map(), picturesById: new Map(), heroPicturesById: new Map() };
+    const parsed = parsePage(html, catalog);
     const ok = Boolean(parsed.patch && parsed.comps.length >= 3);
     const structuredCompsWithEquipment = parsed.comps.filter((comp) => comp.sourceEquipmentNamesComplete).length;
+    const compsWithHeroPictures = parsed.comps.filter((comp) => (comp.sourceLineup ?? []).some((hero) => hero.picture)).length;
     return {
       id: "dataj",
       ok,
       url: URL,
       equipmentUrl: EQUIP_URL,
-      equipmentDictionaryOk: equipmentNamesById.size > 0,
-      equipmentDictionarySize: equipmentNamesById.size,
+      equipmentDictionaryOk: catalog.namesById.size > 0,
+      equipmentDictionarySize: catalog.namesById.size,
+      equipmentPictureCount: catalog.picturesById.size,
+      heroPictureCount: catalog.heroPicturesById.size,
+      compsWithHeroPictures,
       structuredCompsWithEquipment,
       fetchedAt: new Date().toISOString(),
-      mode: "comp-stats-lineups-and-equipment",
+      mode: "comp-stats-lineups-equipment-and-pictures",
       rankBand: "all",
       ...parsed,
       error: ok ? undefined : `parse incomplete: patch=${parsed.patch ?? "none"}, comps=${parsed.comps.length}`
@@ -290,9 +325,12 @@ export async function fetchDataJComps() {
       equipmentUrl: EQUIP_URL,
       equipmentDictionaryOk: false,
       equipmentDictionarySize: 0,
+      equipmentPictureCount: 0,
+      heroPictureCount: 0,
+      compsWithHeroPictures: 0,
       structuredCompsWithEquipment: 0,
       fetchedAt: new Date().toISOString(),
-      mode: "comp-stats-lineups-and-equipment",
+      mode: "comp-stats-lineups-equipment-and-pictures",
       rankBand: "all",
       error: error instanceof Error ? error.message : String(error)
     };
