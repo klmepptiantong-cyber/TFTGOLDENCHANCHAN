@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "s18-cn-champion-v082",
+  "game": "金铲铲之战",
+  "season": "S18",
+  "status": "blocked",
+  "precisionUse": "blocked",
+  "runtime": "onnx-cpu",
+  "modelPath": "desktop/models/champion-v082.onnx",
+  "classesPath": "vision/classes-v082.json",
+  "reportPath": "vision/model-report-v082.json",
+  "input": {
+    "width": 128,
+    "height": 128,
+    "channels": 3,
+    "layout": "NCHW",
+    "normalization": {
+      "mean": [0.485, 0.456, 0.406],
+      "std": [0.229, 0.224, 0.225]
+    }
+  },
+  "thresholds": {
+    "perClassPrecisionMin": 0.9,
+    "perClassRecallMin": 0.82,
+    "unknownRecallMin": 0.9,
+    "boardExactAccuracyMin": 0.9,
+    "falseWriteRateMax": 0.005,
+    "cpuP95MsMax": 180,
+    "minTrainSessions": 30,
+    "minValidationSessions": 10,
+    "minTestSessions": 10
+  },
+  "dataset": {
+    "region": "CN",
+    "currentSeasonOnly": true,
+    "splitUnit": "session",
+    "hardNegativesRequired": true,
+    "status": "collecting"
+  },
+  "metrics": null,
+  "modelSha256": null,
+  "reason": "Current-season China-server dataset and validation report are not complete. Runtime activation is blocked until all production gates pass."
+}
