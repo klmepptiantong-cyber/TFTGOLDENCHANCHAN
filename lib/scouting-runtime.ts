@@ -34,7 +34,7 @@ export function setRuntimeScouting(next: Omit<RuntimeScoutingState, "updatedAt">
   runtime = {
     contestedComps: sanitizeCountMap(next.contestedComps),
     poolPressureByHero: sanitizePressureMap(next.poolPressureByHero),
-    updatedAt: Number.isFinite(next.updatedAt) ? Number(next.updatedAt) : Date.now()
+    updatedAt: typeof next.updatedAt === "number" && Number.isFinite(next.updatedAt) ? next.updatedAt : Date.now()
   };
 }
 
