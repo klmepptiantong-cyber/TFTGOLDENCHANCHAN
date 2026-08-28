@@ -163,7 +163,7 @@ function percent(value: number): string {
 function renderUnitSummary(units: Record<string, number>): string {
   const rows = Object.entries(units)
     .sort(([a], [b]) => a.localeCompare(b, "zh-CN"))
-    .map(([hero, copies]) => `${hero}${copies === 3 ? " 2★" : copies === 9 ? " 3★" : copies > 1 ? `×${copies}` : ""}`);
+    .map(([hero, copies]) => `${hero}${copies > 1 ? `=${copies}张等价` : ""}`);
   return rows.length ? rows.join(" · ") : "暂无可靠候选";
 }
 
@@ -185,13 +185,17 @@ function renderState() {
   }
   const status = byId<HTMLElement>("v080-status");
   if (status) {
+    const hasCandidates = Object.keys(fused.board.units).length
+      || Object.keys(fused.bench.units).length
+      || fused.looseItems.length
+      || Object.keys(fused.equippedItems).length;
     if (fused.layoutId === "unsupported") {
       status.textContent = "当前窗口比例不支持 Board Vision";
       status.dataset.kind = "warn";
     } else if (safeBoardAutoApplyReady(fused)) {
       status.textContent = "场上完整状态已通过安全门禁";
       status.dataset.kind = "ok";
-    } else if (Object.keys(fused.board.units).length || Object.keys(fused.bench.units).length || fused.looseItems.length) {
+    } else if (hasCandidates) {
       status.textContent = "已发现候选，等待更多稳定帧/人工确认";
       status.dataset.kind = "warn";
     } else {
@@ -292,8 +296,9 @@ function mountPanel() {
     if (applyBenchCandidate()) byId<HTMLButtonElement>("decide")?.click();
   });
   byId<HTMLButtonElement>("v080-merge-items")?.addEventListener("click", () => {
-    const changed = mergeItemCandidates() || mergeEquippedCandidates();
-    if (changed) byId<HTMLButtonElement>("decide")?.click();
+    const looseChanged = mergeItemCandidates();
+    const equippedChanged = mergeEquippedCandidates();
+    if (looseChanged || equippedChanged) byId<HTMLButtonElement>("decide")?.click();
   });
   renderState();
 }
