@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "patch": "18.1b",
-  "generatedAt": "2026-08-28T07:00:56.744Z",
+  "generatedAt": "2026-08-28T07:03:57.515Z",
   "pendingCount": 11,
   "items": [
     {
@@ -11,16 +11,16 @@
       "status": "pending",
       "priority": 33,
       "firstSeenAt": "2026-08-28T06:55:02.054Z",
-      "lastSeenAt": "2026-08-28T07:00:56.744Z",
+      "lastSeenAt": "2026-08-28T07:03:57.515Z",
       "source": "dataj",
       "sourceUrl": "https://www.dataj.cc/comp",
       "metrics": {
         "tier": "S",
         "avgPlace": 3.31,
         "playRate": 0.02,
-        "winRate": 18.2,
-        "top4Rate": 72.7,
-        "sampleSize": 4,
+        "winRate": 18.18,
+        "top4Rate": 72.73,
+        "sampleSize": 55,
         "trend24h": 0
       },
       "missing": [
@@ -38,7 +38,7 @@
       "status": "pending",
       "priority": 23,
       "firstSeenAt": "2026-08-28T06:55:02.054Z",
-      "lastSeenAt": "2026-08-28T07:00:56.744Z",
+      "lastSeenAt": "2026-08-28T07:03:57.515Z",
       "source": "dataj",
       "sourceUrl": "https://www.dataj.cc/comp",
       "metrics": {
@@ -46,8 +46,8 @@
         "avgPlace": 4.72,
         "playRate": 1.06,
         "winRate": 13.3,
-        "top4Rate": 45.1,
-        "sampleSize": 225,
+        "top4Rate": 45.11,
+        "sampleSize": 2804,
         "trend24h": 0
       },
       "missing": [
@@ -65,16 +65,16 @@
       "status": "pending",
       "priority": 22,
       "firstSeenAt": "2026-08-28T06:55:02.054Z",
-      "lastSeenAt": "2026-08-28T07:00:56.744Z",
+      "lastSeenAt": "2026-08-28T07:03:57.515Z",
       "source": "dataj",
       "sourceUrl": "https://www.dataj.cc/comp",
       "metrics": {
         "tier": "A",
         "avgPlace": 4.42,
         "playRate": 0.53,
-        "winRate": 16.1,
-        "top4Rate": 51.8,
-        "sampleSize": 113,
+        "winRate": 16.09,
+        "top4Rate": 51.79,
+        "sampleSize": 1398,
         "trend24h": 0
       },
       "missing": [
@@ -92,16 +92,16 @@
       "status": "pending",
       "priority": 17,
       "firstSeenAt": "2026-08-28T06:55:02.054Z",
-      "lastSeenAt": "2026-08-28T07:00:56.744Z",
+      "lastSeenAt": "2026-08-28T07:03:57.515Z",
       "source": "dataj",
       "sourceUrl": "https://www.dataj.cc/comp",
       "metrics": {
         "tier": "B",
         "avgPlace": 4.47,
         "playRate": 0.44,
-        "winRate": 11.8,
+        "winRate": 11.84,
         "top4Rate": 51.2,
-        "sampleSize": 93,
+        "sampleSize": 1166,
         "trend24h": 0
       },
       "missing": [
@@ -119,16 +119,16 @@
       "status": "pending",
       "priority": 17,
       "firstSeenAt": "2026-08-28T06:55:02.054Z",
-      "lastSeenAt": "2026-08-28T07:00:56.744Z",
+      "lastSeenAt": "2026-08-28T07:03:57.515Z",
       "source": "dataj",
       "sourceUrl": "https://www.dataj.cc/comp",
       "metrics": {
         "tier": "A",
         "avgPlace": 4.25,
         "playRate": 0.34,
-        "winRate": 9.2,
-        "top4Rate": 55.8,
-        "sampleSize": 72,
+        "winRate": 9.24,
+        "top4Rate": 55.78,
+        "sampleSize": 909,
         "trend24h": 0
       },
       "missing": [
@@ -146,16 +146,16 @@
       "status": "pending",
       "priority": 16,
       "firstSeenAt": "2026-08-28T06:55:02.054Z",
-      "lastSeenAt": "2026-08-28T07:00:56.744Z",
+      "lastSeenAt": "2026-08-28T07:03:57.515Z",
       "source": "dataj",
       "sourceUrl": "https://www.dataj.cc/comp",
       "metrics": {
         "tier": "B",
         "avgPlace": 4.48,
         "playRate": 0.48,
-        "winRate": 10.1,
-        "top4Rate": 51.3,
-        "sampleSize": 102,
+        "winRate": 10.11,
+        "top4Rate": 51.32,
+        "sampleSize": 1286,
         "trend24h": 0
       },
       "missing": [
@@ -173,16 +173,16 @@
       "status": "pending",
       "priority": 10,
       "firstSeenAt": "2026-08-28T06:55:02.054Z",
-      "lastSeenAt": "2026-08-28T07:00:56.744Z",
+      "lastSeenAt": "2026-08-28T07:03:57.515Z",
       "source": "dataj",
       "sourceUrl": "https://www.dataj.cc/comp",
       "metrics": {
         "tier": "D",
         "avgPlace": 4.97,
         "playRate": 0.47,
-        "winRate": 10.3,
-        "top4Rate": 41.9,
-        "sampleSize": 100,
+        "winRate": 10.28,
+        "top4Rate": 41.94,
+        "sampleSize": 1235,
         "trend24h": 0
       },
       "missing": [
@@ -200,16 +200,16 @@
       "status": "pending",
       "priority": 4,
       "firstSeenAt": "2026-08-28T06:55:02.054Z",
-      "lastSeenAt": "2026-08-28T07:00:56.744Z",
+      "lastSeenAt": "2026-08-28T07:03:57.515Z",
       "source": "dataj",
       "sourceUrl": "https://www.dataj.cc/comp",
       "metrics": {
         "tier": "D",
         "avgPlace": 5.11,
         "playRate": 0.21,
-        "winRate": 7.2,
-        "top4Rate": 38.8,
-        "sampleSize": 45,
+        "winRate": 7.18,
+        "top4Rate": 38.78,
+        "sampleSize": 557,
         "trend24h": 0
       },
       "missing": [
@@ -227,7 +227,7 @@
       "status": "pending",
       "priority": 3,
       "firstSeenAt": "2026-08-28T06:55:02.054Z",
-      "lastSeenAt": "2026-08-28T07:00:56.744Z",
+      "lastSeenAt": "2026-08-28T07:03:57.515Z",
       "source": "dataj",
       "sourceUrl": "https://www.dataj.cc/comp",
       "metrics": {
@@ -236,7 +236,7 @@
         "playRate": 0.05,
         "winRate": 10,
         "top4Rate": 37.5,
-        "sampleSize": 11,
+        "sampleSize": 120,
         "trend24h": 0
       },
       "missing": [
@@ -254,16 +254,16 @@
       "status": "pending",
       "priority": 1,
       "firstSeenAt": "2026-08-28T06:55:02.054Z",
-      "lastSeenAt": "2026-08-28T07:00:56.744Z",
+      "lastSeenAt": "2026-08-28T07:03:57.515Z",
       "source": "dataj",
       "sourceUrl": "https://www.dataj.cc/comp",
       "metrics": {
         "tier": "D",
         "avgPlace": 5.1,
         "playRate": 0.07,
-        "winRate": 6.1,
-        "top4Rate": 38.1,
-        "sampleSize": 15,
+        "winRate": 6.09,
+        "top4Rate": 38.07,
+        "sampleSize": 197,
         "trend24h": 0
       },
       "missing": [
@@ -281,16 +281,16 @@
       "status": "pending",
       "priority": 1,
       "firstSeenAt": "2026-08-28T06:55:02.054Z",
-      "lastSeenAt": "2026-08-28T07:00:56.744Z",
+      "lastSeenAt": "2026-08-28T07:03:57.515Z",
       "source": "dataj",
       "sourceUrl": "https://www.dataj.cc/comp",
       "metrics": {
         "tier": "D",
         "avgPlace": 5.31,
         "playRate": 0.04,
-        "winRate": 2,
-        "top4Rate": 34.7,
-        "sampleSize": 8,
+        "winRate": 2.04,
+        "top4Rate": 34.69,
+        "sampleSize": 98,
         "trend24h": 0
       },
       "missing": [

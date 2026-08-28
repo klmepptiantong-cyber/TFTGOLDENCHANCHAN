@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-28T07:00:56.744Z",
+  "fetchedAt": "2026-08-28T07:03:57.515Z",
   "authoritativePatch": "18.1b",
   "patchAuthority": {
     "id": "official-taptap",
@@ -14,7 +14,7 @@
       "ok": true,
       "patch": "18.1b",
       "url": "https://www.taptap.cn/moment/841982769956390376",
-      "fetchedAt": "2026-08-28T07:00:56.743Z",
+      "fetchedAt": "2026-08-28T07:03:57.515Z",
       "mode": "patch-authority"
     },
     "datatft": {
@@ -22,7 +22,7 @@
       "ok": false,
       "patch": null,
       "url": "https://jcc.datatft.com/explorer",
-      "fetchedAt": "2026-08-28T07:00:56.282Z",
+      "fetchedAt": "2026-08-28T07:03:56.965Z",
       "mode": "metadata-only",
       "rankLabel": null,
       "supportsRankFilter": false,
@@ -32,153 +32,1987 @@
       "id": "dataj",
       "ok": true,
       "url": "https://www.dataj.cc/comp",
-      "fetchedAt": "2026-08-28T07:00:56.491Z",
-      "mode": "comp-stats",
+      "fetchedAt": "2026-08-28T07:03:57.428Z",
+      "mode": "comp-stats-and-lineups",
       "rankBand": "all",
       "patch": "18.1b",
       "totalGames": 21232,
       "comps": [
         {
+          "id": "dataj-永森95",
+          "datajCompId": "91",
+          "name": "永森95",
+          "tier": "S",
+          "avgPlace": 3.31,
+          "playRate": 0.02,
+          "winRate": 18.18,
+          "top4Rate": 72.73,
+          "sampleSize": 55,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "伊泽瑞尔",
+            "德莱文"
+          ],
+          "sourceFlexUnits": [
+            "艾翁",
+            "凯南",
+            "塔里克",
+            "纳尔",
+            "茂凯",
+            "阿木木",
+            "阿利斯塔"
+          ],
+          "sourceCarries": [
+            {
+              "name": "伊泽瑞尔",
+              "role": "carry",
+              "targetStars": null,
+              "price": 4
+            },
+            {
+              "name": "德莱文",
+              "role": "subcarry",
+              "targetStars": null,
+              "price": 5
+            }
+          ],
+          "sourceTraits": [
+            "永恒之森",
+            "裁决使",
+            "地狱火",
+            "斗士",
+            "主宰",
+            "宝石骑士",
+            "翠神",
+            "赏金猎人",
+            "远古树精"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "塔里克": [
+              "2034",
+              "2028",
+              "2025"
+            ],
+            "德莱文": [
+              "2010",
+              "2013"
+            ],
+            "伊泽瑞尔": [
+              "2004",
+              "2045",
+              "2042"
+            ],
+            "茂凯": [
+              "2032",
+              "2034",
+              "2028"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "伊泽瑞尔",
+              "heroId": "4508",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "德莱文",
+              "heroId": "5455",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "艾翁",
+              "heroId": "5457",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "凯南",
+              "heroId": "5453",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "塔里克",
+              "heroId": "5451",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "纳尔",
+              "heroId": "5452",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "茂凯",
+              "heroId": "5450",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "阿木木",
+              "heroId": "4503",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "阿利斯塔",
+              "heroId": "2501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": null
+            }
+          ]
+        },
+        {
+          "id": "dataj-7野怪鸡哥",
+          "datajCompId": "99",
+          "name": "7野怪鸡哥",
+          "tier": "S",
+          "avgPlace": 3.79,
+          "playRate": 0.52,
+          "winRate": 17.27,
+          "top4Rate": 63.27,
+          "sampleSize": 1372,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "深红锋喙鸟",
+            "绯红印记树怪",
+            "苍蓝雕纹魔像",
+            "远古石甲虫"
+          ],
+          "sourceFlexUnits": [
+            "魔沼蛙",
+            "峡谷迅捷蟹",
+            "暗影狼",
+            "绯红树怪",
+            "苍蓝哨戒"
+          ],
+          "sourceCarries": [
+            {
+              "name": "深红锋喙鸟",
+              "role": "carry",
+              "targetStars": 3,
+              "price": 3
+            }
+          ],
+          "sourceTraits": [
+            "峡谷野怪",
+            "狂战士",
+            "神谕"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "远古石甲虫": [
+              "2025",
+              "2028",
+              "2034"
+            ],
+            "深红锋喙鸟": [
+              "2010",
+              "2013",
+              "2045"
+            ],
+            "绯红印记树怪": [
+              "2007",
+              "2041",
+              "2045"
+            ],
+            "苍蓝雕纹魔像": [
+              "2023",
+              "2028",
+              "2034"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "深红锋喙鸟",
+              "heroId": "3509",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "绯红印记树怪",
+              "heroId": "4506",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "苍蓝雕纹魔像",
+              "heroId": "4500",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "远古石甲虫",
+              "heroId": "3503",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "魔沼蛙",
+              "heroId": "2513",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": null
+            },
+            {
+              "name": "峡谷迅捷蟹",
+              "heroId": "2500",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": null
+            },
+            {
+              "name": "暗影狼",
+              "heroId": "2507",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": null
+            },
+            {
+              "name": "绯红树怪",
+              "heroId": "1508",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            },
+            {
+              "name": "苍蓝哨戒",
+              "heroId": "1511",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            }
+          ]
+        },
+        {
+          "id": "dataj-巨龙95",
+          "datajCompId": "89",
+          "name": "巨龙95",
+          "tier": "S",
+          "avgPlace": 3.96,
+          "playRate": 0.08,
+          "winRate": 19.63,
+          "top4Rate": 57.48,
+          "sampleSize": 214,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "远古巨龙",
+            "德莱文"
+          ],
+          "sourceFlexUnits": [
+            "艾翁",
+            "茂凯",
+            "塔里克",
+            "凯南",
+            "阿木木",
+            "苍蓝雕纹魔像"
+          ],
+          "sourceCarries": [
+            {
+              "name": "远古巨龙",
+              "role": "carry",
+              "targetStars": null,
+              "price": 5
+            },
+            {
+              "name": "德莱文",
+              "role": "subcarry",
+              "targetStars": null,
+              "price": 5
+            }
+          ],
+          "sourceTraits": [
+            "烈焰",
+            "前卫",
+            "主宰",
+            "宝石骑士",
+            "翠神",
+            "顶级掠食者",
+            "恒古生长",
+            "赏金猎人"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "远古巨龙": [
+              "2001",
+              "2042",
+              "2037"
+            ],
+            "德莱文": [
+              "2010",
+              "2013"
+            ],
+            "茂凯": [
+              "2034",
+              "2028",
+              "2025"
+            ],
+            "苍蓝雕纹魔像": [
+              "2034",
+              "2028",
+              "2023"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "远古巨龙",
+              "heroId": "5458",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "德莱文",
+              "heroId": "5455",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "艾翁",
+              "heroId": "5457",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "茂凯",
+              "heroId": "5450",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "塔里克",
+              "heroId": "5451",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "凯南",
+              "heroId": "5453",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "阿木木",
+              "heroId": "4503",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "苍蓝雕纹魔像",
+              "heroId": "4500",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            }
+          ]
+        },
+        {
+          "id": "dataj-重装女警",
+          "datajCompId": "100",
+          "name": "重装女警",
+          "tier": "A",
+          "avgPlace": 4.25,
+          "playRate": 0.34,
+          "winRate": 9.24,
+          "top4Rate": 55.78,
+          "sampleSize": 909,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "凯特琳",
+            "希维尔",
+            "伊莉丝"
+          ],
+          "sourceFlexUnits": [
+            "苍蓝雕纹魔像",
+            "蔚",
+            "赫卡里姆",
+            "崔丝塔娜",
+            "洛"
+          ],
+          "sourceCarries": [
+            {
+              "name": "凯特琳",
+              "role": "carry",
+              "targetStars": 3,
+              "price": 2
+            },
+            {
+              "name": "希维尔",
+              "role": "subcarry",
+              "targetStars": null,
+              "price": 4
+            }
+          ],
+          "sourceTraits": [
+            "重装战士",
+            "猎人",
+            "花仙子",
+            "野兽之灵",
+            "主宰"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "伊莉丝": [
+              "2025",
+              "2028",
+              "2034"
+            ],
+            "凯特琳": [
+              "2045",
+              "2013",
+              "2010"
+            ],
+            "赫卡里姆": [
+              "2029",
+              "2034",
+              "2032"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "凯特琳",
+              "heroId": "2510",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": 3
+            },
+            {
+              "name": "希维尔",
+              "heroId": "4510",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "伊莉丝",
+              "heroId": "2504",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": 3
+            },
+            {
+              "name": "苍蓝雕纹魔像",
+              "heroId": "4500",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "蔚",
+              "heroId": "3501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "赫卡里姆",
+              "heroId": "3500",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "崔丝塔娜",
+              "heroId": "3508",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "洛",
+              "heroId": "1501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            }
+          ]
+        },
+        {
           "id": "dataj-赌蛇女",
+          "datajCompId": "101",
           "name": "赌蛇女",
           "tier": "A",
           "avgPlace": 4.28,
           "playRate": 1.26,
-          "winRate": 10.2,
-          "top4Rate": 54.3,
-          "sampleSize": 268
+          "winRate": 10.17,
+          "top4Rate": 54.28,
+          "sampleSize": 3353,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "卡西奥佩娅",
+            "阿狸",
+            "费德提克"
+          ],
+          "sourceFlexUnits": [
+            "瑟提",
+            "拉莫斯",
+            "远古石甲虫",
+            "卡尔玛"
+          ],
+          "sourceCarries": [
+            {
+              "name": "卡西奥佩娅",
+              "role": "carry",
+              "targetStars": 3,
+              "price": 3
+            },
+            {
+              "name": "阿狸",
+              "role": "subcarry",
+              "targetStars": null,
+              "price": 4
+            }
+          ],
+          "sourceTraits": [
+            "法师",
+            "灵魂莲华",
+            "斗士",
+            "护卫",
+            "绝命花妖"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "拉莫斯": [
+              "2034",
+              "2019",
+              "2029"
+            ],
+            "费德提克": [
+              "2034",
+              "2028",
+              "2025"
+            ],
+            "卡西奥佩娅": [
+              "2003",
+              "2038",
+              "2004"
+            ],
+            "阿狸": [
+              "2038",
+              "2014",
+              "2004"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "卡西奥佩娅",
+              "heroId": "3511",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "阿狸",
+              "heroId": "4511",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "费德提克",
+              "heroId": "3502",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "瑟提",
+              "heroId": "4505",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "拉莫斯",
+              "heroId": "3515",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "远古石甲虫",
+              "heroId": "3503",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "卡尔玛",
+              "heroId": "1510",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            }
+          ]
+        },
+        {
+          "id": "dataj-裁决奶妈",
+          "datajCompId": "90",
+          "name": "裁决奶妈",
+          "tier": "A",
+          "avgPlace": 4.42,
+          "playRate": 0.53,
+          "winRate": 16.09,
+          "top4Rate": 51.79,
+          "sampleSize": 1398,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "索拉卡",
+            "婕拉",
+            "墨菲特"
+          ],
+          "sourceFlexUnits": [
+            "凯南",
+            "茂凯",
+            "艾翁",
+            "阿木木",
+            "阿兹尔",
+            "费德提克"
+          ],
+          "sourceCarries": [
+            {
+              "name": "索拉卡",
+              "role": "carry",
+              "targetStars": null,
+              "price": 4
+            },
+            {
+              "name": "婕拉",
+              "role": "subcarry",
+              "targetStars": null,
+              "price": 4
+            }
+          ],
+          "sourceTraits": [
+            "裁决使",
+            "地狱火",
+            "黑荆棘",
+            "绝命花妖",
+            "召唤师",
+            "主宰",
+            "翠神",
+            "荆棘之兴",
+            "魔岩巨兽",
+            "远古树精"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "墨菲特": [
+              "2028",
+              "2034",
+              "2025"
+            ],
+            "婕拉": [
+              "2011",
+              "2004",
+              "41818"
+            ],
+            "索拉卡": [
+              "2004",
+              "2014",
+              "2016"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "索拉卡",
+              "heroId": "4513",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "婕拉",
+              "heroId": "4512",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "墨菲特",
+              "heroId": "4504",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "凯南",
+              "heroId": "5453",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "茂凯",
+              "heroId": "5450",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "艾翁",
+              "heroId": "5457",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "阿木木",
+              "heroId": "4503",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "阿兹尔",
+              "heroId": "3510",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "费德提克",
+              "heroId": "3502",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            }
+          ]
+        },
+        {
+          "id": "dataj-重装琉斯",
+          "datajCompId": "95",
+          "name": "重装琉斯",
+          "tier": "B",
+          "avgPlace": 4.48,
+          "playRate": 0.48,
+          "winRate": 10.11,
+          "top4Rate": 51.32,
+          "sampleSize": 1286,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "厄斐琉斯",
+            "深红锋喙鸟",
+            "苍蓝雕纹魔像"
+          ],
+          "sourceFlexUnits": [
+            "塔里克",
+            "婕拉",
+            "绯红印记树怪",
+            "赫卡里姆",
+            "黛安娜"
+          ],
+          "sourceCarries": [
+            {
+              "name": "厄斐琉斯",
+              "role": "carry",
+              "targetStars": null,
+              "price": 4
+            },
+            {
+              "name": "深红锋喙鸟",
+              "role": "subcarry",
+              "targetStars": null,
+              "price": 3
+            }
+          ],
+          "sourceTraits": [
+            "重装战士",
+            "峡谷野怪",
+            "狂战士",
+            "迅捷射手",
+            "月蚀骑士",
+            "召唤师",
+            "宝石骑士",
+            "荆棘之兴"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "厄斐琉斯": [
+              "2010",
+              "2013",
+              "2045"
+            ],
+            "深红锋喙鸟": [
+              "2010",
+              "2013",
+              "2045"
+            ],
+            "苍蓝雕纹魔像": [
+              "2034",
+              "2028",
+              "2023"
+            ],
+            "赫卡里姆": [
+              "2029",
+              "2032",
+              "2034"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "厄斐琉斯",
+              "heroId": "4509",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "深红锋喙鸟",
+              "heroId": "3509",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "苍蓝雕纹魔像",
+              "heroId": "4500",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "塔里克",
+              "heroId": "5451",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "婕拉",
+              "heroId": "4512",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "绯红印记树怪",
+              "heroId": "4506",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "赫卡里姆",
+              "heroId": "3500",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "黛安娜",
+              "heroId": "3506",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            }
+          ]
+        },
+        {
+          "id": "dataj-剑圣大嘴",
+          "datajCompId": "86",
+          "name": "剑圣大嘴",
+          "tier": "B",
+          "avgPlace": 4.47,
+          "playRate": 0.44,
+          "winRate": 11.84,
+          "top4Rate": 51.2,
+          "sampleSize": 1166,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "易",
+            "克格莫",
+            "远古石甲虫"
+          ],
+          "sourceFlexUnits": [
+            "奈德丽",
+            "瑟提",
+            "蔚",
+            "魔沼蛙",
+            "约里克"
+          ],
+          "sourceCarries": [
+            {
+              "name": "易",
+              "role": "carry",
+              "targetStars": 3,
+              "price": 3
+            },
+            {
+              "name": "克格莫",
+              "role": "subcarry",
+              "targetStars": 3,
+              "price": 3
+            }
+          ],
+          "sourceTraits": [
+            "魔战士",
+            "灵魂莲华",
+            "斗士",
+            "野兽之灵",
+            "主宰",
+            "帝王斑蝶"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "易": [
+              "2012",
+              "2005",
+              "2010"
+            ],
+            "克格莫": [
+              "2001",
+              "2009",
+              "2004"
+            ],
+            "远古石甲虫": [
+              "2025",
+              "2034",
+              "2028"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "易",
+              "heroId": "3507",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "克格莫",
+              "heroId": "3512",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "远古石甲虫",
+              "heroId": "3503",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "奈德丽",
+              "heroId": "4507",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "瑟提",
+              "heroId": "4505",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "蔚",
+              "heroId": "3501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "魔沼蛙",
+              "heroId": "2513",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": null
+            },
+            {
+              "name": "约里克",
+              "heroId": "2505",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            }
+          ]
         },
         {
           "id": "dataj-莲华阿狸",
+          "datajCompId": "84",
           "name": "莲华阿狸",
           "tier": "C",
           "avgPlace": 4.72,
           "playRate": 1.06,
           "winRate": 13.3,
-          "top4Rate": 45.1,
-          "sampleSize": 225
-        },
-        {
-          "id": "dataj-裁决奶妈",
-          "name": "裁决奶妈",
-          "tier": "A",
-          "avgPlace": 4.42,
-          "playRate": 0.53,
-          "winRate": 16.1,
-          "top4Rate": 51.8,
-          "sampleSize": 113
-        },
-        {
-          "id": "dataj-7野怪鸡哥",
-          "name": "7野怪鸡哥",
-          "tier": "S",
-          "avgPlace": 3.79,
-          "playRate": 0.52,
-          "winRate": 17.3,
-          "top4Rate": 63.3,
-          "sampleSize": 110
-        },
-        {
-          "id": "dataj-重装琉斯",
-          "name": "重装琉斯",
-          "tier": "B",
-          "avgPlace": 4.48,
-          "playRate": 0.48,
-          "winRate": 10.1,
-          "top4Rate": 51.3,
-          "sampleSize": 102
+          "top4Rate": 45.11,
+          "sampleSize": 2804,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "阿狸",
+            "艾希",
+            "瑟提"
+          ],
+          "sourceFlexUnits": [
+            "纳尔",
+            "希维尔",
+            "婕拉",
+            "蔚",
+            "约里克",
+            "卡尔玛"
+          ],
+          "sourceCarries": [
+            {
+              "name": "阿狸",
+              "role": "carry",
+              "targetStars": null,
+              "price": 4
+            },
+            {
+              "name": "艾希",
+              "role": "subcarry",
+              "targetStars": null,
+              "price": 5
+            }
+          ],
+          "sourceTraits": [
+            "莲华",
+            "斗士",
+            "法师",
+            "猎手",
+            "野兽之灵",
+            "召唤师",
+            "主宰",
+            "荆棘之兴"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "瑟提": [
+              "2025",
+              "2034",
+              "2028"
+            ],
+            "阿狸": [
+              "2042",
+              "2038",
+              "2004"
+            ],
+            "婕拉": [
+              "2011"
+            ],
+            "艾希": [
+              "2037",
+              "2004",
+              "2009"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "阿狸",
+              "heroId": "4511",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "艾希",
+              "heroId": "5454",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "瑟提",
+              "heroId": "4505",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "纳尔",
+              "heroId": "5452",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "希维尔",
+              "heroId": "4510",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "婕拉",
+              "heroId": "4512",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "蔚",
+              "heroId": "3501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "约里克",
+              "heroId": "2505",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            },
+            {
+              "name": "卡尔玛",
+              "heroId": "1510",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            }
+          ]
         },
         {
           "id": "dataj-神器天使",
+          "datajCompId": "88",
           "name": "神器天使",
           "tier": "D",
           "avgPlace": 4.97,
           "playRate": 0.47,
-          "winRate": 10.3,
-          "top4Rate": 41.9,
-          "sampleSize": 100
-        },
-        {
-          "id": "dataj-剑圣大嘴",
-          "name": "剑圣大嘴",
-          "tier": "B",
-          "avgPlace": 4.47,
-          "playRate": 0.44,
-          "winRate": 11.8,
-          "top4Rate": 51.2,
-          "sampleSize": 93
-        },
-        {
-          "id": "dataj-重装女警",
-          "name": "重装女警",
-          "tier": "A",
-          "avgPlace": 4.25,
-          "playRate": 0.34,
-          "winRate": 9.2,
-          "top4Rate": 55.8,
-          "sampleSize": 72
+          "winRate": 10.28,
+          "top4Rate": 41.94,
+          "sampleSize": 1235,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "凯尔",
+            "霞",
+            "瑟庄妮",
+            "奥恩",
+            "蕾欧娜"
+          ],
+          "sourceFlexUnits": [
+            "乐芙兰",
+            "洛"
+          ],
+          "sourceCarries": [
+            {
+              "name": "凯尔",
+              "role": "carry",
+              "targetStars": 3,
+              "price": 2
+            },
+            {
+              "name": "霞",
+              "role": "subcarry",
+              "targetStars": 3,
+              "price": 1
+            }
+          ],
+          "sourceTraits": [
+            "日蚀骑士",
+            "永恒之森",
+            "护卫",
+            "花仙子",
+            "迅捷射手",
+            "主宰"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "奥恩": [
+              "2034",
+              "2025",
+              "2028"
+            ],
+            "蕾欧娜": [
+              "2034",
+              "2025",
+              "2028"
+            ],
+            "霞": [
+              "2046",
+              "2013",
+              "2010"
+            ],
+            "凯尔": [
+              "2016",
+              "2038",
+              "2010"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "凯尔",
+              "heroId": "2512",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": 3
+            },
+            {
+              "name": "霞",
+              "heroId": "1509",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 1,
+              "targetStars": 3
+            },
+            {
+              "name": "瑟庄妮",
+              "heroId": "2502",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": 3
+            },
+            {
+              "name": "奥恩",
+              "heroId": "1500",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": 3
+            },
+            {
+              "name": "蕾欧娜",
+              "heroId": "1502",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": 3
+            },
+            {
+              "name": "乐芙兰",
+              "heroId": "2511",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": 3
+            },
+            {
+              "name": "洛",
+              "heroId": "1501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            }
+          ]
         },
         {
           "id": "dataj-黑豹轮",
+          "datajCompId": "102",
           "name": "黑豹轮",
           "tier": "D",
           "avgPlace": 5.11,
           "playRate": 0.21,
-          "winRate": 7.2,
-          "top4Rate": 38.8,
-          "sampleSize": 45
-        },
-        {
-          "id": "dataj-巨龙95",
-          "name": "巨龙95",
-          "tier": "S",
-          "avgPlace": 3.96,
-          "playRate": 0.08,
-          "winRate": 19.6,
-          "top4Rate": 57.5,
-          "sampleSize": 17
+          "winRate": 7.18,
+          "top4Rate": 38.78,
+          "sampleSize": 557,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "希维尔",
+            "奈德丽",
+            "墨菲特"
+          ],
+          "sourceFlexUnits": [
+            "塔里克",
+            "苍蓝雕纹魔像",
+            "远古石甲虫",
+            "克格莫",
+            "雷克塞",
+            "绯红树怪"
+          ],
+          "sourceCarries": [
+            {
+              "name": "希维尔",
+              "role": "carry",
+              "targetStars": null,
+              "price": 4
+            },
+            {
+              "name": "奈德丽",
+              "role": "subcarry",
+              "targetStars": null,
+              "price": 4
+            }
+          ],
+          "sourceTraits": [
+            "峡谷野怪",
+            "斗士",
+            "黑荆棘",
+            "猎人",
+            "魔战士",
+            "神谕",
+            "野兽之灵",
+            "重装战士",
+            "宝石骑士",
+            "帝王斑蝶",
+            "魔岩巨兽"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "墨菲特": [
+              "2028",
+              "2034"
+            ],
+            "希维尔": [
+              "2001",
+              "2004",
+              "2045"
+            ],
+            "奈德丽": [
+              "2010",
+              "2038",
+              "2042"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "希维尔",
+              "heroId": "4510",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "奈德丽",
+              "heroId": "4507",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "墨菲特",
+              "heroId": "4504",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "塔里克",
+              "heroId": "5451",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "苍蓝雕纹魔像",
+              "heroId": "4500",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "远古石甲虫",
+              "heroId": "3503",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "克格莫",
+              "heroId": "3512",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "雷克塞",
+              "heroId": "1504",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            },
+            {
+              "name": "绯红树怪",
+              "heroId": "1508",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            }
+          ]
         },
         {
           "id": "dataj-重装豹女",
+          "datajCompId": "83",
           "name": "重装豹女",
           "tier": "D",
           "avgPlace": 5.1,
           "playRate": 0.07,
-          "winRate": 6.1,
-          "top4Rate": 38.1,
-          "sampleSize": 15
+          "winRate": 6.09,
+          "top4Rate": 38.07,
+          "sampleSize": 197,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "奈德丽",
+            "莫甘娜",
+            "苍蓝雕纹魔像",
+            "蔚"
+          ],
+          "sourceFlexUnits": [
+            "塔里克",
+            "黛安娜",
+            "克格莫",
+            "洛"
+          ],
+          "sourceCarries": [
+            {
+              "name": "奈德丽",
+              "role": "carry",
+              "targetStars": null,
+              "price": 4
+            },
+            {
+              "name": "莫甘娜",
+              "role": "subcarry",
+              "targetStars": null,
+              "price": 4
+            }
+          ],
+          "sourceTraits": [
+            "前卫",
+            "神谕者",
+            "魔战士",
+            "野兽之灵",
+            "主宰",
+            "宝石骑士",
+            "腐蚀巨口"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "奈德丽": [
+              "2010",
+              "2038",
+              "2016"
+            ],
+            "莫甘娜": [
+              "2011",
+              "2020",
+              "2022"
+            ],
+            "苍蓝雕纹魔像": [
+              "2028",
+              "2034",
+              "2023"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "奈德丽",
+              "heroId": "4507",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "莫甘娜",
+              "heroId": "4514",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "苍蓝雕纹魔像",
+              "heroId": "4500",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "蔚",
+              "heroId": "3501",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "塔里克",
+              "heroId": "5451",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null
+            },
+            {
+              "name": "黛安娜",
+              "heroId": "3506",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "克格莫",
+              "heroId": "3512",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "洛",
+              "heroId": "1501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            }
+          ]
         },
         {
           "id": "dataj-世纪和解",
+          "datajCompId": "93",
           "name": "世纪和解",
           "tier": "D",
           "avgPlace": 5.17,
           "playRate": 0.05,
           "winRate": 10,
           "top4Rate": 37.5,
-          "sampleSize": 11
+          "sampleSize": 120,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "雷恩加尔",
+            "卡兹克"
+          ],
+          "sourceFlexUnits": [
+            "厄斐琉斯",
+            "伊泽瑞尔",
+            "黛安娜",
+            "赫卡里姆",
+            "乐芙兰"
+          ],
+          "sourceCarries": [
+            {
+              "name": "雷恩加尔",
+              "role": "carry",
+              "targetStars": 3,
+              "price": 3
+            },
+            {
+              "name": "卡兹克",
+              "role": "subcarry",
+              "targetStars": 3,
+              "price": 3
+            }
+          ],
+          "sourceTraits": [
+            "永恒之森",
+            "宿敌",
+            "月蚀骑士",
+            "重装战士"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "黛安娜": [
+              "2028",
+              "2029",
+              "2032"
+            ],
+            "赫卡里姆": [
+              "2034",
+              "2028",
+              "2025"
+            ],
+            "卡兹克": [
+              "2039",
+              "2005",
+              "2016"
+            ],
+            "雷恩加尔": [
+              "2010",
+              "2012",
+              "2005"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "雷恩加尔",
+              "heroId": "3504",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "卡兹克",
+              "heroId": "3505",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "厄斐琉斯",
+              "heroId": "4509",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "伊泽瑞尔",
+              "heroId": "4508",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "黛安娜",
+              "heroId": "3506",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "赫卡里姆",
+              "heroId": "3500",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "乐芙兰",
+              "heroId": "2511",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": null
+            }
+          ]
         },
         {
           "id": "dataj-花仙小炮",
+          "datajCompId": "98",
           "name": "花仙小炮",
           "tier": "D",
           "avgPlace": 5.31,
           "playRate": 0.04,
-          "winRate": 2,
-          "top4Rate": 34.7,
-          "sampleSize": 8
-        },
-        {
-          "id": "dataj-永森95",
-          "name": "永森95",
-          "tier": "S",
-          "avgPlace": 3.31,
-          "playRate": 0.02,
-          "winRate": 18.2,
-          "top4Rate": 72.7,
-          "sampleSize": 4
+          "winRate": 2.04,
+          "top4Rate": 34.69,
+          "sampleSize": 98,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "崔丝塔娜",
+            "拉莫斯"
+          ],
+          "sourceFlexUnits": [
+            "希维尔",
+            "莉莉娅",
+            "蔚",
+            "霞",
+            "可酷伯",
+            "洛"
+          ],
+          "sourceCarries": [
+            {
+              "name": "崔丝塔娜",
+              "role": "carry",
+              "targetStars": 3,
+              "price": 3
+            }
+          ],
+          "sourceTraits": [
+            "花仙子",
+            "约德尔人",
+            "护卫",
+            "猎人",
+            "野兽之灵",
+            "主宰"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "拉莫斯": [
+              "2025",
+              "2028",
+              "2034"
+            ],
+            "崔丝塔娜": [
+              "2003",
+              "2010",
+              "2013"
+            ],
+            "希维尔": [
+              "2001",
+              "2037",
+              "2009"
+            ]
+          },
+          "sourceLineup": [
+            {
+              "name": "崔丝塔娜",
+              "heroId": "3508",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "拉莫斯",
+              "heroId": "3515",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3
+            },
+            {
+              "name": "希维尔",
+              "heroId": "4510",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "莉莉娅",
+              "heroId": "4502",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null
+            },
+            {
+              "name": "蔚",
+              "heroId": "3501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null
+            },
+            {
+              "name": "霞",
+              "heroId": "1509",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            },
+            {
+              "name": "可酷伯",
+              "heroId": "1503",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            },
+            {
+              "name": "洛",
+              "heroId": "1501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null
+            }
+          ]
         }
-      ]
+      ],
+      "parserMode": "structured-next-flight"
     }
   },
   "rankCoverage": [
