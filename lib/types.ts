@@ -1,9 +1,29 @@
 export type Trend = "surging" | "up" | "flat" | "down";
 export type Tier = "S" | "A" | "B" | "C" | "D";
 export type RankBand = "all" | "platinum" | "emerald" | "diamond" | "master" | "grandmaster+";
+export type EnrichmentStatus = "full" | "partial" | "pending";
+export type SampleSizeSource = "dataj-sampleCount" | "estimated-from-play-rate" | "unknown";
+
+export type SourceCarry = {
+  name: string;
+  role: "carry" | "subcarry";
+  targetStars: number | null;
+  price: number | null;
+};
+
+export type SourceLineupUnit = {
+  name: string;
+  heroId: string;
+  isCore: boolean;
+  isCarry: boolean;
+  isSubCarry: boolean;
+  price: number | null;
+  targetStars: number | null;
+};
 
 export type Comp = {
   id: string;
+  datajCompId?: string | null;
   name: string;
   tier: Tier;
   patch: string;
@@ -13,6 +33,7 @@ export type Comp = {
   winRate: number;
   playRate: number;
   sampleSize: number;
+  sampleSizeSource?: SampleSizeSource | string;
   trend: Trend;
   trend24h: number;
   coreUnits: string[];
@@ -20,8 +41,17 @@ export type Comp = {
   keyItems: string[];
   itemCarriers: Record<string, string[]>;
   stagePlan: string[];
+  sourceCoreUnits?: string[];
+  sourceFlexUnits?: string[];
+  sourceCarries?: SourceCarry[];
+  sourceTraits?: string[];
+  sourceEquipmentIdsByHero?: Record<string, string[]>;
+  sourceLineup?: SourceLineupUnit[];
+  sourceCompUrl?: string | null;
   dataSource?: string;
   fetchedAt?: string;
+  enrichmentStatus?: EnrichmentStatus;
+  enrichmentVerifiedFields?: string[];
   needsEnrichment?: boolean;
 };
 
@@ -33,12 +63,27 @@ export type MetaSnapshot = {
   isLive: boolean;
   rankBand: RankBand | string;
   rankCoverage: string[];
+  verifiedPublicRankBands?: string[];
   targetRankCoverage: boolean;
   totalGames: number | null;
+  parserMode?: string;
+  sampleSizeMethod?: string;
   source: string;
   sourceUrl?: string | null;
   patchAuthority?: string;
+  enrichmentPending?: number;
+  enrichmentPartial?: number;
   comps: Comp[];
+};
+
+export type RankStatus = {
+  ingestedBands: string[];
+  verifiedPublicBands: string[];
+  requestedTargetBands: string[];
+  targetRankCoverage: boolean;
+  semantics?: string;
+  cnPublicSelectorLockedTo?: string | null;
+  note?: string | null;
 };
 
 export type SourceStatus = {
@@ -46,14 +91,22 @@ export type SourceStatus = {
   authoritativePatch: string | null;
   liveCompDataAccepted: boolean;
   rankCoverage: string[];
+  rankStatus?: RankStatus;
   targetRankCoverage: boolean;
   note: string;
+  enrichmentQueue?: {
+    path: string;
+    pendingCount: number;
+    partialCount?: number;
+    highestPriority?: string | null;
+  };
   sources: Record<string, {
     id: string;
     ok: boolean;
     patch?: string | null;
     url?: string;
     mode?: string;
+    parserMode?: string;
     error?: string;
   }>;
 };
