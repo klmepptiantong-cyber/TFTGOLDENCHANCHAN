@@ -21,14 +21,21 @@ function beijingTime(value: string) {
   }).format(new Date(value));
 }
 
+function hasVerifiedBuild(comp: Comp) {
+  const verified = new Set(comp.enrichmentVerifiedFields ?? []);
+  return verified.has("keyItems") && verified.has("itemCarriers");
+}
+
 function enrichmentBadge(comp: Comp) {
   if (!comp.needsEnrichment || comp.enrichmentStatus === "full") return "READY";
+  if (comp.enrichmentStatus === "partial" && hasVerifiedBuild(comp)) return "BUILD ✓";
   if (comp.enrichmentStatus === "partial") return "ROSTER ✓";
   return "NEW";
 }
 
 function enrichmentText(comp: Comp) {
   if (!comp.needsEnrichment || comp.enrichmentStatus === "full") return "已可进入推荐候选";
+  if (comp.enrichmentStatus === "partial" && hasVerifiedBuild(comp)) return "阵容与装备已自动核验，运营节奏待补";
   if (comp.enrichmentStatus === "partial") return "英雄阵容已自动补全，装备名称/运营待补";
   return "待补阵容细节";
 }
