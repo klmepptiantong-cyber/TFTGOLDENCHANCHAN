@@ -21,16 +21,33 @@ for (const comp of raw.comps ?? []) {
   if (comp.winRate < 0 || comp.winRate > 100) errors.push(`${comp.name}: winRate out of range`);
   if (comp.playRate < 0 || comp.playRate > 100) errors.push(`${comp.name}: playRate out of range`);
   if (!Number.isInteger(comp.sampleSize) || comp.sampleSize < 0) errors.push(`${comp.name}: sampleSize must be a non-negative integer`);
-  if (raw.totalGames && comp.sampleSize > raw.totalGames) errors.push(`${comp.name}: sampleSize exceeds totalGames; check percentage conversion`);
+
+  if (raw.totalGames && comp.sampleSizeSource === "estimated-from-play-rate" && comp.sampleSize > raw.totalGames) {
+    errors.push(`${comp.name}: estimated sampleSize exceeds totalGames; check percentage conversion`);
+  }
+  if (raw.totalGames && comp.sampleSizeSource === "dataj-sampleCount" && comp.sampleSize > raw.totalGames * 8) {
+    errors.push(`${comp.name}: source sampleSize exceeds theoretical 8-player observations per game`);
+  }
+
+  if (comp.enrichmentStatus === "partial") {
+    if (!Array.isArray(comp.coreUnits) || comp.coreUnits.length === 0) errors.push(`${comp.name}: partial enrichment missing coreUnits`);
+    if (!Array.isArray(comp.enrichmentVerifiedFields) || !comp.enrichmentVerifiedFields.includes("coreUnits")) {
+      errors.push(`${comp.name}: partial enrichment must declare verified coreUnits`);
+    }
+  }
 }
 
 try {
   const queue = JSON.parse(await fs.readFile(queueFile, "utf8"));
   if (!Array.isArray(queue.items)) errors.push("enrichment queue items must be an array");
   if (queue.pendingCount !== queue.items?.length) errors.push("enrichment queue pendingCount mismatch");
+  if (queue.partialCount !== undefined && queue.partialCount !== queue.items?.filter((item) => item.status === "partial").length) {
+    errors.push("enrichment queue partialCount mismatch");
+  }
   for (const item of queue.items ?? []) {
-    if (item.status !== "pending") errors.push(`${item.name ?? "unknown"}: enrichment queue status must be pending`);
+    if (!new Set(["pending", "partial"]).has(item.status)) errors.push(`${item.name ?? "unknown"}: enrichment queue status invalid`);
     if (item.priority < 0 || item.priority > 100) errors.push(`${item.name ?? "unknown"}: enrichment priority out of range`);
+    if (!Array.isArray(item.missing) || item.missing.length === 0) errors.push(`${item.name ?? "unknown"}: enrichment queue missing fields must be non-empty`);
   }
 } catch (error) {
   if (raw.enrichmentPending !== undefined) errors.push(`enrichment queue missing/invalid: ${error instanceof Error ? error.message : String(error)}`);
@@ -41,4 +58,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`snapshot OK: patch=${raw.patch}, live=${raw.isLive}, comps=${raw.comps.length}, fetchedAt=${raw.fetchedAt}, enrichmentPending=${raw.enrichmentPending ?? "n/a"}`);
+console.log(`snapshot OK: patch=${raw.patch}, live=${raw.isLive}, comps=${raw.comps.length}, fetchedAt=${raw.fetchedAt}, parser=${raw.parserMode ?? "n/a"}, enrichmentPending=${raw.enrichmentPending ?? "n/a"}, enrichmentPartial=${raw.enrichmentPartial ?? "n/a"}`);
