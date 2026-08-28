@@ -19,7 +19,7 @@ on:
 jobs:
   windows-portable:
     runs-on: windows-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -40,9 +40,20 @@ jobs:
       - name: Build portable Windows executable
         working-directory: desktop
         run: npm run build:portable
-      - name: Upload portable executable
+      - name: Verify OCR runtime files
+        shell: pwsh
+        run: |
+          $release = "desktop/src-tauri/target/release"
+          if (!(Test-Path "$release/tftgoldenchanchan-overlay.exe")) { throw "portable exe missing" }
+          if (!(Test-Path "$release/onnxruntime.dll")) {
+            Get-ChildItem $release -Filter "*.dll" -Recurse | Select-Object FullName
+            throw "onnxruntime.dll missing; OCR portable package would not run"
+          }
+      - name: Upload portable executable and OCR runtime
         uses: actions/upload-artifact@v4
         with:
           name: TFTGOLDENCHANCHAN-Windows-portable
-          path: desktop/src-tauri/target/release/tftgoldenchanchan-overlay.exe
+          path: |
+            desktop/src-tauri/target/release/tftgoldenchanchan-overlay.exe
+            desktop/src-tauri/target/release/*.dll
           if-no-files-found: error
