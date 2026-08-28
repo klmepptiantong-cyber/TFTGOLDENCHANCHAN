@@ -6,6 +6,7 @@
     <meta name="color-scheme" content="dark" />
     <title>TFTGOLDENCHANCHAN Overlay</title>
     <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/v042-enhancements.ts"></script>
   </head>
   <body>
     <main id="overlay" class="overlay-shell">
@@ -13,6 +14,7 @@
         <div>
           <strong>GOLDEN CHANCHAN</strong>
           <span id="snapshot-status" class="status-pill">载入数据…</span>
+          <span id="session-status" class="status-pill session-pill">本局 0 个历史点</span>
         </div>
         <nav class="window-actions" aria-label="窗口控制">
           <button id="refresh-data" type="button" title="刷新快照">↻</button>
@@ -83,7 +85,18 @@
             <textarea id="items" rows="2" placeholder="眼泪, 朔极之矛, 狂徒铠甲"></textarea>
           </div>
 
-          <label>强化符文<textarea id="augments" rows="2" placeholder="永恒之森之徽, 经济类强化"></textarea></label>
+          <div class="fast-panel compact-panel augment-panel">
+            <div class="panel-heading">
+              <div>
+                <strong>强化符文</strong>
+                <span>可点选已核验目录，也可手工输入</span>
+              </div>
+              <button id="add-augment" class="mini-button" type="button">+ 强化</button>
+            </div>
+            <div id="augment-chips" class="selection-chips"></div>
+            <textarea id="augments" rows="2" placeholder="永恒之森之徽, 经济类强化"></textarea>
+          </div>
+
           <label>已装备<textarea id="equipped" rows="2" placeholder="蛇女:朔极之矛/法爆"></textarea></label>
         </div>
       </details>
@@ -91,6 +104,8 @@
       <div class="decision-row">
         <button id="decide" class="primary" type="button">生成本回合决策</button>
         <button id="next-round" class="secondary" type="button">下一回合 →</button>
+        <button id="undo-round" class="ghost history-action" type="button" title="恢复到上一回合前的状态">↶ 撤销</button>
+        <button id="reset-match" class="ghost history-action danger-action" type="button" title="清空本局状态">新开一局</button>
         <button id="unlock" class="ghost" type="button" hidden>解除锁阵</button>
       </div>
 
@@ -102,6 +117,7 @@
         <span>Alt+Q 显示/隐藏</span>
         <span>Alt+W 鼠标穿透</span>
         <span>Alt+E 紧凑模式</span>
+        <span>Ctrl+Z 撤销回合</span>
       </footer>
     </main>
 
@@ -116,6 +132,20 @@
         </header>
         <input id="picker-search" class="picker-search" placeholder="搜索英雄 / 装备" autocomplete="off" />
         <div id="picker-grid" class="picker-grid"></div>
+      </form>
+    </dialog>
+
+    <dialog id="augment-dialog" class="picker-dialog augment-dialog">
+      <form method="dialog" class="picker-shell">
+        <header class="picker-head">
+          <div>
+            <strong>强化符文快速选择</strong>
+            <span id="augment-source-label">等待公开数据目录</span>
+          </div>
+          <button value="cancel" type="submit" aria-label="关闭">×</button>
+        </header>
+        <input id="augment-search" class="picker-search" placeholder="搜索强化名称" autocomplete="off" />
+        <div id="augment-grid" class="picker-grid augment-grid"></div>
       </form>
     </dialog>
   </body>
