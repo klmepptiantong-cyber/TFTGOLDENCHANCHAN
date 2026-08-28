@@ -2,6 +2,7 @@ import snapshotJson from "../data/latest.json";
 import sourceStatusJson from "../data/source-status.json";
 import { discoveryScore, metaScore } from "../lib/scoring";
 import { Comp, MetaSnapshot, SourceStatus } from "../lib/types";
+import LiveAdvisor from "./LiveAdvisor";
 
 // JSON snapshots are validated by scripts/check-data.mjs before build/commit.
 const snapshot = snapshotJson as unknown as MetaSnapshot;
@@ -50,7 +51,7 @@ export default function Home() {
     <main className="shell">
       <section className="hero">
         <div>
-          <p className="eyebrow">TFTGOLDENCHANCHAN · V0.2.1 STRUCTURED DATA</p>
+          <p className="eyebrow">TFTGOLDENCHANCHAN · V0.3 LIVE DECISION</p>
           <h1>金铲铲实时决策助手</h1>
           <p className="muted">
             {snapshot.isLive
@@ -64,6 +65,8 @@ export default function Home() {
       </section>
 
       <section className="grid">
+        <LiveAdvisor />
+
         <article className="panel span2">
           <div className="panelTitle"><h2>当前阵容排名</h2><span>Meta Score · {snapshot.rankBand}</span></div>
           <div className="cards">
@@ -118,13 +121,16 @@ export default function Home() {
           </div>
           <pre>{`POST /api/recommend
 {
-  "stage": "3-2",
-  "level": 6,
-  "gold": 42,
-  "hp": 78,
-  "units": { "蛇女": 2, "稻草人": 2, "洛": 2 },
-  "items": ["眼泪", "青龙刀", "狂徒"],
-  "rankBand": "all"
+  "stage": "4-1",
+  "level": 7,
+  "gold": 36,
+  "hp": 52,
+  "units": { "伊泽瑞尔": 1, "阿木木": 2 },
+  "bench": { "德莱文": 1 },
+  "shop": ["塔里克", "凯南", "其他英雄"],
+  "items": ["朔极之矛", "狂徒铠甲"],
+  "equippedItems": { "伊泽瑞尔": ["朔极之矛"] },
+  "augments": ["永恒之森之徽"]
 }`}</pre>
         </article>
       </section>
