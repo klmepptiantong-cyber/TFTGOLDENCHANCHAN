@@ -178,7 +178,7 @@ export function recommend(comps: Comp[], state: GameState): Recommendation[] {
   const ownedNames = Object.keys(owned);
   const shop = state.shop ?? [];
 
-  return comps
+  const ranked = comps
     .filter((comp) => !comp.needsEnrichment && comp.coreUnits.length > 0 && comp.stagePlan.length > 0)
     .map((comp) => {
       const rawFit = fitScore(comp, state);
@@ -200,7 +200,7 @@ export function recommend(comps: Comp[], state: GameState): Recommendation[] {
       if (comp.trend24h > 0) reasons.push(`最近24小时表现提升 ${comp.trend24h.toFixed(1)}%`);
       if (comp.sampleSize >= 2000) reasons.push("样本量达到可参考区间");
       if (comp.stagePlanSource === "derived-economy-v1") reasons.push("运营节奏由已核验费用/目标星级规则推导");
-      if (state.lockedCompId === comp.id) reasons.push("该阵容已被用户锁定，契合评分获得明确偏置");
+      if (state.lockedCompId === comp.id) reasons.push("该阵容已被用户锁定，跨回合持续保留在候选首位");
 
       const roll = rollAdvice(comp, state);
       const level = levelAdvice(comp, state);
@@ -225,6 +225,14 @@ export function recommend(comps: Comp[], state: GameState): Recommendation[] {
         actions: buildActions(comp, state, buy, keep, sell, roll, level, pivot, items)
       };
     })
-    .sort((a, b) => b.fitScore - a.fitScore || b.metaScore - a.metaScore)
-    .slice(0, 3);
+    .sort((a, b) => b.fitScore - a.fitScore || b.metaScore - a.metaScore);
+
+  if (state.lockedCompId) {
+    const locked = ranked.find((rec) => rec.comp.id === state.lockedCompId);
+    if (locked) {
+      return [locked, ...ranked.filter((rec) => rec.comp.id !== state.lockedCompId).slice(0, 2)];
+    }
+  }
+
+  return ranked.slice(0, 3);
 }
