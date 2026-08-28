@@ -228,12 +228,20 @@
       ]
     },
     "stagePlan": [
-      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
+      "伊泽瑞尔 为 4 费主C且源数据未要求追三：以 8 人口作为主要成型搜牌层，低人口阶段优先保血和积累升级经济。",
+      "8 人口先完成主C与核心前排两星，再根据血量和经济决定继续补质量或升 9 增加高费功能位。"
+    ],
+    "stagePlanSource": "derived-economy-v1",
+    "stagePlanConfidence": "medium",
+    "stagePlanEvidence": [
+      "DataJ carry=伊泽瑞尔",
+      "cost=4",
+      "targetStars=0"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/91",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
-    "enrichmentStatus": "partial",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
+    "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
@@ -241,9 +249,10 @@
       "traits",
       "equipmentIds",
       "keyItems",
-      "itemCarriers"
+      "itemCarriers",
+      "stagePlanDerived"
     ],
-    "needsEnrichment": true
+    "needsEnrichment": false
   },
   {
     "id": "dataj-7野怪鸡哥",
@@ -446,9 +455,14 @@
     "stagePlan": [
       "2阶段胡峡谷野怪时优先保体系牌，7级补质量，经济允许再冲9。"
     ],
+    "stagePlanSource": "library-curated",
+    "stagePlanConfidence": "high",
+    "stagePlanEvidence": [
+      "data/comp-library.json"
+    ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/99",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -660,9 +674,14 @@
     "stagePlan": [
       "仅在血量和经济都健康时走9人口路线；劣势局不要强行95。"
     ],
+    "stagePlanSource": "library-curated",
+    "stagePlanConfidence": "high",
+    "stagePlanEvidence": [
+      "data/comp-library.json"
+    ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/89",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -874,12 +893,20 @@
       ]
     },
     "stagePlan": [
-      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
+      "凯特琳 为 2 费主C且源数据目标 3 星：优先在 6 人口作为主要搜牌层，先完成主C追三，再继续升人口。",
+      "追三阶段以保经济和补核心两星为主；主C达标后再升人口，按实时阵容表补齐高费功能牌与前排。"
+    ],
+    "stagePlanSource": "derived-economy-v1",
+    "stagePlanConfidence": "high",
+    "stagePlanEvidence": [
+      "DataJ carry=凯特琳",
+      "cost=2",
+      "targetStars=3"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/100",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
-    "enrichmentStatus": "partial",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
+    "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
@@ -887,9 +914,10 @@
       "traits",
       "equipmentIds",
       "keyItems",
-      "itemCarriers"
+      "itemCarriers",
+      "stagePlanDerived"
     ],
-    "needsEnrichment": true
+    "needsEnrichment": false
   },
   {
     "id": "dataj-赌蛇女",
@@ -1079,9 +1107,14 @@
     "stagePlan": [
       "中期围绕蛇女和稻草人补两星质量，确认同行少时再投入追三。"
     ],
+    "stagePlanSource": "library-curated",
+    "stagePlanConfidence": "high",
+    "stagePlanEvidence": [
+      "data/comp-library.json"
+    ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/101",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1309,12 +1342,20 @@
       ]
     },
     "stagePlan": [
-      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
+      "索拉卡 为 4 费主C且源数据未要求追三：以 8 人口作为主要成型搜牌层，低人口阶段优先保血和积累升级经济。",
+      "8 人口先完成主C与核心前排两星，再根据血量和经济决定继续补质量或升 9 增加高费功能位。"
+    ],
+    "stagePlanSource": "derived-economy-v1",
+    "stagePlanConfidence": "medium",
+    "stagePlanEvidence": [
+      "DataJ carry=索拉卡",
+      "cost=4",
+      "targetStars=0"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/90",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
-    "enrichmentStatus": "partial",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
+    "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
@@ -1322,9 +1363,10 @@
       "traits",
       "equipmentIds",
       "keyItems",
-      "itemCarriers"
+      "itemCarriers",
+      "stagePlanDerived"
     ],
-    "needsEnrichment": true
+    "needsEnrichment": false
   },
   {
     "id": "dataj-重装琉斯",
@@ -1545,12 +1587,20 @@
       ]
     },
     "stagePlan": [
-      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
+      "厄斐琉斯 为 4 费主C且源数据未要求追三：以 8 人口作为主要成型搜牌层，低人口阶段优先保血和积累升级经济。",
+      "8 人口先完成主C与核心前排两星，再根据血量和经济决定继续补质量或升 9 增加高费功能位。"
+    ],
+    "stagePlanSource": "derived-economy-v1",
+    "stagePlanConfidence": "medium",
+    "stagePlanEvidence": [
+      "DataJ carry=厄斐琉斯",
+      "cost=4",
+      "targetStars=0"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/95",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
-    "enrichmentStatus": "partial",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
+    "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
@@ -1558,9 +1608,10 @@
       "traits",
       "equipmentIds",
       "keyItems",
-      "itemCarriers"
+      "itemCarriers",
+      "stagePlanDerived"
     ],
-    "needsEnrichment": true
+    "needsEnrichment": false
   },
   {
     "id": "dataj-剑圣大嘴",
@@ -1765,12 +1816,20 @@
       ]
     },
     "stagePlan": [
-      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
+      "易 为 3 费主C且源数据目标 3 星：优先在 7 人口作为主要搜牌层，先完成主C追三，再继续升人口。",
+      "追三阶段以保经济和补核心两星为主；主C达标后再升人口，按实时阵容表补齐高费功能牌与前排。"
+    ],
+    "stagePlanSource": "derived-economy-v1",
+    "stagePlanConfidence": "high",
+    "stagePlanEvidence": [
+      "DataJ carry=易",
+      "cost=3",
+      "targetStars=3"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/86",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
-    "enrichmentStatus": "partial",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
+    "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
@@ -1778,9 +1837,10 @@
       "traits",
       "equipmentIds",
       "keyItems",
-      "itemCarriers"
+      "itemCarriers",
+      "stagePlanDerived"
     ],
-    "needsEnrichment": true
+    "needsEnrichment": false
   },
   {
     "id": "dataj-莲华阿狸",
@@ -2007,12 +2067,20 @@
       ]
     },
     "stagePlan": [
-      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
+      "阿狸 为 4 费主C且源数据未要求追三：以 8 人口作为主要成型搜牌层，低人口阶段优先保血和积累升级经济。",
+      "8 人口先完成主C与核心前排两星，再根据血量和经济决定继续补质量或升 9 增加高费功能位。"
+    ],
+    "stagePlanSource": "derived-economy-v1",
+    "stagePlanConfidence": "medium",
+    "stagePlanEvidence": [
+      "DataJ carry=阿狸",
+      "cost=4",
+      "targetStars=0"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/84",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
-    "enrichmentStatus": "partial",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
+    "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
@@ -2020,9 +2088,10 @@
       "traits",
       "equipmentIds",
       "keyItems",
-      "itemCarriers"
+      "itemCarriers",
+      "stagePlanDerived"
     ],
-    "needsEnrichment": true
+    "needsEnrichment": false
   },
   {
     "id": "dataj-神器天使",
@@ -2230,12 +2299,20 @@
       ]
     },
     "stagePlan": [
-      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
+      "凯尔 为 2 费主C且源数据目标 3 星：优先在 6 人口作为主要搜牌层，先完成主C追三，再继续升人口。",
+      "追三阶段以保经济和补核心两星为主；主C达标后再升人口，按实时阵容表补齐高费功能牌与前排。"
+    ],
+    "stagePlanSource": "derived-economy-v1",
+    "stagePlanConfidence": "high",
+    "stagePlanEvidence": [
+      "DataJ carry=凯尔",
+      "cost=2",
+      "targetStars=3"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/88",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
-    "enrichmentStatus": "partial",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
+    "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
@@ -2243,9 +2320,10 @@
       "traits",
       "equipmentIds",
       "keyItems",
-      "itemCarriers"
+      "itemCarriers",
+      "stagePlanDerived"
     ],
-    "needsEnrichment": true
+    "needsEnrichment": false
   },
   {
     "id": "dataj-黑豹轮",
@@ -2462,12 +2540,20 @@
       ]
     },
     "stagePlan": [
-      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
+      "希维尔 为 4 费主C且源数据未要求追三：以 8 人口作为主要成型搜牌层，低人口阶段优先保血和积累升级经济。",
+      "8 人口先完成主C与核心前排两星，再根据血量和经济决定继续补质量或升 9 增加高费功能位。"
+    ],
+    "stagePlanSource": "derived-economy-v1",
+    "stagePlanConfidence": "medium",
+    "stagePlanEvidence": [
+      "DataJ carry=希维尔",
+      "cost=4",
+      "targetStars=0"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/102",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
-    "enrichmentStatus": "partial",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
+    "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
@@ -2475,9 +2561,10 @@
       "traits",
       "equipmentIds",
       "keyItems",
-      "itemCarriers"
+      "itemCarriers",
+      "stagePlanDerived"
     ],
-    "needsEnrichment": true
+    "needsEnrichment": false
   },
   {
     "id": "dataj-重装豹女",
@@ -2683,12 +2770,20 @@
       ]
     },
     "stagePlan": [
-      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
+      "奈德丽 为 4 费主C且源数据未要求追三：以 8 人口作为主要成型搜牌层，低人口阶段优先保血和积累升级经济。",
+      "8 人口先完成主C与核心前排两星，再根据血量和经济决定继续补质量或升 9 增加高费功能位。"
+    ],
+    "stagePlanSource": "derived-economy-v1",
+    "stagePlanConfidence": "medium",
+    "stagePlanEvidence": [
+      "DataJ carry=奈德丽",
+      "cost=4",
+      "targetStars=0"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/83",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
-    "enrichmentStatus": "partial",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
+    "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
@@ -2696,9 +2791,10 @@
       "traits",
       "equipmentIds",
       "keyItems",
-      "itemCarriers"
+      "itemCarriers",
+      "stagePlanDerived"
     ],
-    "needsEnrichment": true
+    "needsEnrichment": false
   },
   {
     "id": "dataj-世纪和解",
@@ -2906,12 +3002,20 @@
       ]
     },
     "stagePlan": [
-      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
+      "雷恩加尔 为 3 费主C且源数据目标 3 星：优先在 7 人口作为主要搜牌层，先完成主C追三，再继续升人口。",
+      "追三阶段以保经济和补核心两星为主；主C达标后再升人口，按实时阵容表补齐高费功能牌与前排。"
+    ],
+    "stagePlanSource": "derived-economy-v1",
+    "stagePlanConfidence": "high",
+    "stagePlanEvidence": [
+      "DataJ carry=雷恩加尔",
+      "cost=3",
+      "targetStars=3"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/93",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
-    "enrichmentStatus": "partial",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
+    "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
@@ -2919,9 +3023,10 @@
       "traits",
       "equipmentIds",
       "keyItems",
-      "itemCarriers"
+      "itemCarriers",
+      "stagePlanDerived"
     ],
-    "needsEnrichment": true
+    "needsEnrichment": false
   },
   {
     "id": "dataj-花仙小炮",
@@ -3120,12 +3225,20 @@
       ]
     },
     "stagePlan": [
-      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
+      "崔丝塔娜 为 3 费主C且源数据目标 3 星：优先在 7 人口作为主要搜牌层，先完成主C追三，再继续升人口。",
+      "追三阶段以保经济和补核心两星为主；主C达标后再升人口，按实时阵容表补齐高费功能牌与前排。"
+    ],
+    "stagePlanSource": "derived-economy-v1",
+    "stagePlanConfidence": "high",
+    "stagePlanEvidence": [
+      "DataJ carry=崔丝塔娜",
+      "cost=3",
+      "targetStars=3"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/98",
-    "fetchedAt": "2026-08-28T07:19:28.565Z",
-    "enrichmentStatus": "partial",
+    "fetchedAt": "2026-08-28T07:26:03.748Z",
+    "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
@@ -3133,8 +3246,9 @@
       "traits",
       "equipmentIds",
       "keyItems",
-      "itemCarriers"
+      "itemCarriers",
+      "stagePlanDerived"
     ],
-    "needsEnrichment": true
+    "needsEnrichment": false
   }
 ]
