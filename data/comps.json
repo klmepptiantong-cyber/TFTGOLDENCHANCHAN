@@ -228,19 +228,20 @@
       ]
     },
     "stagePlan": [
-      "伊泽瑞尔 为 4 费主C且源数据未要求追三：以 8 人口作为主要成型搜牌层，低人口阶段优先保血和积累升级经济。",
-      "8 人口先完成主C与核心前排两星，再根据血量和经济决定继续补质量或升 9 增加高费功能位。"
+      "伊泽瑞尔 为 4 费主C，且源阵容包含 6 张5费单位：路线按高人口阵容处理，经济与血量允许时优先向 9 人口推进。",
+      "中期只做保血性质的必要搜牌；到高人口后集中补齐主C、5费功能位与关键前排两星，再决定是否继续追求上限。"
     ],
     "stagePlanSource": "derived-economy-v1",
     "stagePlanConfidence": "medium",
     "stagePlanEvidence": [
       "DataJ carry=伊泽瑞尔",
       "cost=4",
-      "targetStars=0"
+      "targetStars=unspecified",
+      "fiveCostUnits=6"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/91",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -462,7 +463,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/99",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -681,7 +682,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/89",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -901,11 +902,12 @@
     "stagePlanEvidence": [
       "DataJ carry=凯特琳",
       "cost=2",
-      "targetStars=3"
+      "targetStars=3",
+      "fiveCostUnits=0"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/100",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1114,7 +1116,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/101",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1342,19 +1344,20 @@
       ]
     },
     "stagePlan": [
-      "索拉卡 为 4 费主C且源数据未要求追三：以 8 人口作为主要成型搜牌层，低人口阶段优先保血和积累升级经济。",
-      "8 人口先完成主C与核心前排两星，再根据血量和经济决定继续补质量或升 9 增加高费功能位。"
+      "索拉卡 为 4 费主C，且源阵容包含 3 张5费单位：路线按高人口阵容处理，经济与血量允许时优先向 9 人口推进。",
+      "中期只做保血性质的必要搜牌；到高人口后集中补齐主C、5费功能位与关键前排两星，再决定是否继续追求上限。"
     ],
     "stagePlanSource": "derived-economy-v1",
     "stagePlanConfidence": "medium",
     "stagePlanEvidence": [
       "DataJ carry=索拉卡",
       "cost=4",
-      "targetStars=0"
+      "targetStars=unspecified",
+      "fiveCostUnits=3"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/90",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1595,11 +1598,12 @@
     "stagePlanEvidence": [
       "DataJ carry=厄斐琉斯",
       "cost=4",
-      "targetStars=0"
+      "targetStars=unspecified",
+      "fiveCostUnits=1"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/95",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1824,11 +1828,12 @@
     "stagePlanEvidence": [
       "DataJ carry=易",
       "cost=3",
-      "targetStars=3"
+      "targetStars=3",
+      "fiveCostUnits=0"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/86",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -2067,19 +2072,20 @@
       ]
     },
     "stagePlan": [
-      "阿狸 为 4 费主C且源数据未要求追三：以 8 人口作为主要成型搜牌层，低人口阶段优先保血和积累升级经济。",
-      "8 人口先完成主C与核心前排两星，再根据血量和经济决定继续补质量或升 9 增加高费功能位。"
+      "阿狸 为 4 费主C，且源阵容包含 2 张5费单位：路线按高人口阵容处理，经济与血量允许时优先向 9 人口推进。",
+      "中期只做保血性质的必要搜牌；到高人口后集中补齐主C、5费功能位与关键前排两星，再决定是否继续追求上限。"
     ],
     "stagePlanSource": "derived-economy-v1",
     "stagePlanConfidence": "medium",
     "stagePlanEvidence": [
       "DataJ carry=阿狸",
       "cost=4",
-      "targetStars=0"
+      "targetStars=unspecified",
+      "fiveCostUnits=2"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/84",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -2307,11 +2313,12 @@
     "stagePlanEvidence": [
       "DataJ carry=凯尔",
       "cost=2",
-      "targetStars=3"
+      "targetStars=3",
+      "fiveCostUnits=0"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/88",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -2548,11 +2555,12 @@
     "stagePlanEvidence": [
       "DataJ carry=希维尔",
       "cost=4",
-      "targetStars=0"
+      "targetStars=unspecified",
+      "fiveCostUnits=1"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/102",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -2778,11 +2786,12 @@
     "stagePlanEvidence": [
       "DataJ carry=奈德丽",
       "cost=4",
-      "targetStars=0"
+      "targetStars=unspecified",
+      "fiveCostUnits=1"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/83",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -3010,11 +3019,12 @@
     "stagePlanEvidence": [
       "DataJ carry=雷恩加尔",
       "cost=3",
-      "targetStars=3"
+      "targetStars=3",
+      "fiveCostUnits=0"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/93",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -3233,11 +3243,12 @@
     "stagePlanEvidence": [
       "DataJ carry=崔丝塔娜",
       "cost=3",
-      "targetStars=3"
+      "targetStars=3",
+      "fiveCostUnits=0"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/98",
-    "fetchedAt": "2026-08-28T07:26:58.820Z",
+    "fetchedAt": "2026-08-28T07:28:43.331Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
