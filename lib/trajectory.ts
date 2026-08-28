@@ -95,8 +95,9 @@ function recommendationFor(recs: Recommendation[], compId: string | null | undef
 
 function chaseCandidate(comp: Comp, state: GameState): { hero: string; copies: number; price: number | null } | null {
   const owned = mergeOwned(state.units, state.bench);
+  const rerollNamed = /赌|追三/.test(comp.name);
   const candidates = (comp.sourceCarries ?? [])
-    .filter((carry) => carry.role === "carry" && carry.targetStars === 3 && carry.price !== null && carry.price <= 3)
+    .filter((carry) => carry.role === "carry" && carry.price !== null && carry.price <= 3 && (carry.targetStars === 3 || rerollNamed))
     .map((carry) => ({ hero: carry.name, copies: owned[carry.name] ?? 0, price: carry.price }))
     .filter((entry) => entry.copies >= 5)
     .sort((a, b) => b.copies - a.copies || (a.price ?? 9) - (b.price ?? 9));
@@ -130,6 +131,13 @@ function frames(comps: Comp[], points: TrajectoryPoint[], trackedCompId: string 
       trackedFit: tracked?.fitScore ?? 0,
       trackedCompletion: tracked?.completionScore ?? 0
     };
+  });
+}
+
+function trackedProgress(comps: Comp[], points: TrajectoryPoint[], compId: string): { fit: number; completion: number }[] {
+  return points.map((point) => {
+    const rec = recommendationFor(recommend(comps, point.state).slice(0, 3), compId);
+    return { fit: rec?.fitScore ?? 0, completion: rec?.completionScore ?? 0 };
   });
 }
 
@@ -187,7 +195,6 @@ export function analyzeTrajectory(comps: Comp[], input: TrajectoryPoint[]): Macr
   const locked = recommendationFor(currentRecs, currentPoint.state.lockedCompId);
   const trackedCompId = best?.comp.id ?? currentPoint.state.lockedCompId ?? null;
   const timeline = frames(comps, points, trackedCompId);
-  const currentFrame = timeline.at(-1)!;
   const hpDelta = delta(timeline.map((frame) => frame.hp));
   const goldDelta = delta(timeline.map((frame) => frame.gold));
   const levelDelta = delta(timeline.map((frame) => frame.level));
@@ -256,13 +263,17 @@ export function analyzeTrajectory(comps: Comp[], input: TrajectoryPoint[]): Macr
   if (state.lockedCompId && locked && best.comp.id !== locked.comp.id) {
     const gap = best.fitScore - locked.fitScore;
     const lockContested = locked.contestedCount;
-    if (gap >= 12 || lockContested >= 3 || (stagnating && gap >= 6) || (state.hp <= 45 && gap >= 8)) {
+    const lockProgress = trackedProgress(comps, points, locked.comp.id).slice(-3);
+    const lockStagnating = lockProgress.length >= 3
+      && Math.abs(delta(lockProgress.map((entry) => entry.fit))) <= 3
+      && Math.abs(delta(lockProgress.map((entry) => entry.completion))) <= 5;
+    if (gap >= 12 || lockContested >= 3 || (lockStagnating && gap >= 6) || (state.hp <= 45 && gap >= 8)) {
       return {
         kind: "pivot",
         urgency: state.hp <= 45 || gap >= 15 ? "now" : "soon",
         title: "触发止损转阵",
         summary: `${best.comp.name} 已经明显优于锁定方向 ${locked.comp.name}。先保留共用牌/装备，再逐步退出低价值沉没成本。`,
-        evidence: unique([...evidence, `新方向领先锁阵 ${gap} Fit`, `锁阵同行 ${lockContested}`, stagnating ? "近3个状态点锁阵进度基本停滞" : "锁阵进度仍有变化"]),
+        evidence: unique([...evidence, `新方向领先锁阵 ${gap} Fit`, `锁阵同行 ${lockContested}`, lockStagnating ? "近3个状态点锁阵自身进度基本停滞" : "锁阵自身进度仍有变化"]),
         confidence,
         signals,
         timeline
@@ -301,7 +312,7 @@ export function analyzeTrajectory(comps: Comp[], input: TrajectoryPoint[]): Macr
       kind: "push-level",
       urgency: "soon",
       title: `经济转人口：向 ${target} 级推进`,
-      summary: `当前局势没有要求立刻D牌止血。保持主要体系牌，优先完成关键人口节点，再把剩余经济用于集中搜牌。`,
+      summary: "当前局势没有要求立刻D牌止血。保持主要体系牌，优先完成关键人口节点，再把剩余经济用于集中搜牌。",
       evidence: unique([...evidence, `目标人口≈${target}`, `当前金币 ${state.gold}`, `当前血量 ${state.hp}`, `当前 Fit ${best.fitScore}`]),
       confidence,
       signals,
