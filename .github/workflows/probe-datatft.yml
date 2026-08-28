@@ -1,0 +1,22 @@
+name: Probe DataTFT
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/probe-datatft.mjs"
+      - ".github/workflows/probe-datatft.yml"
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - name: Inspect DataTFT public client bundles
+        run: node scripts/probe-datatft.mjs
