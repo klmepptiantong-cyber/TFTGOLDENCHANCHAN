@@ -11,6 +11,7 @@ const LATEST_PATH = path.join(DATA_DIR, "latest.json");
 const STATUS_PATH = path.join(DATA_DIR, "source-status.json");
 const COMPS_PATH = path.join(DATA_DIR, "comps.json");
 const LIBRARY_PATH = path.join(DATA_DIR, "comp-library.json");
+const PATCH_LOCK_PATH = path.join(DATA_DIR, "patch-authority.json");
 
 const normalizeName = (value = "") => value.toLowerCase().replace(/[\s·・\-_/]/g, "").replace(/[()（）]/g, "");
 const performance = (comp) => comp.top4Rate * 0.65 + comp.winRate * 0.35;
@@ -67,6 +68,7 @@ function mergeMetrics(stats, library, baseline, patch, fetchedAt) {
 }
 
 await fs.mkdir(HISTORY_DIR, { recursive: true });
+const patchLock = await readJson(PATCH_LOCK_PATH);
 const [official, datatft, dataj] = await Promise.all([
   fetchOfficialPatch(),
   fetchDataTFTMetadata(),
@@ -74,23 +76,32 @@ const [official, datatft, dataj] = await Promise.all([
 ]);
 
 const fetchedAt = new Date().toISOString();
-const authoritativePatch = official.patch || datatft.patch || dataj.patch || null;
+const authority = official.ok && official.patch
+  ? { id: official.id, patch: official.patch, url: official.url, mode: "live-official" }
+  : datatft.ok && datatft.patch
+    ? { id: datatft.id, patch: datatft.patch, url: datatft.url, mode: "live-secondary" }
+    : patchLock?.patch
+      ? { id: `${patchLock.source}-lock`, patch: patchLock.patch, url: patchLock.sourceUrl, mode: "verified-lock" }
+      : null;
+
+const authoritativePatch = authority?.patch ?? null;
 const versionsAgree = Boolean(dataj.ok && authoritativePatch && dataj.patch === authoritativePatch);
 const sourceStatus = {
   fetchedAt,
   authoritativePatch,
+  patchAuthority: authority,
   liveCompDataAccepted: versionsAgree,
   sources: { official, datatft, dataj },
   rankCoverage: ["all"],
   targetRankCoverage: false,
   note: versionsAgree
-    ? "实时阵容统计已通过版本一致性校验。当前 DataJ 适配器提供全段位阵容统计；DataTFT 已验证存在段位筛选，但 V0.2 不猜测其未公开内部 API。"
-    : "阵容统计源与当前国服版本不一致或抓取失败，本轮拒绝覆盖排行榜，保留上一份已验证快照。"
+    ? `实时阵容统计已通过独立版本校验（${authority?.mode}）。当前 DataJ 适配器提供全段位阵容统计；DataTFT 已验证存在段位筛选，但 V0.2 不猜测其未公开内部 API。`
+    : "阵容统计源未通过独立国服版本校验或抓取失败，本轮拒绝覆盖排行榜，保留上一份已验证快照。"
 };
 await fs.writeFile(STATUS_PATH, JSON.stringify(sourceStatus, null, 2) + "\n", "utf8");
 
 if (!versionsAgree) {
-  console.warn(`snapshot rejected: authoritative=${authoritativePatch}, dataj=${dataj.patch}, ok=${dataj.ok}`);
+  console.warn(`snapshot rejected: authoritative=${authoritativePatch}, authority=${authority?.id ?? "none"}, dataj=${dataj.patch}, ok=${dataj.ok}`);
   process.exit(0);
 }
 
@@ -100,7 +111,7 @@ const comps = mergeMetrics(dataj.comps, library, baseline, authoritativePatch, f
 
 const snapshot = {
   schemaVersion: 2,
-  season: "S18",
+  season: patchLock?.season ?? "S18",
   patch: authoritativePatch,
   fetchedAt,
   isLive: true,
@@ -108,10 +119,10 @@ const snapshot = {
   rankCoverage: ["all"],
   targetRankCoverage: false,
   totalGames: dataj.totalGames,
-  sampleSizeMethod: "estimated: totalGames × lobby appearance rate",
+  sampleSizeMethod: "estimated appearances: totalGames × lobby appearance rate",
   source: "dataj",
   sourceUrl: dataj.url,
-  patchAuthority: official.ok ? official.id : datatft.id,
+  patchAuthority: authority?.id ?? "unknown",
   comps
 };
 
@@ -120,4 +131,4 @@ await fs.writeFile(COMPS_PATH, JSON.stringify(comps, null, 2) + "\n", "utf8");
 const historyName = fetchedAt.replace(/[:.]/g, "-") + ".json";
 await fs.writeFile(path.join(HISTORY_DIR, historyName), JSON.stringify(snapshot, null, 2) + "\n", "utf8");
 
-console.log(`accepted patch ${authoritativePatch}: ${comps.length} comps, ${dataj.totalGames ?? "?"} games`);
+console.log(`accepted patch ${authoritativePatch} via ${authority?.id}: ${comps.length} comps, ${dataj.totalGames ?? "?"} games`);
