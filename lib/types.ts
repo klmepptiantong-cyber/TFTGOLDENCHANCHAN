@@ -4,6 +4,8 @@ export type RankBand = "all" | "platinum" | "emerald" | "diamond" | "master" | "
 export type EnrichmentStatus = "full" | "partial" | "pending";
 export type SampleSizeSource = "dataj-sampleCount" | "estimated-from-play-rate" | "unknown";
 export type StagePlanConfidence = "high" | "medium" | "low";
+export type ActionPriority = "high" | "medium" | "low";
+export type DecisionActionKind = "buy" | "keep" | "sell" | "roll" | "level" | "pivot" | "item";
 
 export type SourceCarry = {
   name: string;
@@ -123,14 +125,36 @@ export type SourceStatus = {
   }>;
 };
 
+export type UnitState = {
+  copies?: number;
+  stars?: 1 | 2 | 3;
+  items?: string[];
+};
+
+export type UnitCollection = Record<string, number | UnitState>;
+
 export type GameState = {
   stage: string;
   level: number;
   gold: number;
   hp: number;
-  units: Record<string, number>;
+  units: UnitCollection;
+  bench?: UnitCollection;
+  shop?: string[];
   items: string[];
+  equippedItems?: Record<string, string[]>;
+  augments?: string[];
+  streak?: number;
+  xp?: number;
   rankBand?: string;
+  lockedCompId?: string | null;
+};
+
+export type DecisionAction = {
+  kind: DecisionActionKind;
+  priority: ActionPriority;
+  text: string;
+  evidence: string[];
 };
 
 export type Recommendation = {
@@ -139,8 +163,14 @@ export type Recommendation = {
   fitScore: number;
   discoveryScore: number;
   confidence: number;
+  buy: string[];
   keep: string[];
   sell: string[];
   reasons: string[];
   nextStep: string;
+  rollAdvice: string;
+  levelAdvice: string;
+  pivotAdvice: string;
+  itemAdvice: string[];
+  actions: DecisionAction[];
 };
