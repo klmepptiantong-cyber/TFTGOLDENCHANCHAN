@@ -3,8 +3,9 @@ import sourceStatusJson from "../data/source-status.json";
 import { discoveryScore, metaScore } from "../lib/scoring";
 import { MetaSnapshot, SourceStatus } from "../lib/types";
 
-const snapshot = snapshotJson as MetaSnapshot;
-const sourceStatus = sourceStatusJson as SourceStatus;
+// JSON snapshots are validated by scripts/check-data.mjs before build/commit.
+const snapshot = snapshotJson as unknown as MetaSnapshot;
+const sourceStatus = sourceStatusJson as unknown as SourceStatus;
 const ranked = [...snapshot.comps].sort((a, b) => metaScore(b) - metaScore(a)).slice(0, 15);
 const discoveries = [...snapshot.comps].sort((a, b) => discoveryScore(b) - discoveryScore(a)).slice(0, 8);
 
