@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-28T07:03:57.515Z",
+  "fetchedAt": "2026-08-28T07:05:08.692Z",
   "authoritativePatch": "18.1b",
   "patchAuthority": {
     "id": "official-taptap",
@@ -14,7 +14,7 @@
       "ok": true,
       "patch": "18.1b",
       "url": "https://www.taptap.cn/moment/841982769956390376",
-      "fetchedAt": "2026-08-28T07:03:57.515Z",
+      "fetchedAt": "2026-08-28T07:05:08.692Z",
       "mode": "patch-authority"
     },
     "datatft": {
@@ -22,7 +22,7 @@
       "ok": false,
       "patch": null,
       "url": "https://jcc.datatft.com/explorer",
-      "fetchedAt": "2026-08-28T07:03:56.965Z",
+      "fetchedAt": "2026-08-28T07:05:08.356Z",
       "mode": "metadata-only",
       "rankLabel": null,
       "supportsRankFilter": false,
@@ -32,7 +32,7 @@
       "id": "dataj",
       "ok": true,
       "url": "https://www.dataj.cc/comp",
-      "fetchedAt": "2026-08-28T07:03:57.428Z",
+      "fetchedAt": "2026-08-28T07:05:08.348Z",
       "mode": "comp-stats-and-lineups",
       "rankBand": "all",
       "patch": "18.1b",
@@ -2037,10 +2037,11 @@
     "note": "DataTFT 的通用前端包含铂金/翡翠/钻石/大师/宗师/王者枚举，但中国大陆服 jcc 公共界面当前将段位选择限制为宗师及以上。项目不把通用枚举误报为国服可用分段数据，也不绕过站点访问控制。"
   },
   "targetRankCoverage": false,
-  "note": "实时阵容统计已通过独立版本校验（live-official）。DataJ 当前提供全段位阵容统计；DataTFT 国服公共页面已验证宗师及以上能力，但铂金→大师目标分段并未在国服公共选择器中开放，因此不伪造分段数据。",
+  "note": "实时阵容统计已通过独立版本校验（live-official）。DataJ 当前提供全段位阵容统计与公开序列化阵容结构；DataTFT 国服公共页面已验证宗师及以上能力，但铂金→大师目标分段并未在国服公共选择器中开放，因此不伪造分段数据。",
   "enrichmentQueue": {
     "path": "data/enrichment-queue.json",
     "pendingCount": 11,
+    "partialCount": 11,
     "highestPriority": "永森95"
   }
 }

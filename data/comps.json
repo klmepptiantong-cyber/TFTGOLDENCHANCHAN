@@ -156,15 +156,35 @@
     "rankBand": "all",
     "trend": "flat",
     "trend24h": 0,
-    "coreUnits": [],
-    "flexUnits": [],
+    "coreUnits": [
+      "伊泽瑞尔",
+      "德莱文"
+    ],
+    "flexUnits": [
+      "艾翁",
+      "凯南",
+      "塔里克",
+      "纳尔",
+      "茂凯",
+      "阿木木",
+      "阿利斯塔"
+    ],
     "keyItems": [],
     "itemCarriers": {},
     "stagePlan": [
-      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/91",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "partial",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "carries",
+      "traits",
+      "equipmentIds"
+    ],
     "needsEnrichment": true
   },
   {
@@ -342,7 +362,16 @@
       "2阶段胡峡谷野怪时优先保体系牌，7级补质量，经济允许再冲9。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/99",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "full",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "keyItems",
+      "itemCarriers",
+      "stagePlan"
+    ],
     "needsEnrichment": false
   },
   {
@@ -521,7 +550,16 @@
       "仅在血量和经济都健康时走9人口路线；劣势局不要强行95。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/89",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "full",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "keyItems",
+      "itemCarriers",
+      "stagePlan"
+    ],
     "needsEnrichment": false
   },
   {
@@ -663,15 +701,34 @@
     "rankBand": "all",
     "trend": "flat",
     "trend24h": 0,
-    "coreUnits": [],
-    "flexUnits": [],
+    "coreUnits": [
+      "凯特琳",
+      "希维尔",
+      "伊莉丝"
+    ],
+    "flexUnits": [
+      "苍蓝雕纹魔像",
+      "蔚",
+      "赫卡里姆",
+      "崔丝塔娜",
+      "洛"
+    ],
     "keyItems": [],
     "itemCarriers": {},
     "stagePlan": [
-      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/100",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "partial",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "carries",
+      "traits",
+      "equipmentIds"
+    ],
     "needsEnrichment": true
   },
   {
@@ -836,7 +893,16 @@
       "中期围绕蛇女和稻草人补两星质量，确认同行少时再投入追三。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/101",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "full",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "keyItems",
+      "itemCarriers",
+      "stagePlan"
+    ],
     "needsEnrichment": false
   },
   {
@@ -993,15 +1059,35 @@
     "rankBand": "all",
     "trend": "flat",
     "trend24h": 0,
-    "coreUnits": [],
-    "flexUnits": [],
+    "coreUnits": [
+      "索拉卡",
+      "婕拉",
+      "墨菲特"
+    ],
+    "flexUnits": [
+      "凯南",
+      "茂凯",
+      "艾翁",
+      "阿木木",
+      "阿兹尔",
+      "费德提克"
+    ],
     "keyItems": [],
     "itemCarriers": {},
     "stagePlan": [
-      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/90",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "partial",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "carries",
+      "traits",
+      "equipmentIds"
+    ],
     "needsEnrichment": true
   },
   {
@@ -1151,15 +1237,34 @@
     "rankBand": "all",
     "trend": "flat",
     "trend24h": 0,
-    "coreUnits": [],
-    "flexUnits": [],
+    "coreUnits": [
+      "厄斐琉斯",
+      "深红锋喙鸟",
+      "苍蓝雕纹魔像"
+    ],
+    "flexUnits": [
+      "塔里克",
+      "婕拉",
+      "绯红印记树怪",
+      "赫卡里姆",
+      "黛安娜"
+    ],
     "keyItems": [],
     "itemCarriers": {},
     "stagePlan": [
-      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/95",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "partial",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "carries",
+      "traits",
+      "equipmentIds"
+    ],
     "needsEnrichment": true
   },
   {
@@ -1302,15 +1407,34 @@
     "rankBand": "all",
     "trend": "flat",
     "trend24h": 0,
-    "coreUnits": [],
-    "flexUnits": [],
+    "coreUnits": [
+      "易",
+      "克格莫",
+      "远古石甲虫"
+    ],
+    "flexUnits": [
+      "奈德丽",
+      "瑟提",
+      "蔚",
+      "魔沼蛙",
+      "约里克"
+    ],
     "keyItems": [],
     "itemCarriers": {},
     "stagePlan": [
-      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/86",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "partial",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "carries",
+      "traits",
+      "equipmentIds"
+    ],
     "needsEnrichment": true
   },
   {
@@ -1468,15 +1592,35 @@
     "rankBand": "all",
     "trend": "flat",
     "trend24h": 0,
-    "coreUnits": [],
-    "flexUnits": [],
+    "coreUnits": [
+      "阿狸",
+      "艾希",
+      "瑟提"
+    ],
+    "flexUnits": [
+      "纳尔",
+      "希维尔",
+      "婕拉",
+      "蔚",
+      "约里克",
+      "卡尔玛"
+    ],
     "keyItems": [],
     "itemCarriers": {},
     "stagePlan": [
-      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/84",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "partial",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "carries",
+      "traits",
+      "equipmentIds"
+    ],
     "needsEnrichment": true
   },
   {
@@ -1614,15 +1758,33 @@
     "rankBand": "all",
     "trend": "flat",
     "trend24h": 0,
-    "coreUnits": [],
-    "flexUnits": [],
+    "coreUnits": [
+      "凯尔",
+      "霞",
+      "瑟庄妮",
+      "奥恩",
+      "蕾欧娜"
+    ],
+    "flexUnits": [
+      "乐芙兰",
+      "洛"
+    ],
     "keyItems": [],
     "itemCarriers": {},
     "stagePlan": [
-      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/88",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "partial",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "carries",
+      "traits",
+      "equipmentIds"
+    ],
     "needsEnrichment": true
   },
   {
@@ -1779,15 +1941,35 @@
     "rankBand": "all",
     "trend": "flat",
     "trend24h": 0,
-    "coreUnits": [],
-    "flexUnits": [],
+    "coreUnits": [
+      "希维尔",
+      "奈德丽",
+      "墨菲特"
+    ],
+    "flexUnits": [
+      "塔里克",
+      "苍蓝雕纹魔像",
+      "远古石甲虫",
+      "克格莫",
+      "雷克塞",
+      "绯红树怪"
+    ],
     "keyItems": [],
     "itemCarriers": {},
     "stagePlan": [
-      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/102",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "partial",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "carries",
+      "traits",
+      "equipmentIds"
+    ],
     "needsEnrichment": true
   },
   {
@@ -1931,15 +2113,34 @@
     "rankBand": "all",
     "trend": "flat",
     "trend24h": 0,
-    "coreUnits": [],
-    "flexUnits": [],
+    "coreUnits": [
+      "奈德丽",
+      "莫甘娜",
+      "苍蓝雕纹魔像",
+      "蔚"
+    ],
+    "flexUnits": [
+      "塔里克",
+      "黛安娜",
+      "克格莫",
+      "洛"
+    ],
     "keyItems": [],
     "itemCarriers": {},
     "stagePlan": [
-      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/83",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "partial",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "carries",
+      "traits",
+      "equipmentIds"
+    ],
     "needsEnrichment": true
   },
   {
@@ -2075,15 +2276,33 @@
     "rankBand": "all",
     "trend": "flat",
     "trend24h": 0,
-    "coreUnits": [],
-    "flexUnits": [],
+    "coreUnits": [
+      "雷恩加尔",
+      "卡兹克"
+    ],
+    "flexUnits": [
+      "厄斐琉斯",
+      "伊泽瑞尔",
+      "黛安娜",
+      "赫卡里姆",
+      "乐芙兰"
+    ],
     "keyItems": [],
     "itemCarriers": {},
     "stagePlan": [
-      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/93",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "partial",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "carries",
+      "traits",
+      "equipmentIds"
+    ],
     "needsEnrichment": true
   },
   {
@@ -2220,15 +2439,34 @@
     "rankBand": "all",
     "trend": "flat",
     "trend24h": 0,
-    "coreUnits": [],
-    "flexUnits": [],
+    "coreUnits": [
+      "崔丝塔娜",
+      "拉莫斯"
+    ],
+    "flexUnits": [
+      "希维尔",
+      "莉莉娅",
+      "蔚",
+      "霞",
+      "可酷伯",
+      "洛"
+    ],
     "keyItems": [],
     "itemCarriers": {},
     "stagePlan": [
-      "该阵容由实时数据新发现，运营与核心牌仍待补全。"
+      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
-    "fetchedAt": "2026-08-28T07:03:57.515Z",
+    "sourceCompUrl": "https://www.dataj.cc/comp/98",
+    "fetchedAt": "2026-08-28T07:05:08.692Z",
+    "enrichmentStatus": "partial",
+    "enrichmentVerifiedFields": [
+      "coreUnits",
+      "flexUnits",
+      "carries",
+      "traits",
+      "equipmentIds"
+    ],
     "needsEnrichment": true
   }
 ]
