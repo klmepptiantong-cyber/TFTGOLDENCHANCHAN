@@ -195,21 +195,53 @@
       "阿木木",
       "阿利斯塔"
     ],
-    "keyItems": [],
-    "itemCarriers": {},
+    "keyItems": [
+      "狂徒铠甲",
+      "石像鬼石板甲",
+      "振奋盔甲",
+      "鬼索的狂暴之刃",
+      "海妖之怒",
+      "朔极之矛",
+      "锐利之刃",
+      "强袭者的链枷",
+      "薄暮法袍"
+    ],
+    "itemCarriers": {
+      "塔里克": [
+        "狂徒铠甲",
+        "石像鬼石板甲",
+        "振奋盔甲"
+      ],
+      "德莱文": [
+        "鬼索的狂暴之刃",
+        "海妖之怒"
+      ],
+      "伊泽瑞尔": [
+        "朔极之矛",
+        "锐利之刃",
+        "强袭者的链枷"
+      ],
+      "茂凯": [
+        "薄暮法袍",
+        "狂徒铠甲",
+        "石像鬼石板甲"
+      ]
+    },
     "stagePlan": [
-      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
+      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/91",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
       "carries",
       "traits",
-      "equipmentIds"
+      "equipmentIds",
+      "keyItems",
+      "itemCarriers"
     ],
     "needsEnrichment": true
   },
@@ -416,7 +448,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/99",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -630,7 +662,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/89",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -814,21 +846,48 @@
       "崔丝塔娜",
       "洛"
     ],
-    "keyItems": [],
-    "itemCarriers": {},
+    "keyItems": [
+      "振奋盔甲",
+      "石像鬼石板甲",
+      "狂徒铠甲",
+      "锐利之刃",
+      "海妖之怒",
+      "鬼索的狂暴之刃",
+      "日炎斗篷",
+      "薄暮法袍"
+    ],
+    "itemCarriers": {
+      "伊莉丝": [
+        "振奋盔甲",
+        "石像鬼石板甲",
+        "狂徒铠甲"
+      ],
+      "凯特琳": [
+        "锐利之刃",
+        "海妖之怒",
+        "鬼索的狂暴之刃"
+      ],
+      "赫卡里姆": [
+        "日炎斗篷",
+        "狂徒铠甲",
+        "薄暮法袍"
+      ]
+    },
     "stagePlan": [
-      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
+      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/100",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
       "carries",
       "traits",
-      "equipmentIds"
+      "equipmentIds",
+      "keyItems",
+      "itemCarriers"
     ],
     "needsEnrichment": true
   },
@@ -1022,7 +1081,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/101",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1222,21 +1281,48 @@
       "阿兹尔",
       "费德提克"
     ],
-    "keyItems": [],
-    "itemCarriers": {},
+    "keyItems": [
+      "石像鬼石板甲",
+      "狂徒铠甲",
+      "振奋盔甲",
+      "虚空之杖",
+      "朔极之矛",
+      "裁决使纹章",
+      "纳什之牙",
+      "班克斯的魔法帽"
+    ],
+    "itemCarriers": {
+      "墨菲特": [
+        "石像鬼石板甲",
+        "狂徒铠甲",
+        "振奋盔甲"
+      ],
+      "婕拉": [
+        "虚空之杖",
+        "朔极之矛",
+        "裁决使纹章"
+      ],
+      "索拉卡": [
+        "朔极之矛",
+        "纳什之牙",
+        "班克斯的魔法帽"
+      ]
+    },
     "stagePlan": [
-      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
+      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/90",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
       "carries",
       "traits",
-      "equipmentIds"
+      "equipmentIds",
+      "keyItems",
+      "itemCarriers"
     ],
     "needsEnrichment": true
   },
@@ -1426,21 +1512,53 @@
       "赫卡里姆",
       "黛安娜"
     ],
-    "keyItems": [],
-    "itemCarriers": {},
+    "keyItems": [
+      "鬼索的狂暴之刃",
+      "海妖之怒",
+      "锐利之刃",
+      "狂徒铠甲",
+      "石像鬼石板甲",
+      "圣盾使的誓约",
+      "日炎斗篷",
+      "薄暮法袍"
+    ],
+    "itemCarriers": {
+      "厄斐琉斯": [
+        "鬼索的狂暴之刃",
+        "海妖之怒",
+        "锐利之刃"
+      ],
+      "深红锋喙鸟": [
+        "鬼索的狂暴之刃",
+        "海妖之怒",
+        "锐利之刃"
+      ],
+      "苍蓝雕纹魔像": [
+        "狂徒铠甲",
+        "石像鬼石板甲",
+        "圣盾使的誓约"
+      ],
+      "赫卡里姆": [
+        "日炎斗篷",
+        "薄暮法袍",
+        "狂徒铠甲"
+      ]
+    },
     "stagePlan": [
-      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
+      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/95",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
       "carries",
       "traits",
-      "equipmentIds"
+      "equipmentIds",
+      "keyItems",
+      "itemCarriers"
     ],
     "needsEnrichment": true
   },
@@ -1618,21 +1736,49 @@
       "魔沼蛙",
       "约里克"
     ],
-    "keyItems": [],
-    "itemCarriers": {},
+    "keyItems": [
+      "泰坦的坚决",
+      "夜之锋刃",
+      "鬼索的狂暴之刃",
+      "无尽之刃",
+      "红霸符",
+      "朔极之矛",
+      "振奋盔甲",
+      "狂徒铠甲",
+      "石像鬼石板甲"
+    ],
+    "itemCarriers": {
+      "易": [
+        "泰坦的坚决",
+        "夜之锋刃",
+        "鬼索的狂暴之刃"
+      ],
+      "克格莫": [
+        "无尽之刃",
+        "红霸符",
+        "朔极之矛"
+      ],
+      "远古石甲虫": [
+        "振奋盔甲",
+        "狂徒铠甲",
+        "石像鬼石板甲"
+      ]
+    },
     "stagePlan": [
-      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
+      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/86",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
       "carries",
       "traits",
-      "equipmentIds"
+      "equipmentIds",
+      "keyItems",
+      "itemCarriers"
     ],
     "needsEnrichment": true
   },
@@ -1829,21 +1975,52 @@
       "约里克",
       "卡尔玛"
     ],
-    "keyItems": [],
-    "itemCarriers": {},
+    "keyItems": [
+      "振奋盔甲",
+      "狂徒铠甲",
+      "石像鬼石板甲",
+      "强袭者的链枷",
+      "珠光护手",
+      "朔极之矛",
+      "虚空之杖",
+      "最后的轻语",
+      "红霸符"
+    ],
+    "itemCarriers": {
+      "瑟提": [
+        "振奋盔甲",
+        "狂徒铠甲",
+        "石像鬼石板甲"
+      ],
+      "阿狸": [
+        "强袭者的链枷",
+        "珠光护手",
+        "朔极之矛"
+      ],
+      "婕拉": [
+        "虚空之杖"
+      ],
+      "艾希": [
+        "最后的轻语",
+        "朔极之矛",
+        "红霸符"
+      ]
+    },
     "stagePlan": [
-      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
+      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/84",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
       "carries",
       "traits",
-      "equipmentIds"
+      "equipmentIds",
+      "keyItems",
+      "itemCarriers"
     ],
     "needsEnrichment": true
   },
@@ -2020,21 +2197,53 @@
       "乐芙兰",
       "洛"
     ],
-    "keyItems": [],
-    "itemCarriers": {},
+    "keyItems": [
+      "狂徒铠甲",
+      "振奋盔甲",
+      "石像鬼石板甲",
+      "巨人捕手",
+      "海妖之怒",
+      "鬼索的狂暴之刃",
+      "班克斯的魔法帽",
+      "珠光护手"
+    ],
+    "itemCarriers": {
+      "奥恩": [
+        "狂徒铠甲",
+        "振奋盔甲",
+        "石像鬼石板甲"
+      ],
+      "蕾欧娜": [
+        "狂徒铠甲",
+        "振奋盔甲",
+        "石像鬼石板甲"
+      ],
+      "霞": [
+        "巨人捕手",
+        "海妖之怒",
+        "鬼索的狂暴之刃"
+      ],
+      "凯尔": [
+        "班克斯的魔法帽",
+        "珠光护手",
+        "鬼索的狂暴之刃"
+      ]
+    },
     "stagePlan": [
-      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
+      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/88",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
       "carries",
       "traits",
-      "equipmentIds"
+      "equipmentIds",
+      "keyItems",
+      "itemCarriers"
     ],
     "needsEnrichment": true
   },
@@ -2226,21 +2435,47 @@
       "雷克塞",
       "绯红树怪"
     ],
-    "keyItems": [],
-    "itemCarriers": {},
+    "keyItems": [
+      "石像鬼石板甲",
+      "狂徒铠甲",
+      "无尽之刃",
+      "朔极之矛",
+      "锐利之刃",
+      "鬼索的狂暴之刃",
+      "珠光护手",
+      "强袭者的链枷"
+    ],
+    "itemCarriers": {
+      "墨菲特": [
+        "石像鬼石板甲",
+        "狂徒铠甲"
+      ],
+      "希维尔": [
+        "无尽之刃",
+        "朔极之矛",
+        "锐利之刃"
+      ],
+      "奈德丽": [
+        "鬼索的狂暴之刃",
+        "珠光护手",
+        "强袭者的链枷"
+      ]
+    },
     "stagePlan": [
-      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
+      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/102",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
       "carries",
       "traits",
-      "equipmentIds"
+      "equipmentIds",
+      "keyItems",
+      "itemCarriers"
     ],
     "needsEnrichment": true
   },
@@ -2419,21 +2654,49 @@
       "克格莫",
       "洛"
     ],
-    "keyItems": [],
-    "itemCarriers": {},
+    "keyItems": [
+      "鬼索的狂暴之刃",
+      "珠光护手",
+      "班克斯的魔法帽",
+      "虚空之杖",
+      "莫雷洛秘典",
+      "蓝霸符",
+      "石像鬼石板甲",
+      "狂徒铠甲",
+      "圣盾使的誓约"
+    ],
+    "itemCarriers": {
+      "奈德丽": [
+        "鬼索的狂暴之刃",
+        "珠光护手",
+        "班克斯的魔法帽"
+      ],
+      "莫甘娜": [
+        "虚空之杖",
+        "莫雷洛秘典",
+        "蓝霸符"
+      ],
+      "苍蓝雕纹魔像": [
+        "石像鬼石板甲",
+        "狂徒铠甲",
+        "圣盾使的誓约"
+      ]
+    },
     "stagePlan": [
-      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
+      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/83",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
       "carries",
       "traits",
-      "equipmentIds"
+      "equipmentIds",
+      "keyItems",
+      "itemCarriers"
     ],
     "needsEnrichment": true
   },
@@ -2608,21 +2871,55 @@
       "赫卡里姆",
       "乐芙兰"
     ],
-    "keyItems": [],
-    "itemCarriers": {},
+    "keyItems": [
+      "石像鬼石板甲",
+      "日炎斗篷",
+      "薄暮法袍",
+      "狂徒铠甲",
+      "振奋盔甲",
+      "正义之手",
+      "夜之锋刃",
+      "班克斯的魔法帽",
+      "鬼索的狂暴之刃",
+      "泰坦的坚决"
+    ],
+    "itemCarriers": {
+      "黛安娜": [
+        "石像鬼石板甲",
+        "日炎斗篷",
+        "薄暮法袍"
+      ],
+      "赫卡里姆": [
+        "狂徒铠甲",
+        "石像鬼石板甲",
+        "振奋盔甲"
+      ],
+      "卡兹克": [
+        "正义之手",
+        "夜之锋刃",
+        "班克斯的魔法帽"
+      ],
+      "雷恩加尔": [
+        "鬼索的狂暴之刃",
+        "泰坦的坚决",
+        "夜之锋刃"
+      ]
+    },
     "stagePlan": [
-      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
+      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/93",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
       "carries",
       "traits",
-      "equipmentIds"
+      "equipmentIds",
+      "keyItems",
+      "itemCarriers"
     ],
     "needsEnrichment": true
   },
@@ -2794,21 +3091,49 @@
       "可酷伯",
       "洛"
     ],
-    "keyItems": [],
-    "itemCarriers": {},
+    "keyItems": [
+      "振奋盔甲",
+      "石像鬼石板甲",
+      "狂徒铠甲",
+      "海克斯科技枪刃",
+      "鬼索的狂暴之刃",
+      "海妖之怒",
+      "无尽之刃",
+      "最后的轻语",
+      "红霸符"
+    ],
+    "itemCarriers": {
+      "拉莫斯": [
+        "振奋盔甲",
+        "石像鬼石板甲",
+        "狂徒铠甲"
+      ],
+      "崔丝塔娜": [
+        "海克斯科技枪刃",
+        "鬼索的狂暴之刃",
+        "海妖之怒"
+      ],
+      "希维尔": [
+        "无尽之刃",
+        "最后的轻语",
+        "红霸符"
+      ]
+    },
     "stagePlan": [
-      "阵容英雄结构已由公开数据自动补全；关键装备名称与运营节奏仍待可信来源补全。"
+      "阵容英雄与推荐装备已由公开结构化数据核验；运营节奏仍待可信来源补全。"
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/98",
-    "fetchedAt": "2026-08-28T07:18:06.922Z",
+    "fetchedAt": "2026-08-28T07:19:03.099Z",
     "enrichmentStatus": "partial",
     "enrichmentVerifiedFields": [
       "coreUnits",
       "flexUnits",
       "carries",
       "traits",
-      "equipmentIds"
+      "equipmentIds",
+      "keyItems",
+      "itemCarriers"
     ],
     "needsEnrichment": true
   }
