@@ -212,7 +212,7 @@
     "patch": "18.1b",
     "rankBand": "all",
     "trend": "down",
-    "trend24h": -2.17,
+    "trend24h": -1.82,
     "coreUnits": [
       "伊泽瑞尔",
       "德莱文"
@@ -272,7 +272,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/91",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -489,7 +489,7 @@
     "patch": "18.1b",
     "rankBand": "all",
     "trend": "down",
-    "trend24h": -2.49,
+    "trend24h": -0.59,
     "coreUnits": [
       "深红锋喙鸟",
       "石甲虫",
@@ -525,7 +525,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/99",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -736,8 +736,8 @@
     ],
     "patch": "18.1b",
     "rankBand": "all",
-    "trend": "flat",
-    "trend24h": 0.24,
+    "trend": "down",
+    "trend24h": -0.89,
     "coreUnits": [
       "远古巨龙",
       "德莱文",
@@ -774,7 +774,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/89",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -987,8 +987,8 @@
     ],
     "patch": "18.1b",
     "rankBand": "all",
-    "trend": "flat",
-    "trend24h": 0,
+    "trend": "down",
+    "trend24h": -0.98,
     "coreUnits": [
       "卡西奥佩娅",
       "卡兹克",
@@ -1050,7 +1050,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/103",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1251,8 +1251,8 @@
     ],
     "patch": "18.1b",
     "rankBand": "all",
-    "trend": "flat",
-    "trend24h": -0.36,
+    "trend": "up",
+    "trend24h": 1.27,
     "coreUnits": [
       "凯特琳",
       "希维尔",
@@ -1306,7 +1306,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/100",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1562,7 +1562,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/104",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -1897,7 +1897,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/105",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -2115,7 +2115,7 @@
     "patch": "18.1b",
     "rankBand": "all",
     "trend": "up",
-    "trend24h": 0.79,
+    "trend24h": 1.26,
     "coreUnits": [
       "索拉卡",
       "婕拉",
@@ -2170,7 +2170,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/90",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -2375,7 +2375,7 @@
     "patch": "18.1b",
     "rankBand": "all",
     "trend": "flat",
-    "trend24h": 0.46,
+    "trend24h": -0.37,
     "coreUnits": [
       "易",
       "克格莫",
@@ -2430,7 +2430,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/86",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -2645,7 +2645,7 @@
     "patch": "18.1b",
     "rankBand": "all",
     "trend": "down",
-    "trend24h": -1.53,
+    "trend24h": -0.57,
     "coreUnits": [
       "厄斐琉斯",
       "深红锋喙鸟",
@@ -2704,7 +2704,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/95",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -2882,8 +2882,8 @@
     ],
     "patch": "18.1b",
     "rankBand": "all",
-    "trend": "flat",
-    "trend24h": 0,
+    "trend": "down",
+    "trend24h": -1.34,
     "coreUnits": [
       "蛇女",
       "稻草人",
@@ -2918,7 +2918,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/101",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -3146,8 +3146,8 @@
     ],
     "patch": "18.1b",
     "rankBand": "all",
-    "trend": "flat",
-    "trend24h": 0,
+    "trend": "up",
+    "trend24h": 1.54,
     "coreUnits": [
       "雷恩加尔",
       "深红锋喙鸟",
@@ -3215,7 +3215,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/97",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -3439,7 +3439,7 @@
     "patch": "18.1b",
     "rankBand": "all",
     "trend": "up",
-    "trend24h": 1.12,
+    "trend24h": 0.78,
     "coreUnits": [
       "阿狸",
       "艾希",
@@ -3498,7 +3498,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/84",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -3700,7 +3700,7 @@
     "patch": "18.1b",
     "rankBand": "all",
     "trend": "up",
-    "trend24h": 1.35,
+    "trend24h": 1.09,
     "coreUnits": [
       "凯尔",
       "霞",
@@ -3758,7 +3758,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/88",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -3963,8 +3963,8 @@
     ],
     "patch": "18.1b",
     "rankBand": "all",
-    "trend": "down",
-    "trend24h": -0.68,
+    "trend": "flat",
+    "trend24h": 0.14,
     "coreUnits": [
       "奈德丽",
       "莫甘娜",
@@ -4019,7 +4019,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/83",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -4235,8 +4235,8 @@
     ],
     "patch": "18.1b",
     "rankBand": "all",
-    "trend": "down",
-    "trend24h": -1.76,
+    "trend": "flat",
+    "trend24h": -0.1,
     "coreUnits": [
       "希维尔",
       "奈德丽",
@@ -4290,7 +4290,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/102",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -4493,8 +4493,8 @@
     ],
     "patch": "18.1b",
     "rankBand": "all",
-    "trend": "down",
-    "trend24h": -1.86,
+    "trend": "flat",
+    "trend24h": -0.36,
     "coreUnits": [
       "雷恩加尔",
       "卡兹克"
@@ -4554,7 +4554,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/93",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
@@ -4753,7 +4753,7 @@
     "patch": "18.1b",
     "rankBand": "all",
     "trend": "up",
-    "trend24h": 0.71,
+    "trend24h": 1.98,
     "coreUnits": [
       "崔丝塔娜",
       "拉莫斯"
@@ -4808,7 +4808,7 @@
     ],
     "dataSource": "dataj",
     "sourceCompUrl": "https://www.dataj.cc/comp/98",
-    "fetchedAt": "2026-08-29T20:07:10.011Z",
+    "fetchedAt": "2026-08-30T00:08:55.804Z",
     "enrichmentStatus": "full",
     "enrichmentVerifiedFields": [
       "coreUnits",
