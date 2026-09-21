@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-21T16:14:15.569Z",
+  "fetchedAt": "2026-09-21T20:13:32.163Z",
   "authoritativePatch": "18.1b",
   "patchAuthority": {
     "id": "official-taptap",
@@ -14,7 +14,7 @@
       "ok": true,
       "patch": "18.1b",
       "url": "https://www.taptap.cn/moment/841982769956390376",
-      "fetchedAt": "2026-09-21T16:14:15.291Z",
+      "fetchedAt": "2026-09-21T20:13:32.163Z",
       "mode": "patch-authority"
     },
     "datatft": {
@@ -22,7 +22,7 @@
       "ok": false,
       "patch": null,
       "url": "https://jcc.datatft.com/explorer",
-      "fetchedAt": "2026-09-21T16:14:14.611Z",
+      "fetchedAt": "2026-09-21T20:13:31.350Z",
       "mode": "metadata-only",
       "rankLabel": null,
       "supportsRankFilter": false,
@@ -37,24 +37,24 @@
       "equipmentDictionarySize": 137,
       "equipmentPictureCount": 136,
       "heroPictureCount": 54,
-      "compsWithHeroPictures": 32,
-      "structuredCompsWithEquipment": 31,
-      "fetchedAt": "2026-09-21T16:14:15.569Z",
+      "compsWithHeroPictures": 34,
+      "structuredCompsWithEquipment": 33,
+      "fetchedAt": "2026-09-21T20:13:31.713Z",
       "mode": "comp-stats-lineups-equipment-and-pictures",
       "rankBand": "all",
       "patch": "18.2a",
-      "totalGames": 117928,
+      "totalGames": 147088,
       "comps": [
         {
           "id": "dataj-地狱火95",
           "datajCompId": "112",
           "name": "地狱火95",
           "tier": "S",
-          "avgPlace": 3.68,
+          "avgPlace": 3.7,
           "playRate": 1.24,
-          "winRate": 26.33,
-          "top4Rate": 63.86,
-          "sampleSize": 18223,
+          "winRate": 25.98,
+          "top4Rate": 63.55,
+          "sampleSize": 22859,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "希维尔",
@@ -264,11 +264,11 @@
           "datajCompId": "104",
           "name": "野怪小红",
           "tier": "S",
-          "avgPlace": 3.86,
+          "avgPlace": 3.88,
           "playRate": 0.38,
-          "winRate": 15.59,
-          "top4Rate": 61.97,
-          "sampleSize": 5675,
+          "winRate": 15.48,
+          "top4Rate": 61.55,
+          "sampleSize": 6972,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "绯红树怪",
@@ -459,15 +459,214 @@
           ]
         },
         {
+          "id": "dataj-巨龙95",
+          "datajCompId": "89",
+          "name": "巨龙95",
+          "tier": "S",
+          "avgPlace": 3.84,
+          "playRate": 0.34,
+          "winRate": 24.34,
+          "top4Rate": 60.6,
+          "sampleSize": 6282,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "远古巨龙",
+            "德莱文",
+            "茂凯",
+            "苍蓝雕纹魔像"
+          ],
+          "sourceFlexUnits": [
+            "艾翁",
+            "塔里克",
+            "凯南",
+            "阿木木"
+          ],
+          "sourceCarries": [
+            {
+              "name": "远古巨龙",
+              "role": "carry",
+              "targetStars": null,
+              "price": 5
+            },
+            {
+              "name": "德莱文",
+              "role": "subcarry",
+              "targetStars": null,
+              "price": 5
+            }
+          ],
+          "sourceTraits": [
+            "地狱火",
+            "重装战士",
+            "主宰",
+            "宝石骑士",
+            "翠神",
+            "顶级掠食者",
+            "赏金猎人",
+            "远古树精"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "德莱文": [
+              "2010",
+              "2013"
+            ],
+            "远古巨龙": [
+              "2001",
+              "2042",
+              "2037"
+            ],
+            "茂凯": [
+              "2034",
+              "2028",
+              "2025"
+            ],
+            "苍蓝雕纹魔像": [
+              "2034",
+              "2028",
+              "2023"
+            ]
+          },
+          "sourceEquipmentNamesByHero": {
+            "德莱文": [
+              "鬼索的狂暴之刃",
+              "海妖之怒"
+            ],
+            "远古巨龙": [
+              "无尽之刃",
+              "强袭者的链枷",
+              "最后的轻语"
+            ],
+            "茂凯": [
+              "狂徒铠甲",
+              "石像鬼石板甲",
+              "振奋盔甲"
+            ],
+            "苍蓝雕纹魔像": [
+              "狂徒铠甲",
+              "石像鬼石板甲",
+              "圣盾使的誓约"
+            ]
+          },
+          "sourceEquipmentPicturesById": {
+            "2001": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2001.png",
+            "2010": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
+            "2013": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/krakensfury.png",
+            "2023": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2023.png",
+            "2025": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
+            "2028": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
+            "2034": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
+            "2037": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2053.png",
+            "2042": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/strikersflail.png"
+          },
+          "sourceEquipmentPicturesByName": {
+            "鬼索的狂暴之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
+            "海妖之怒": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/krakensfury.png",
+            "无尽之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2001.png",
+            "强袭者的链枷": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/strikersflail.png",
+            "最后的轻语": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2053.png",
+            "狂徒铠甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
+            "石像鬼石板甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
+            "振奋盔甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
+            "圣盾使的誓约": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2023.png"
+          },
+          "sourceEquipmentNamesComplete": true,
+          "sourceEquipmentNameCoverage": {
+            "mapped": 11,
+            "total": 11
+          },
+          "sourceLineup": [
+            {
+              "name": "远古巨龙",
+              "heroId": "5458",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_elderdragon.png"
+            },
+            {
+              "name": "德莱文",
+              "heroId": "5455",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 5,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_draven.png"
+            },
+            {
+              "name": "茂凯",
+              "heroId": "5450",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null,
+              "picture": null
+            },
+            {
+              "name": "苍蓝雕纹魔像",
+              "heroId": "4500",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_sentinel.png"
+            },
+            {
+              "name": "艾翁",
+              "heroId": "5457",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_ivern.png"
+            },
+            {
+              "name": "塔里克",
+              "heroId": "5451",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_taric.png"
+            },
+            {
+              "name": "凯南",
+              "heroId": "5453",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_kennen.png"
+            },
+            {
+              "name": "阿木木",
+              "heroId": "4503",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_amumu.png"
+            }
+          ]
+        },
+        {
           "id": "dataj-裁决螳螂",
           "datajCompId": "116",
           "name": "裁决螳螂",
           "tier": "S",
-          "avgPlace": 3.96,
-          "playRate": 0.29,
-          "winRate": 14.87,
-          "top4Rate": 60.65,
-          "sampleSize": 4305,
+          "avgPlace": 3.98,
+          "playRate": 0.31,
+          "winRate": 14.56,
+          "top4Rate": 60.19,
+          "sampleSize": 5637,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "卡兹克",
@@ -671,425 +870,15 @@
           ]
         },
         {
-          "id": "dataj-巨龙95",
-          "datajCompId": "89",
-          "name": "巨龙95",
-          "tier": "S",
-          "avgPlace": 3.84,
-          "playRate": 0.35,
-          "winRate": 24.39,
-          "top4Rate": 60.62,
-          "sampleSize": 5150,
-          "sampleSizeSource": "dataj-sampleCount",
-          "sourceCoreUnits": [
-            "远古巨龙",
-            "德莱文",
-            "茂凯",
-            "苍蓝雕纹魔像"
-          ],
-          "sourceFlexUnits": [
-            "艾翁",
-            "塔里克",
-            "凯南",
-            "阿木木"
-          ],
-          "sourceCarries": [
-            {
-              "name": "远古巨龙",
-              "role": "carry",
-              "targetStars": null,
-              "price": 5
-            },
-            {
-              "name": "德莱文",
-              "role": "subcarry",
-              "targetStars": null,
-              "price": 5
-            }
-          ],
-          "sourceTraits": [
-            "地狱火",
-            "重装战士",
-            "主宰",
-            "宝石骑士",
-            "翠神",
-            "顶级掠食者",
-            "赏金猎人",
-            "远古树精"
-          ],
-          "sourceEquipmentIdsByHero": {
-            "德莱文": [
-              "2010",
-              "2013"
-            ],
-            "远古巨龙": [
-              "2001",
-              "2042",
-              "2037"
-            ],
-            "茂凯": [
-              "2034",
-              "2028",
-              "2025"
-            ],
-            "苍蓝雕纹魔像": [
-              "2034",
-              "2028",
-              "2023"
-            ]
-          },
-          "sourceEquipmentNamesByHero": {
-            "德莱文": [
-              "鬼索的狂暴之刃",
-              "海妖之怒"
-            ],
-            "远古巨龙": [
-              "无尽之刃",
-              "强袭者的链枷",
-              "最后的轻语"
-            ],
-            "茂凯": [
-              "狂徒铠甲",
-              "石像鬼石板甲",
-              "振奋盔甲"
-            ],
-            "苍蓝雕纹魔像": [
-              "狂徒铠甲",
-              "石像鬼石板甲",
-              "圣盾使的誓约"
-            ]
-          },
-          "sourceEquipmentPicturesById": {
-            "2001": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2001.png",
-            "2010": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
-            "2013": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/krakensfury.png",
-            "2023": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2023.png",
-            "2025": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
-            "2028": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
-            "2034": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
-            "2037": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2053.png",
-            "2042": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/strikersflail.png"
-          },
-          "sourceEquipmentPicturesByName": {
-            "鬼索的狂暴之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
-            "海妖之怒": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/krakensfury.png",
-            "无尽之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2001.png",
-            "强袭者的链枷": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/strikersflail.png",
-            "最后的轻语": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2053.png",
-            "狂徒铠甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
-            "石像鬼石板甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
-            "振奋盔甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
-            "圣盾使的誓约": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2023.png"
-          },
-          "sourceEquipmentNamesComplete": true,
-          "sourceEquipmentNameCoverage": {
-            "mapped": 11,
-            "total": 11
-          },
-          "sourceLineup": [
-            {
-              "name": "远古巨龙",
-              "heroId": "5458",
-              "isCore": true,
-              "isCarry": true,
-              "isSubCarry": false,
-              "price": 5,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_elderdragon.png"
-            },
-            {
-              "name": "德莱文",
-              "heroId": "5455",
-              "isCore": true,
-              "isCarry": false,
-              "isSubCarry": true,
-              "price": 5,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_draven.png"
-            },
-            {
-              "name": "茂凯",
-              "heroId": "5450",
-              "isCore": true,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 5,
-              "targetStars": null,
-              "picture": null
-            },
-            {
-              "name": "苍蓝雕纹魔像",
-              "heroId": "4500",
-              "isCore": true,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 4,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_sentinel.png"
-            },
-            {
-              "name": "艾翁",
-              "heroId": "5457",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 5,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_ivern.png"
-            },
-            {
-              "name": "塔里克",
-              "heroId": "5451",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 5,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_taric.png"
-            },
-            {
-              "name": "凯南",
-              "heroId": "5453",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 5,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_kennen.png"
-            },
-            {
-              "name": "阿木木",
-              "heroId": "4503",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 4,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_amumu.png"
-            }
-          ]
-        },
-        {
-          "id": "dataj-永森95",
-          "datajCompId": "91",
-          "name": "永森95",
-          "tier": "S",
-          "avgPlace": 3.8,
-          "playRate": 0.01,
-          "winRate": 22.61,
-          "top4Rate": 60,
-          "sampleSize": 115,
-          "sampleSizeSource": "dataj-sampleCount",
-          "sourceCoreUnits": [
-            "伊泽瑞尔",
-            "德莱文"
-          ],
-          "sourceFlexUnits": [
-            "艾翁",
-            "凯南",
-            "塔里克",
-            "纳尔",
-            "茂凯",
-            "阿木木",
-            "阿利斯塔"
-          ],
-          "sourceCarries": [
-            {
-              "name": "伊泽瑞尔",
-              "role": "carry",
-              "targetStars": null,
-              "price": 4
-            },
-            {
-              "name": "德莱文",
-              "role": "subcarry",
-              "targetStars": null,
-              "price": 5
-            }
-          ],
-          "sourceTraits": [
-            "永恒之森",
-            "裁决使",
-            "地狱火",
-            "斗士",
-            "主宰",
-            "宝石骑士",
-            "翠神",
-            "赏金猎人",
-            "远古树精"
-          ],
-          "sourceEquipmentIdsByHero": {
-            "伊泽瑞尔": [
-              "2042",
-              "2045",
-              "2004"
-            ],
-            "德莱文": [
-              "2013",
-              "2010"
-            ],
-            "塔里克": [
-              "2025",
-              "2028",
-              "2034"
-            ],
-            "茂凯": [
-              "2028",
-              "2034",
-              "2032"
-            ]
-          },
-          "sourceEquipmentNamesByHero": {
-            "伊泽瑞尔": [
-              "强袭者的链枷",
-              "锐利之刃",
-              "朔极之矛"
-            ],
-            "德莱文": [
-              "海妖之怒",
-              "鬼索的狂暴之刃"
-            ],
-            "塔里克": [
-              "振奋盔甲",
-              "石像鬼石板甲",
-              "狂徒铠甲"
-            ],
-            "茂凯": [
-              "石像鬼石板甲",
-              "狂徒铠甲",
-              "薄暮法袍"
-            ]
-          },
-          "sourceEquipmentPicturesById": {
-            "2004": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
-            "2010": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
-            "2013": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/krakensfury.png",
-            "2025": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
-            "2028": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
-            "2032": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/evenshroud.png",
-            "2034": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
-            "2042": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/strikersflail.png",
-            "2045": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2045.png"
-          },
-          "sourceEquipmentPicturesByName": {
-            "强袭者的链枷": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/strikersflail.png",
-            "锐利之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2045.png",
-            "朔极之矛": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
-            "海妖之怒": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/krakensfury.png",
-            "鬼索的狂暴之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
-            "振奋盔甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
-            "石像鬼石板甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
-            "狂徒铠甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
-            "薄暮法袍": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/evenshroud.png"
-          },
-          "sourceEquipmentNamesComplete": true,
-          "sourceEquipmentNameCoverage": {
-            "mapped": 11,
-            "total": 11
-          },
-          "sourceLineup": [
-            {
-              "name": "伊泽瑞尔",
-              "heroId": "4508",
-              "isCore": true,
-              "isCarry": true,
-              "isSubCarry": false,
-              "price": 4,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_ezreal.png"
-            },
-            {
-              "name": "德莱文",
-              "heroId": "5455",
-              "isCore": true,
-              "isCarry": false,
-              "isSubCarry": true,
-              "price": 5,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_draven.png"
-            },
-            {
-              "name": "艾翁",
-              "heroId": "5457",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 5,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_ivern.png"
-            },
-            {
-              "name": "凯南",
-              "heroId": "5453",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 5,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_kennen.png"
-            },
-            {
-              "name": "塔里克",
-              "heroId": "5451",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 5,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_taric.png"
-            },
-            {
-              "name": "纳尔",
-              "heroId": "5452",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 5,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_gnar.png"
-            },
-            {
-              "name": "茂凯",
-              "heroId": "5450",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 5,
-              "targetStars": null,
-              "picture": null
-            },
-            {
-              "name": "阿木木",
-              "heroId": "4503",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 4,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_amumu.png"
-            },
-            {
-              "name": "阿利斯塔",
-              "heroId": "2501",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 2,
-              "targetStars": null,
-              "picture": null
-            }
-          ]
-        },
-        {
           "id": "dataj-重装女警",
           "datajCompId": "100",
           "name": "重装女警",
           "tier": "A",
-          "avgPlace": 4.13,
-          "playRate": 0.15,
-          "winRate": 6.14,
-          "top4Rate": 59.76,
-          "sampleSize": 2182,
+          "avgPlace": 4.14,
+          "playRate": 0.14,
+          "winRate": 6.16,
+          "top4Rate": 59.22,
+          "sampleSize": 2629,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "凯特琳",
@@ -1271,11 +1060,11 @@
           "datajCompId": "113",
           "name": "古纳拉95",
           "tier": "S",
-          "avgPlace": 3.96,
+          "avgPlace": 4.01,
           "playRate": 0.09,
-          "winRate": 18.97,
-          "top4Rate": 59.68,
-          "sampleSize": 1307,
+          "winRate": 18.73,
+          "top4Rate": 58.39,
+          "sampleSize": 1644,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "拉露恩",
@@ -1494,15 +1283,226 @@
           ]
         },
         {
+          "id": "dataj-永森95",
+          "datajCompId": "91",
+          "name": "永森95",
+          "tier": "S",
+          "avgPlace": 4.01,
+          "playRate": 0.01,
+          "winRate": 20.15,
+          "top4Rate": 57.46,
+          "sampleSize": 134,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "伊泽瑞尔",
+            "德莱文"
+          ],
+          "sourceFlexUnits": [
+            "艾翁",
+            "凯南",
+            "塔里克",
+            "纳尔",
+            "茂凯",
+            "阿木木",
+            "阿利斯塔"
+          ],
+          "sourceCarries": [
+            {
+              "name": "伊泽瑞尔",
+              "role": "carry",
+              "targetStars": null,
+              "price": 4
+            },
+            {
+              "name": "德莱文",
+              "role": "subcarry",
+              "targetStars": null,
+              "price": 5
+            }
+          ],
+          "sourceTraits": [
+            "永恒之森",
+            "裁决使",
+            "地狱火",
+            "斗士",
+            "主宰",
+            "宝石骑士",
+            "翠神",
+            "赏金猎人",
+            "远古树精"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "伊泽瑞尔": [
+              "2042",
+              "2045",
+              "2004"
+            ],
+            "德莱文": [
+              "2013",
+              "2010"
+            ],
+            "塔里克": [
+              "2025",
+              "2028",
+              "2034"
+            ],
+            "茂凯": [
+              "2028",
+              "2034",
+              "2032"
+            ]
+          },
+          "sourceEquipmentNamesByHero": {
+            "伊泽瑞尔": [
+              "强袭者的链枷",
+              "锐利之刃",
+              "朔极之矛"
+            ],
+            "德莱文": [
+              "海妖之怒",
+              "鬼索的狂暴之刃"
+            ],
+            "塔里克": [
+              "振奋盔甲",
+              "石像鬼石板甲",
+              "狂徒铠甲"
+            ],
+            "茂凯": [
+              "石像鬼石板甲",
+              "狂徒铠甲",
+              "薄暮法袍"
+            ]
+          },
+          "sourceEquipmentPicturesById": {
+            "2004": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
+            "2010": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
+            "2013": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/krakensfury.png",
+            "2025": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
+            "2028": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
+            "2032": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/evenshroud.png",
+            "2034": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
+            "2042": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/strikersflail.png",
+            "2045": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2045.png"
+          },
+          "sourceEquipmentPicturesByName": {
+            "强袭者的链枷": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/strikersflail.png",
+            "锐利之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2045.png",
+            "朔极之矛": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
+            "海妖之怒": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/krakensfury.png",
+            "鬼索的狂暴之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
+            "振奋盔甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
+            "石像鬼石板甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
+            "狂徒铠甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
+            "薄暮法袍": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/evenshroud.png"
+          },
+          "sourceEquipmentNamesComplete": true,
+          "sourceEquipmentNameCoverage": {
+            "mapped": 11,
+            "total": 11
+          },
+          "sourceLineup": [
+            {
+              "name": "伊泽瑞尔",
+              "heroId": "4508",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_ezreal.png"
+            },
+            {
+              "name": "德莱文",
+              "heroId": "5455",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 5,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_draven.png"
+            },
+            {
+              "name": "艾翁",
+              "heroId": "5457",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_ivern.png"
+            },
+            {
+              "name": "凯南",
+              "heroId": "5453",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_kennen.png"
+            },
+            {
+              "name": "塔里克",
+              "heroId": "5451",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_taric.png"
+            },
+            {
+              "name": "纳尔",
+              "heroId": "5452",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_gnar.png"
+            },
+            {
+              "name": "茂凯",
+              "heroId": "5450",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null,
+              "picture": null
+            },
+            {
+              "name": "阿木木",
+              "heroId": "4503",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_amumu.png"
+            },
+            {
+              "name": "阿利斯塔",
+              "heroId": "2501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": null,
+              "picture": null
+            }
+          ]
+        },
+        {
           "id": "dataj-7野怪鸡哥",
           "datajCompId": "99",
           "name": "7野怪鸡哥",
           "tier": "S",
           "avgPlace": 4.12,
-          "playRate": 0.4,
-          "winRate": 12.95,
-          "top4Rate": 56.82,
-          "sampleSize": 5940,
+          "playRate": 0.42,
+          "winRate": 12.79,
+          "top4Rate": 56.74,
+          "sampleSize": 7790,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "深红锋喙鸟",
@@ -1650,7 +1650,7 @@
               "isSubCarry": false,
               "price": 2,
               "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_gromp.png"
+              "picture": null
             },
             {
               "name": "峡谷迅捷蟹",
@@ -1698,12 +1698,12 @@
           "id": "dataj-主宰女警",
           "datajCompId": "106",
           "name": "主宰女警",
-          "tier": "B",
-          "avgPlace": 4.39,
-          "playRate": 0.28,
-          "winRate": 5.86,
-          "top4Rate": 54.16,
-          "sampleSize": 4058,
+          "tier": "A",
+          "avgPlace": 4.37,
+          "playRate": 0.27,
+          "winRate": 5.88,
+          "top4Rate": 54.58,
+          "sampleSize": 4969,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "凯特琳",
@@ -1898,11 +1898,11 @@
           "datajCompId": "103",
           "name": "螳螂蛇女",
           "tier": "B",
-          "avgPlace": 4.48,
+          "avgPlace": 4.44,
           "playRate": 0.02,
-          "winRate": 4.97,
-          "top4Rate": 53.97,
-          "sampleSize": 302,
+          "winRate": 6.54,
+          "top4Rate": 54.22,
+          "sampleSize": 367,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "卡西奥佩娅",
@@ -2095,15 +2095,217 @@
           ]
         },
         {
+          "id": "dataj-黑暗仪式蜘蛛",
+          "datajCompId": "120",
+          "name": "黑暗仪式蜘蛛",
+          "tier": "S",
+          "avgPlace": 4.27,
+          "playRate": 0.07,
+          "winRate": 23.55,
+          "top4Rate": 53.94,
+          "sampleSize": 1244,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "伊莉丝",
+            "莫甘娜",
+            "卡西奥佩娅",
+            "黛安娜",
+            "赫卡里姆"
+          ],
+          "sourceFlexUnits": [
+            "塔里克",
+            "拉露恩",
+            "苍蓝雕纹魔像",
+            "洛"
+          ],
+          "sourceCarries": [
+            {
+              "name": "伊莉丝",
+              "role": "carry",
+              "targetStars": 3,
+              "price": 2
+            },
+            {
+              "name": "莫甘娜",
+              "role": "subcarry",
+              "targetStars": null,
+              "price": 4
+            },
+            {
+              "name": "卡西奥佩娅",
+              "role": "subcarry",
+              "targetStars": 3,
+              "price": 3
+            }
+          ],
+          "sourceTraits": [
+            "重装战士",
+            "魔女",
+            "法师",
+            "月蚀骑士",
+            "宝石骑士",
+            "月华神女"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "伊莉丝": [
+              "2010",
+              "2012",
+              "2028"
+            ],
+            "卡西奥佩娅": [
+              "2004",
+              "2038",
+              "2003"
+            ],
+            "莫甘娜": [
+              "2011",
+              "2020"
+            ]
+          },
+          "sourceEquipmentNamesByHero": {
+            "伊莉丝": [
+              "鬼索的狂暴之刃",
+              "泰坦的坚决",
+              "石像鬼石板甲"
+            ],
+            "卡西奥佩娅": [
+              "朔极之矛",
+              "珠光护手",
+              "海克斯科技枪刃"
+            ],
+            "莫甘娜": [
+              "虚空之杖",
+              "莫雷洛秘典"
+            ]
+          },
+          "sourceEquipmentPicturesById": {
+            "2003": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2003.png",
+            "2004": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
+            "2010": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
+            "2011": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/voidstaff.png",
+            "2012": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2052.png",
+            "2020": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2020.png",
+            "2028": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
+            "2038": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2038.png"
+          },
+          "sourceEquipmentPicturesByName": {
+            "鬼索的狂暴之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
+            "泰坦的坚决": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2052.png",
+            "石像鬼石板甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
+            "朔极之矛": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
+            "珠光护手": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2038.png",
+            "海克斯科技枪刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2003.png",
+            "虚空之杖": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/voidstaff.png",
+            "莫雷洛秘典": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2020.png"
+          },
+          "sourceEquipmentNamesComplete": true,
+          "sourceEquipmentNameCoverage": {
+            "mapped": 8,
+            "total": 8
+          },
+          "sourceLineup": [
+            {
+              "name": "伊莉丝",
+              "heroId": "2504",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": 3,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_elise.png"
+            },
+            {
+              "name": "莫甘娜",
+              "heroId": "4501",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 4,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_morgana.png"
+            },
+            {
+              "name": "卡西奥佩娅",
+              "heroId": "3511",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 3,
+              "targetStars": 3,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_cassiopeia.png"
+            },
+            {
+              "name": "黛安娜",
+              "heroId": "3506",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_diana.png"
+            },
+            {
+              "name": "赫卡里姆",
+              "heroId": "3500",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_hecarim.png"
+            },
+            {
+              "name": "塔里克",
+              "heroId": "5451",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_taric.png"
+            },
+            {
+              "name": "拉露恩",
+              "heroId": "5456",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_alune.png"
+            },
+            {
+              "name": "苍蓝雕纹魔像",
+              "heroId": "4500",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_sentinel.png"
+            },
+            {
+              "name": "洛",
+              "heroId": "1501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_rakan.png"
+            }
+          ]
+        },
+        {
           "id": "dataj-皎月螳螂",
           "datajCompId": "109",
           "name": "皎月螳螂",
           "tier": "B",
-          "avgPlace": 4.42,
+          "avgPlace": 4.43,
           "playRate": 0.06,
-          "winRate": 11.35,
-          "top4Rate": 53,
-          "sampleSize": 934,
+          "winRate": 11.1,
+          "top4Rate": 52.91,
+          "sampleSize": 1117,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "黛安娜",
@@ -2282,201 +2484,15 @@
           ]
         },
         {
-          "id": "dataj-森林天使",
-          "datajCompId": "88",
-          "name": "森林天使",
-          "tier": "B",
-          "avgPlace": 4.44,
-          "playRate": 0.2,
-          "winRate": 10.95,
-          "top4Rate": 52.35,
-          "sampleSize": 2877,
-          "sampleSizeSource": "dataj-sampleCount",
-          "sourceCoreUnits": [
-            "凯尔",
-            "霞",
-            "奥恩",
-            "蕾欧娜"
-          ],
-          "sourceFlexUnits": [
-            "瑟庄妮",
-            "乐芙兰",
-            "洛"
-          ],
-          "sourceCarries": [
-            {
-              "name": "凯尔",
-              "role": "carry",
-              "targetStars": 3,
-              "price": 2
-            },
-            {
-              "name": "霞",
-              "role": "subcarry",
-              "targetStars": 3,
-              "price": 1
-            }
-          ],
-          "sourceTraits": [
-            "日蚀骑士",
-            "永恒之森",
-            "护卫",
-            "花仙子",
-            "迅捷射手",
-            "主宰"
-          ],
-          "sourceEquipmentIdsByHero": {
-            "奥恩": [
-              "2028",
-              "2025",
-              "2034"
-            ],
-            "蕾欧娜": [
-              "2028",
-              "2025",
-              "2034"
-            ],
-            "霞": [
-              "2010",
-              "2013",
-              "2046"
-            ],
-            "凯尔": [
-              "2010",
-              "2038",
-              "2016"
-            ]
-          },
-          "sourceEquipmentNamesByHero": {
-            "奥恩": [
-              "石像鬼石板甲",
-              "振奋盔甲",
-              "狂徒铠甲"
-            ],
-            "蕾欧娜": [
-              "石像鬼石板甲",
-              "振奋盔甲",
-              "狂徒铠甲"
-            ],
-            "霞": [
-              "鬼索的狂暴之刃",
-              "海妖之怒",
-              "巨人捕手"
-            ],
-            "凯尔": [
-              "鬼索的狂暴之刃",
-              "珠光护手",
-              "班克斯的魔法帽"
-            ]
-          },
-          "sourceEquipmentPicturesById": {
-            "2010": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
-            "2013": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/krakensfury.png",
-            "2016": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2016.png",
-            "2025": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
-            "2028": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
-            "2034": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
-            "2038": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2038.png",
-            "2046": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2046.png"
-          },
-          "sourceEquipmentPicturesByName": {
-            "石像鬼石板甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
-            "振奋盔甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
-            "狂徒铠甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
-            "鬼索的狂暴之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
-            "海妖之怒": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/krakensfury.png",
-            "巨人捕手": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2046.png",
-            "珠光护手": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2038.png",
-            "班克斯的魔法帽": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2016.png"
-          },
-          "sourceEquipmentNamesComplete": true,
-          "sourceEquipmentNameCoverage": {
-            "mapped": 12,
-            "total": 12
-          },
-          "sourceLineup": [
-            {
-              "name": "凯尔",
-              "heroId": "2512",
-              "isCore": true,
-              "isCarry": true,
-              "isSubCarry": false,
-              "price": 2,
-              "targetStars": 3,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_kayle.png"
-            },
-            {
-              "name": "霞",
-              "heroId": "1509",
-              "isCore": true,
-              "isCarry": false,
-              "isSubCarry": true,
-              "price": 1,
-              "targetStars": 3,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_xayah.png"
-            },
-            {
-              "name": "奥恩",
-              "heroId": "1500",
-              "isCore": true,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 1,
-              "targetStars": 3,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_ornn.png"
-            },
-            {
-              "name": "蕾欧娜",
-              "heroId": "1502",
-              "isCore": true,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 1,
-              "targetStars": 3,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_leona.png"
-            },
-            {
-              "name": "瑟庄妮",
-              "heroId": "2502",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 2,
-              "targetStars": 3,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_sejuani.png"
-            },
-            {
-              "name": "乐芙兰",
-              "heroId": "2511",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 2,
-              "targetStars": 3,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_leblanc.png"
-            },
-            {
-              "name": "洛",
-              "heroId": "1501",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 1,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_rakan.png"
-            }
-          ]
-        },
-        {
           "id": "dataj-护卫豹轮",
           "datajCompId": "108",
           "name": "护卫豹轮",
           "tier": "S",
-          "avgPlace": 4.22,
+          "avgPlace": 4.24,
           "playRate": 0.02,
-          "winRate": 18.68,
-          "top4Rate": 52.2,
-          "sampleSize": 364,
+          "winRate": 18.58,
+          "top4Rate": 51.99,
+          "sampleSize": 452,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "希维尔",
@@ -2682,15 +2698,201 @@
           ]
         },
         {
+          "id": "dataj-森林天使",
+          "datajCompId": "88",
+          "name": "森林天使",
+          "tier": "B",
+          "avgPlace": 4.45,
+          "playRate": 0.21,
+          "winRate": 10.77,
+          "top4Rate": 51.97,
+          "sampleSize": 3825,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "凯尔",
+            "霞",
+            "奥恩",
+            "蕾欧娜"
+          ],
+          "sourceFlexUnits": [
+            "瑟庄妮",
+            "乐芙兰",
+            "洛"
+          ],
+          "sourceCarries": [
+            {
+              "name": "凯尔",
+              "role": "carry",
+              "targetStars": 3,
+              "price": 2
+            },
+            {
+              "name": "霞",
+              "role": "subcarry",
+              "targetStars": 3,
+              "price": 1
+            }
+          ],
+          "sourceTraits": [
+            "日蚀骑士",
+            "永恒之森",
+            "护卫",
+            "花仙子",
+            "迅捷射手",
+            "主宰"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "奥恩": [
+              "2028",
+              "2025",
+              "2034"
+            ],
+            "蕾欧娜": [
+              "2028",
+              "2025",
+              "2034"
+            ],
+            "霞": [
+              "2010",
+              "2013",
+              "2046"
+            ],
+            "凯尔": [
+              "2010",
+              "2038",
+              "2016"
+            ]
+          },
+          "sourceEquipmentNamesByHero": {
+            "奥恩": [
+              "石像鬼石板甲",
+              "振奋盔甲",
+              "狂徒铠甲"
+            ],
+            "蕾欧娜": [
+              "石像鬼石板甲",
+              "振奋盔甲",
+              "狂徒铠甲"
+            ],
+            "霞": [
+              "鬼索的狂暴之刃",
+              "海妖之怒",
+              "巨人捕手"
+            ],
+            "凯尔": [
+              "鬼索的狂暴之刃",
+              "珠光护手",
+              "班克斯的魔法帽"
+            ]
+          },
+          "sourceEquipmentPicturesById": {
+            "2010": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
+            "2013": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/krakensfury.png",
+            "2016": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2016.png",
+            "2025": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
+            "2028": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
+            "2034": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
+            "2038": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2038.png",
+            "2046": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2046.png"
+          },
+          "sourceEquipmentPicturesByName": {
+            "石像鬼石板甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
+            "振奋盔甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
+            "狂徒铠甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
+            "鬼索的狂暴之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
+            "海妖之怒": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/krakensfury.png",
+            "巨人捕手": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2046.png",
+            "珠光护手": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2038.png",
+            "班克斯的魔法帽": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2016.png"
+          },
+          "sourceEquipmentNamesComplete": true,
+          "sourceEquipmentNameCoverage": {
+            "mapped": 12,
+            "total": 12
+          },
+          "sourceLineup": [
+            {
+              "name": "凯尔",
+              "heroId": "2512",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": 3,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_kayle.png"
+            },
+            {
+              "name": "霞",
+              "heroId": "1509",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 1,
+              "targetStars": 3,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_xayah.png"
+            },
+            {
+              "name": "奥恩",
+              "heroId": "1500",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": 3,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_ornn.png"
+            },
+            {
+              "name": "蕾欧娜",
+              "heroId": "1502",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": 3,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_leona.png"
+            },
+            {
+              "name": "瑟庄妮",
+              "heroId": "2502",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": 3,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_sejuani.png"
+            },
+            {
+              "name": "乐芙兰",
+              "heroId": "2511",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": 3,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_leblanc.png"
+            },
+            {
+              "name": "洛",
+              "heroId": "1501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_rakan.png"
+            }
+          ]
+        },
+        {
           "id": "dataj-森林月男",
           "datajCompId": "105",
           "name": "森林月男",
           "tier": "B",
-          "avgPlace": 4.44,
+          "avgPlace": 4.45,
           "playRate": 0.2,
-          "winRate": 10.15,
-          "top4Rate": 51.53,
-          "sampleSize": 2965,
+          "winRate": 10.46,
+          "top4Rate": 51.38,
+          "sampleSize": 3624,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "厄斐琉斯",
@@ -2938,11 +3140,11 @@
           "datajCompId": "114",
           "name": "5迅射月男",
           "tier": "B",
-          "avgPlace": 4.53,
+          "avgPlace": 4.58,
           "playRate": 0.08,
-          "winRate": 7.39,
-          "top4Rate": 51.32,
-          "sampleSize": 1177,
+          "winRate": 7.37,
+          "top4Rate": 50.14,
+          "sampleSize": 1424,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "绯红印记树怪",
@@ -3139,11 +3341,11 @@
           "datajCompId": "119",
           "name": "神谕大嘴",
           "tier": "B",
-          "avgPlace": 4.52,
-          "playRate": 0.23,
-          "winRate": 9.54,
-          "top4Rate": 49.26,
-          "sampleSize": 3374,
+          "avgPlace": 4.49,
+          "playRate": 0.25,
+          "winRate": 9.86,
+          "top4Rate": 50.07,
+          "sampleSize": 4576,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "克格莫",
@@ -3323,11 +3525,11 @@
           "datajCompId": "115",
           "name": "卡丽蜜儿",
           "tier": "C",
-          "avgPlace": 4.69,
-          "playRate": 0.18,
-          "winRate": 6.5,
-          "top4Rate": 48.52,
-          "sampleSize": 2630,
+          "avgPlace": 4.68,
+          "playRate": 0.16,
+          "winRate": 6.72,
+          "top4Rate": 48.54,
+          "sampleSize": 3008,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "阿卡丽",
@@ -3526,11 +3728,11 @@
           "datajCompId": "95",
           "name": "月男Flex",
           "tier": "C",
-          "avgPlace": 4.63,
+          "avgPlace": 4.64,
           "playRate": 1.17,
-          "winRate": 7.53,
-          "top4Rate": 48.04,
-          "sampleSize": 17247,
+          "winRate": 7.46,
+          "top4Rate": 47.95,
+          "sampleSize": 21553,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "厄斐琉斯",
@@ -3730,11 +3932,11 @@
           "datajCompId": "107",
           "name": "野怪小蓝",
           "tier": "C",
-          "avgPlace": 4.7,
-          "playRate": 0.17,
-          "winRate": 8.06,
-          "top4Rate": 44.57,
-          "sampleSize": 2567,
+          "avgPlace": 4.71,
+          "playRate": 0.18,
+          "winRate": 8.51,
+          "top4Rate": 44.41,
+          "sampleSize": 3290,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "苍蓝哨戒",
@@ -3927,15 +4129,204 @@
           ]
         },
         {
+          "id": "dataj-剑圣大嘴",
+          "datajCompId": "86",
+          "name": "剑圣大嘴",
+          "tier": "D",
+          "avgPlace": 4.8,
+          "playRate": 0.04,
+          "winRate": 5.26,
+          "top4Rate": 43.55,
+          "sampleSize": 760,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "易",
+            "克格莫",
+            "远古石甲虫"
+          ],
+          "sourceFlexUnits": [
+            "奈德丽",
+            "瑟提",
+            "蔚",
+            "魔沼蛙",
+            "约里克"
+          ],
+          "sourceCarries": [
+            {
+              "name": "易",
+              "role": "carry",
+              "targetStars": 3,
+              "price": 3
+            },
+            {
+              "name": "克格莫",
+              "role": "subcarry",
+              "targetStars": 3,
+              "price": 3
+            }
+          ],
+          "sourceTraits": [
+            "魔战士",
+            "灵魂莲华",
+            "斗士",
+            "野兽之灵",
+            "主宰",
+            "帝王斑蝶"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "易": [
+              "2012",
+              "2005",
+              "2010"
+            ],
+            "克格莫": [
+              "2001",
+              "2009",
+              "2004"
+            ],
+            "远古石甲虫": [
+              "2025",
+              "2034",
+              "2028"
+            ]
+          },
+          "sourceEquipmentNamesByHero": {
+            "易": [
+              "泰坦的坚决",
+              "夜之锋刃",
+              "鬼索的狂暴之刃"
+            ],
+            "克格莫": [
+              "无尽之刃",
+              "红霸符",
+              "朔极之矛"
+            ],
+            "远古石甲虫": [
+              "振奋盔甲",
+              "狂徒铠甲",
+              "石像鬼石板甲"
+            ]
+          },
+          "sourceEquipmentPicturesById": {
+            "2001": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2001.png",
+            "2004": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
+            "2005": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2005.png",
+            "2009": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2009.png",
+            "2010": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
+            "2012": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2052.png",
+            "2025": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
+            "2028": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
+            "2034": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png"
+          },
+          "sourceEquipmentPicturesByName": {
+            "泰坦的坚决": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2052.png",
+            "夜之锋刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2005.png",
+            "鬼索的狂暴之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
+            "无尽之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2001.png",
+            "红霸符": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2009.png",
+            "朔极之矛": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
+            "振奋盔甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
+            "狂徒铠甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
+            "石像鬼石板甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png"
+          },
+          "sourceEquipmentNamesComplete": true,
+          "sourceEquipmentNameCoverage": {
+            "mapped": 9,
+            "total": 9
+          },
+          "sourceLineup": [
+            {
+              "name": "易",
+              "heroId": "3507",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3,
+              "picture": null
+            },
+            {
+              "name": "克格莫",
+              "heroId": "3512",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 3,
+              "targetStars": 3,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_kogmaw.png"
+            },
+            {
+              "name": "远古石甲虫",
+              "heroId": "3503",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": 3,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_krug.png"
+            },
+            {
+              "name": "奈德丽",
+              "heroId": "4507",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_nidalee.png"
+            },
+            {
+              "name": "瑟提",
+              "heroId": "4505",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_sett.png"
+            },
+            {
+              "name": "蔚",
+              "heroId": "3501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_vi.png"
+            },
+            {
+              "name": "魔沼蛙",
+              "heroId": "2513",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": null,
+              "picture": null
+            },
+            {
+              "name": "约里克",
+              "heroId": "2505",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_yorick.png"
+            }
+          ]
+        },
+        {
           "id": "dataj-召唤双鸡",
           "datajCompId": "94",
           "name": "召唤双鸡",
           "tier": "D",
-          "avgPlace": 5.07,
-          "playRate": 0,
-          "winRate": 9.72,
-          "top4Rate": 43.06,
-          "sampleSize": 72,
+          "avgPlace": 4.94,
+          "playRate": 0.01,
+          "winRate": 10.75,
+          "top4Rate": 43.01,
+          "sampleSize": 93,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "阿兹尔",
@@ -4132,204 +4523,15 @@
           ]
         },
         {
-          "id": "dataj-剑圣大嘴",
-          "datajCompId": "86",
-          "name": "剑圣大嘴",
-          "tier": "D",
-          "avgPlace": 4.86,
-          "playRate": 0.04,
-          "winRate": 5.2,
-          "top4Rate": 42.36,
-          "sampleSize": 635,
-          "sampleSizeSource": "dataj-sampleCount",
-          "sourceCoreUnits": [
-            "易",
-            "克格莫",
-            "远古石甲虫"
-          ],
-          "sourceFlexUnits": [
-            "奈德丽",
-            "瑟提",
-            "蔚",
-            "魔沼蛙",
-            "约里克"
-          ],
-          "sourceCarries": [
-            {
-              "name": "易",
-              "role": "carry",
-              "targetStars": 3,
-              "price": 3
-            },
-            {
-              "name": "克格莫",
-              "role": "subcarry",
-              "targetStars": 3,
-              "price": 3
-            }
-          ],
-          "sourceTraits": [
-            "魔战士",
-            "灵魂莲华",
-            "斗士",
-            "野兽之灵",
-            "主宰",
-            "帝王斑蝶"
-          ],
-          "sourceEquipmentIdsByHero": {
-            "易": [
-              "2012",
-              "2005",
-              "2010"
-            ],
-            "克格莫": [
-              "2001",
-              "2009",
-              "2004"
-            ],
-            "远古石甲虫": [
-              "2025",
-              "2034",
-              "2028"
-            ]
-          },
-          "sourceEquipmentNamesByHero": {
-            "易": [
-              "泰坦的坚决",
-              "夜之锋刃",
-              "鬼索的狂暴之刃"
-            ],
-            "克格莫": [
-              "无尽之刃",
-              "红霸符",
-              "朔极之矛"
-            ],
-            "远古石甲虫": [
-              "振奋盔甲",
-              "狂徒铠甲",
-              "石像鬼石板甲"
-            ]
-          },
-          "sourceEquipmentPicturesById": {
-            "2001": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2001.png",
-            "2004": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
-            "2005": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2005.png",
-            "2009": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2009.png",
-            "2010": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
-            "2012": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2052.png",
-            "2025": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
-            "2028": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
-            "2034": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png"
-          },
-          "sourceEquipmentPicturesByName": {
-            "泰坦的坚决": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2052.png",
-            "夜之锋刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2005.png",
-            "鬼索的狂暴之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
-            "无尽之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2001.png",
-            "红霸符": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2009.png",
-            "朔极之矛": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
-            "振奋盔甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
-            "狂徒铠甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
-            "石像鬼石板甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png"
-          },
-          "sourceEquipmentNamesComplete": true,
-          "sourceEquipmentNameCoverage": {
-            "mapped": 9,
-            "total": 9
-          },
-          "sourceLineup": [
-            {
-              "name": "易",
-              "heroId": "3507",
-              "isCore": true,
-              "isCarry": true,
-              "isSubCarry": false,
-              "price": 3,
-              "targetStars": 3,
-              "picture": null
-            },
-            {
-              "name": "克格莫",
-              "heroId": "3512",
-              "isCore": true,
-              "isCarry": false,
-              "isSubCarry": true,
-              "price": 3,
-              "targetStars": 3,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_kogmaw.png"
-            },
-            {
-              "name": "远古石甲虫",
-              "heroId": "3503",
-              "isCore": true,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 3,
-              "targetStars": 3,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_krug.png"
-            },
-            {
-              "name": "奈德丽",
-              "heroId": "4507",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 4,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_nidalee.png"
-            },
-            {
-              "name": "瑟提",
-              "heroId": "4505",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 4,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_sett.png"
-            },
-            {
-              "name": "蔚",
-              "heroId": "3501",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 3,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_vi.png"
-            },
-            {
-              "name": "魔沼蛙",
-              "heroId": "2513",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 2,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_gromp.png"
-            },
-            {
-              "name": "约里克",
-              "heroId": "2505",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 1,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_yorick.png"
-            }
-          ]
-        },
-        {
           "id": "dataj-莲华阿狸",
           "datajCompId": "84",
           "name": "莲华阿狸",
           "tier": "C",
           "avgPlace": 4.84,
-          "playRate": 0.38,
-          "winRate": 12.76,
-          "top4Rate": 42.35,
-          "sampleSize": 5617,
+          "playRate": 0.36,
+          "winRate": 12.85,
+          "top4Rate": 42.49,
+          "sampleSize": 6656,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "阿狸",
@@ -4541,15 +4743,200 @@
           ]
         },
         {
+          "id": "dataj-6主宰flex",
+          "datajCompId": "117",
+          "name": "6主宰Flex",
+          "tier": "D",
+          "avgPlace": 4.89,
+          "playRate": 0.5,
+          "winRate": 7.43,
+          "top4Rate": 41.88,
+          "sampleSize": 9178,
+          "sampleSizeSource": "dataj-sampleCount",
+          "sourceCoreUnits": [
+            "希维尔",
+            "艾希",
+            "阿木木"
+          ],
+          "sourceFlexUnits": [
+            "茂凯",
+            "蔚",
+            "瑟庄妮",
+            "峡谷迅捷蟹",
+            "洛"
+          ],
+          "sourceCarries": [
+            {
+              "name": "希维尔",
+              "role": "carry",
+              "targetStars": null,
+              "price": 4
+            },
+            {
+              "name": "艾希",
+              "role": "subcarry",
+              "targetStars": null,
+              "price": 5
+            }
+          ],
+          "sourceTraits": [
+            "主宰",
+            "猎人",
+            "野兽之灵",
+            "远古树精"
+          ],
+          "sourceEquipmentIdsByHero": {
+            "希维尔": [
+              "2001",
+              "2004",
+              "2045"
+            ],
+            "艾希": [
+              "2004",
+              "2009",
+              "2037"
+            ],
+            "阿木木": [
+              "2018",
+              "2028",
+              "2034"
+            ]
+          },
+          "sourceEquipmentNamesByHero": {
+            "希维尔": [
+              "无尽之刃",
+              "朔极之矛",
+              "锐利之刃"
+            ],
+            "艾希": [
+              "朔极之矛",
+              "红霸符",
+              "最后的轻语"
+            ],
+            "阿木木": [
+              "冕卫",
+              "石像鬼石板甲",
+              "狂徒铠甲"
+            ]
+          },
+          "sourceEquipmentPicturesById": {
+            "2001": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2001.png",
+            "2004": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
+            "2009": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2009.png",
+            "2018": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/crownguard.png",
+            "2028": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
+            "2034": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
+            "2037": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2053.png",
+            "2045": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2045.png"
+          },
+          "sourceEquipmentPicturesByName": {
+            "无尽之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2001.png",
+            "朔极之矛": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
+            "锐利之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2045.png",
+            "红霸符": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2009.png",
+            "最后的轻语": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2053.png",
+            "冕卫": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/crownguard.png",
+            "石像鬼石板甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
+            "狂徒铠甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png"
+          },
+          "sourceEquipmentNamesComplete": true,
+          "sourceEquipmentNameCoverage": {
+            "mapped": 9,
+            "total": 9
+          },
+          "sourceLineup": [
+            {
+              "name": "希维尔",
+              "heroId": "4510",
+              "isCore": true,
+              "isCarry": true,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_sivir.png"
+            },
+            {
+              "name": "艾希",
+              "heroId": "5454",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 5,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_ashe.png"
+            },
+            {
+              "name": "阿木木",
+              "heroId": "4503",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_amumu.png"
+            },
+            {
+              "name": "茂凯",
+              "heroId": "5450",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 5,
+              "targetStars": null,
+              "picture": null
+            },
+            {
+              "name": "蔚",
+              "heroId": "3501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_vi.png"
+            },
+            {
+              "name": "瑟庄妮",
+              "heroId": "2502",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_sejuani.png"
+            },
+            {
+              "name": "峡谷迅捷蟹",
+              "heroId": "2500",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 2,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_scuttle.png"
+            },
+            {
+              "name": "洛",
+              "heroId": "1501",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 1,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_rakan.png"
+            }
+          ]
+        },
+        {
           "id": "dataj-世纪和解",
           "datajCompId": "93",
           "name": "世纪和解",
           "tier": "D",
-          "avgPlace": 4.86,
+          "avgPlace": 4.9,
           "playRate": 0.04,
-          "winRate": 5.87,
-          "top4Rate": 41.8,
-          "sampleSize": 579,
+          "winRate": 5.34,
+          "top4Rate": 41.52,
+          "sampleSize": 749,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "雷恩加尔",
@@ -4729,101 +5116,106 @@
           ]
         },
         {
-          "id": "dataj-6主宰flex",
-          "datajCompId": "117",
-          "name": "6主宰Flex",
+          "id": "dataj-重装豹女",
+          "datajCompId": "83",
+          "name": "重装豹女",
           "tier": "D",
-          "avgPlace": 4.9,
-          "playRate": 0.5,
-          "winRate": 7.47,
-          "top4Rate": 41.77,
-          "sampleSize": 7415,
+          "avgPlace": 5.05,
+          "playRate": 0.01,
+          "winRate": 2.38,
+          "top4Rate": 38.89,
+          "sampleSize": 126,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
-            "希维尔",
-            "艾希",
-            "阿木木"
+            "奈德丽",
+            "莫甘娜",
+            "苍蓝雕纹魔像",
+            "蔚"
           ],
           "sourceFlexUnits": [
-            "茂凯",
-            "蔚",
-            "瑟庄妮",
-            "峡谷迅捷蟹",
+            "塔里克",
+            "黛安娜",
+            "克格莫",
             "洛"
           ],
           "sourceCarries": [
             {
-              "name": "希维尔",
+              "name": "奈德丽",
               "role": "carry",
               "targetStars": null,
               "price": 4
             },
             {
-              "name": "艾希",
+              "name": "莫甘娜",
               "role": "subcarry",
               "targetStars": null,
-              "price": 5
+              "price": 4
             }
           ],
           "sourceTraits": [
-            "主宰",
-            "猎人",
+            "前卫",
+            "神谕者",
+            "魔战士",
             "野兽之灵",
-            "远古树精"
+            "主宰",
+            "宝石骑士",
+            "腐蚀巨口"
           ],
           "sourceEquipmentIdsByHero": {
-            "希维尔": [
-              "2001",
-              "2004",
-              "2045"
+            "奈德丽": [
+              "2010",
+              "2038",
+              "2016"
             ],
-            "艾希": [
-              "2004",
-              "2009",
-              "2037"
+            "莫甘娜": [
+              "2011",
+              "2020",
+              "2022"
             ],
-            "阿木木": [
-              "2018",
+            "苍蓝雕纹魔像": [
               "2028",
-              "2034"
+              "2034",
+              "2023"
             ]
           },
           "sourceEquipmentNamesByHero": {
-            "希维尔": [
-              "无尽之刃",
-              "朔极之矛",
-              "锐利之刃"
+            "奈德丽": [
+              "鬼索的狂暴之刃",
+              "珠光护手",
+              "班克斯的魔法帽"
             ],
-            "艾希": [
-              "朔极之矛",
-              "红霸符",
-              "最后的轻语"
+            "莫甘娜": [
+              "虚空之杖",
+              "莫雷洛秘典",
+              "蓝霸符"
             ],
-            "阿木木": [
-              "冕卫",
+            "苍蓝雕纹魔像": [
               "石像鬼石板甲",
-              "狂徒铠甲"
+              "狂徒铠甲",
+              "圣盾使的誓约"
             ]
           },
           "sourceEquipmentPicturesById": {
-            "2001": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2001.png",
-            "2004": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
-            "2009": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2009.png",
-            "2018": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/crownguard.png",
+            "2010": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
+            "2011": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/voidstaff.png",
+            "2016": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2016.png",
+            "2020": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2020.png",
+            "2022": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2222.png",
+            "2023": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2023.png",
             "2028": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
             "2034": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
-            "2037": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2053.png",
-            "2045": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2045.png"
+            "2038": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2038.png"
           },
           "sourceEquipmentPicturesByName": {
-            "无尽之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2001.png",
-            "朔极之矛": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
-            "锐利之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2045.png",
-            "红霸符": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2009.png",
-            "最后的轻语": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2053.png",
-            "冕卫": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/crownguard.png",
+            "鬼索的狂暴之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
+            "珠光护手": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2038.png",
+            "班克斯的魔法帽": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2016.png",
+            "虚空之杖": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/voidstaff.png",
+            "莫雷洛秘典": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2020.png",
+            "蓝霸符": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2222.png",
             "石像鬼石板甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
-            "狂徒铠甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png"
+            "狂徒铠甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
+            "圣盾使的誓约": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2023.png"
           },
           "sourceEquipmentNamesComplete": true,
           "sourceEquipmentNameCoverage": {
@@ -4832,49 +5224,39 @@
           },
           "sourceLineup": [
             {
-              "name": "希维尔",
-              "heroId": "4510",
+              "name": "奈德丽",
+              "heroId": "4507",
               "isCore": true,
               "isCarry": true,
               "isSubCarry": false,
               "price": 4,
               "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_sivir.png"
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_nidalee.png"
             },
             {
-              "name": "艾希",
-              "heroId": "5454",
+              "name": "莫甘娜",
+              "heroId": "4514",
               "isCore": true,
               "isCarry": false,
               "isSubCarry": true,
-              "price": 5,
+              "price": 4,
               "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_ashe.png"
+              "picture": null
             },
             {
-              "name": "阿木木",
-              "heroId": "4503",
+              "name": "苍蓝雕纹魔像",
+              "heroId": "4500",
               "isCore": true,
               "isCarry": false,
               "isSubCarry": false,
               "price": 4,
               "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_amumu.png"
-            },
-            {
-              "name": "茂凯",
-              "heroId": "5450",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 5,
-              "targetStars": null,
-              "picture": null
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_sentinel.png"
             },
             {
               "name": "蔚",
               "heroId": "3501",
-              "isCore": false,
+              "isCore": true,
               "isCarry": false,
               "isSubCarry": false,
               "price": 3,
@@ -4882,24 +5264,34 @@
               "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_vi.png"
             },
             {
-              "name": "瑟庄妮",
-              "heroId": "2502",
+              "name": "塔里克",
+              "heroId": "5451",
               "isCore": false,
               "isCarry": false,
               "isSubCarry": false,
-              "price": 2,
+              "price": 5,
               "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_sejuani.png"
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_taric.png"
             },
             {
-              "name": "峡谷迅捷蟹",
-              "heroId": "2500",
+              "name": "黛安娜",
+              "heroId": "3506",
               "isCore": false,
               "isCarry": false,
               "isSubCarry": false,
-              "price": 2,
+              "price": 3,
               "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_scuttle.png"
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_diana.png"
+            },
+            {
+              "name": "克格莫",
+              "heroId": "3512",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 3,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_kogmaw.png"
             },
             {
               "name": "洛",
@@ -4918,11 +5310,11 @@
           "datajCompId": "90",
           "name": "裁决奶妈",
           "tier": "D",
-          "avgPlace": 5.06,
-          "playRate": 0.23,
-          "winRate": 6.25,
-          "top4Rate": 40.08,
-          "sampleSize": 3343,
+          "avgPlace": 5.11,
+          "playRate": 0.22,
+          "winRate": 6.01,
+          "top4Rate": 38.87,
+          "sampleSize": 3959,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "索拉卡",
@@ -5115,162 +5507,176 @@
           ]
         },
         {
-          "id": "dataj-重装豹女",
-          "datajCompId": "83",
-          "name": "重装豹女",
+          "id": "dataj-双狼互保",
+          "datajCompId": "87",
+          "name": "双狼互保",
           "tier": "D",
-          "avgPlace": 4.99,
-          "playRate": 0.01,
-          "winRate": 2.7,
-          "top4Rate": 39.64,
-          "sampleSize": 111,
+          "avgPlace": 4.98,
+          "playRate": 0,
+          "winRate": 3.64,
+          "top4Rate": 38.18,
+          "sampleSize": 55,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
-            "奈德丽",
-            "莫甘娜",
-            "苍蓝雕纹魔像",
-            "蔚"
+            "沃里克",
+            "暗影狼",
+            "墨菲特"
           ],
           "sourceFlexUnits": [
-            "塔里克",
+            "绯红印记树怪",
+            "远古石甲虫",
             "黛安娜",
-            "克格莫",
-            "洛"
+            "阿兹尔",
+            "雷克塞"
           ],
           "sourceCarries": [
             {
-              "name": "奈德丽",
+              "name": "沃里克",
               "role": "carry",
               "targetStars": null,
-              "price": 4
+              "price": 2
             },
             {
-              "name": "莫甘娜",
+              "name": "暗影狼",
               "role": "subcarry",
               "targetStars": null,
-              "price": 4
+              "price": 2
             }
           ],
           "sourceTraits": [
-            "前卫",
-            "神谕者",
-            "魔战士",
-            "野兽之灵",
-            "主宰",
-            "宝石骑士",
-            "腐蚀巨口"
+            "黑色荆棘",
+            "劫掠梦魇",
+            "峡谷野怪",
+            "斗士",
+            "魔岩巨兽"
           ],
           "sourceEquipmentIdsByHero": {
-            "奈德丽": [
-              "2010",
-              "2038",
-              "2016"
-            ],
-            "莫甘娜": [
-              "2011",
-              "2020",
-              "2022"
-            ],
-            "苍蓝雕纹魔像": [
+            "墨菲特": [
               "2028",
-              "2034",
-              "2023"
+              "2025",
+              "2034"
+            ],
+            "沃里克": [
+              "2004",
+              "2007",
+              "2012"
+            ],
+            "暗影狼": [
+              "2045",
+              "2005",
+              "2039"
+            ],
+            "阿兹尔": [
+              "2010",
+              "2020",
+              "2046"
             ]
           },
           "sourceEquipmentNamesByHero": {
-            "奈德丽": [
-              "鬼索的狂暴之刃",
-              "珠光护手",
-              "班克斯的魔法帽"
-            ],
-            "莫甘娜": [
-              "虚空之杖",
-              "莫雷洛秘典",
-              "蓝霸符"
-            ],
-            "苍蓝雕纹魔像": [
+            "墨菲特": [
               "石像鬼石板甲",
-              "狂徒铠甲",
-              "圣盾使的誓约"
+              "振奋盔甲",
+              "狂徒铠甲"
+            ],
+            "沃里克": [
+              "朔极之矛",
+              "斯特拉克的挑战护手",
+              "泰坦的坚决"
+            ],
+            "暗影狼": [
+              "锐利之刃",
+              "夜之锋刃",
+              "正义之手"
+            ],
+            "阿兹尔": [
+              "鬼索的狂暴之刃",
+              "莫雷洛秘典",
+              "巨人捕手"
             ]
           },
           "sourceEquipmentPicturesById": {
+            "2004": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
+            "2005": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2005.png",
+            "2007": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/steraksgage.png",
             "2010": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
-            "2011": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/voidstaff.png",
-            "2016": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2016.png",
+            "2012": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2052.png",
             "2020": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2020.png",
-            "2022": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2222.png",
-            "2023": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2023.png",
+            "2025": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
             "2028": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
             "2034": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
-            "2038": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2038.png"
+            "2039": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2039.png",
+            "2045": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2045.png",
+            "2046": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2046.png"
           },
           "sourceEquipmentPicturesByName": {
-            "鬼索的狂暴之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
-            "珠光护手": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2038.png",
-            "班克斯的魔法帽": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2016.png",
-            "虚空之杖": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/voidstaff.png",
-            "莫雷洛秘典": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2020.png",
-            "蓝霸符": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2222.png",
             "石像鬼石板甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2248.png",
+            "振奋盔甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/spiritvisage.png",
             "狂徒铠甲": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2034.png",
-            "圣盾使的誓约": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2023.png"
+            "朔极之矛": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2004.png",
+            "斯特拉克的挑战护手": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/steraksgage.png",
+            "泰坦的坚决": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2052.png",
+            "锐利之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2045.png",
+            "夜之锋刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2005.png",
+            "正义之手": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2039.png",
+            "鬼索的狂暴之刃": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2010.png",
+            "莫雷洛秘典": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2020.png",
+            "巨人捕手": "https://game.gtimg.cn/images/lol/act/jkzlk/gamedata/equip/2046.png"
           },
           "sourceEquipmentNamesComplete": true,
           "sourceEquipmentNameCoverage": {
-            "mapped": 9,
-            "total": 9
+            "mapped": 12,
+            "total": 12
           },
           "sourceLineup": [
             {
-              "name": "奈德丽",
-              "heroId": "4507",
+              "name": "沃里克",
+              "heroId": "2508",
               "isCore": true,
               "isCarry": true,
               "isSubCarry": false,
-              "price": 4,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_nidalee.png"
-            },
-            {
-              "name": "莫甘娜",
-              "heroId": "4514",
-              "isCore": true,
-              "isCarry": false,
-              "isSubCarry": true,
-              "price": 4,
+              "price": 2,
               "targetStars": null,
               "picture": null
             },
             {
-              "name": "苍蓝雕纹魔像",
-              "heroId": "4500",
+              "name": "暗影狼",
+              "heroId": "2507",
+              "isCore": true,
+              "isCarry": false,
+              "isSubCarry": true,
+              "price": 2,
+              "targetStars": null,
+              "picture": null
+            },
+            {
+              "name": "墨菲特",
+              "heroId": "4504",
               "isCore": true,
               "isCarry": false,
               "isSubCarry": false,
               "price": 4,
               "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_sentinel.png"
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_malphite.png"
             },
             {
-              "name": "蔚",
-              "heroId": "3501",
-              "isCore": true,
+              "name": "绯红印记树怪",
+              "heroId": "4506",
+              "isCore": false,
+              "isCarry": false,
+              "isSubCarry": false,
+              "price": 4,
+              "targetStars": null,
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_brambleback.png"
+            },
+            {
+              "name": "远古石甲虫",
+              "heroId": "3503",
+              "isCore": false,
               "isCarry": false,
               "isSubCarry": false,
               "price": 3,
               "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_vi.png"
-            },
-            {
-              "name": "塔里克",
-              "heroId": "5451",
-              "isCore": false,
-              "isCarry": false,
-              "isSubCarry": false,
-              "price": 5,
-              "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_taric.png"
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_krug.png"
             },
             {
               "name": "黛安娜",
@@ -5283,24 +5689,24 @@
               "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_diana.png"
             },
             {
-              "name": "克格莫",
-              "heroId": "3512",
+              "name": "阿兹尔",
+              "heroId": "3510",
               "isCore": false,
               "isCarry": false,
               "isSubCarry": false,
               "price": 3,
               "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_kogmaw.png"
+              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_azir.png"
             },
             {
-              "name": "洛",
-              "heroId": "1501",
+              "name": "雷克塞",
+              "heroId": "1504",
               "isCore": false,
               "isCarry": false,
               "isSubCarry": false,
               "price": 1,
               "targetStars": null,
-              "picture": "https://game.gtimg.cn/images/lol/act/jkzlk/mode18s19/hero/s18_head_rakan.png"
+              "picture": null
             }
           ]
         },
@@ -5309,11 +5715,11 @@
           "datajCompId": "101",
           "name": "护卫蛇女",
           "tier": "D",
-          "avgPlace": 5.07,
+          "avgPlace": 5.17,
           "playRate": 0.01,
-          "winRate": 5.79,
-          "top4Rate": 38.02,
-          "sampleSize": 121,
+          "winRate": 4.7,
+          "top4Rate": 36.91,
+          "sampleSize": 149,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "卡西奥佩娅",
@@ -5472,11 +5878,11 @@
           "datajCompId": "110",
           "name": "射箭韦鲁斯",
           "tier": "D",
-          "avgPlace": 5.16,
+          "avgPlace": 5.21,
           "playRate": 0.02,
-          "winRate": 4.1,
-          "top4Rate": 37.54,
-          "sampleSize": 293,
+          "winRate": 4.02,
+          "top4Rate": 36.53,
+          "sampleSize": 323,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "韦鲁斯",
@@ -5674,9 +6080,9 @@
           "tier": "D",
           "avgPlace": 5.24,
           "playRate": 0.04,
-          "winRate": 5.47,
-          "top4Rate": 35.98,
-          "sampleSize": 567,
+          "winRate": 5.23,
+          "top4Rate": 36,
+          "sampleSize": 650,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "希维尔",
@@ -5873,11 +6279,11 @@
           "datajCompId": "97",
           "name": "花仙狮子狗",
           "tier": "D",
-          "avgPlace": 5.4,
+          "avgPlace": 5.43,
           "playRate": 0.01,
-          "winRate": 4.26,
-          "top4Rate": 33.33,
-          "sampleSize": 141,
+          "winRate": 4.35,
+          "top4Rate": 33.54,
+          "sampleSize": 161,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "雷恩加尔",
@@ -6087,11 +6493,11 @@
           "datajCompId": "98",
           "name": "花仙小炮",
           "tier": "D",
-          "avgPlace": 5.51,
+          "avgPlace": 5.58,
           "playRate": 0.02,
-          "winRate": 2.07,
-          "top4Rate": 32.23,
-          "sampleSize": 242,
+          "winRate": 2.08,
+          "top4Rate": 29.86,
+          "sampleSize": 288,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "崔丝塔娜",
@@ -6270,11 +6676,11 @@
           "datajCompId": "96",
           "name": "召唤鸡哥",
           "tier": "D",
-          "avgPlace": 6.18,
+          "avgPlace": 6.39,
           "playRate": 0.01,
-          "winRate": 3.9,
-          "top4Rate": 19.48,
-          "sampleSize": 77,
+          "winRate": 3.06,
+          "top4Rate": 16.33,
+          "sampleSize": 98,
           "sampleSizeSource": "dataj-sampleCount",
           "sourceCoreUnits": [
             "深红锋喙鸟",
