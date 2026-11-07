@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-07T05:16:25.477Z",
+  "fetchedAt": "2026-11-07T14:46:29.908Z",
   "authoritativePatch": "18.1b",
   "patchAuthority": {
     "id": "official-taptap",
@@ -14,7 +14,7 @@
       "ok": true,
       "patch": "18.1b",
       "url": "https://www.taptap.cn/moment/841982769956390376",
-      "fetchedAt": "2026-11-07T05:16:24.963Z",
+      "fetchedAt": "2026-11-07T14:46:29.908Z",
       "mode": "patch-authority"
     },
     "datatft": {
@@ -22,7 +22,7 @@
       "ok": false,
       "patch": null,
       "url": "https://jcc.datatft.com/explorer",
-      "fetchedAt": "2026-11-07T05:16:25.477Z",
+      "fetchedAt": "2026-11-07T14:46:28.889Z",
       "mode": "metadata-only",
       "rankLabel": null,
       "supportsRankFilter": false,
@@ -39,7 +39,7 @@
       "heroPictureCount": 51,
       "compsWithHeroPictures": 28,
       "structuredCompsWithEquipment": 28,
-      "fetchedAt": "2026-11-07T05:16:25.462Z",
+      "fetchedAt": "2026-11-07T14:46:29.825Z",
       "mode": "comp-stats-lineups-equipment-and-pictures",
       "rankBand": "all",
       "patch": "18.6",
