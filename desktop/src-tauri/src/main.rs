@@ -14,7 +14,7 @@ use std::{
     time::{Duration, Instant, SystemTime, UNIX_EPOCH},
 };
 use tauri::{AppHandle, Emitter, LogicalSize, Manager, Size, WebviewWindow};
-use tauri_plugin_global_shortcut::{Code, Modifiers, ShortcutState};
+use tauri_plugin_global_shortcut::{Code, GlobalShortcutExt, Modifiers, ShortcutState};
 use xcap::Window;
 
 const OCR_DET_URL: &str = "https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det_onnx/resolve/main/inference.onnx?download=true";
@@ -376,9 +376,11 @@ fn main() {
             let click_through = Arc::new(AtomicBool::new(false));
             let click_through_handler = Arc::clone(&click_through);
 
+            // Install the global-shortcut plugin first, without mandatory startup
+            // registrations. A conflicting system/application hotkey must not prevent
+            // the overlay window from starting.
             app.handle().plugin(
                 tauri_plugin_global_shortcut::Builder::new()
-                    .with_shortcuts(["alt+q", "alt+w", "alt+e"])?
                     .with_handler(move |app, shortcut, event| {
                         if event.state != ShortcutState::Pressed {
                             return;
@@ -412,6 +414,14 @@ fn main() {
                     })
                     .build(),
             )?;
+
+            // Best-effort registration: if another app owns one shortcut, keep the
+            // overlay running and leave only that shortcut unavailable.
+            for shortcut in ["alt+q", "alt+w", "alt+e"] {
+                if let Err(error) = app.global_shortcut().register(shortcut) {
+                    eprintln!("TFTGOLDENCHANCHAN: global shortcut {shortcut} unavailable: {error}");
+                }
+            }
 
             Ok(())
         })
