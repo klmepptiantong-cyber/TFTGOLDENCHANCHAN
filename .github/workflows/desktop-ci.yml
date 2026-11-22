@@ -20,6 +20,10 @@ jobs:
   windows-portable:
     runs-on: windows-latest
     timeout-minutes: 40
+    env:
+      # A portable build must not require a separately installed MSVC C++ runtime.
+      # Cargo/cc-based native dependencies observe crt-static through target features.
+      RUSTFLAGS: -C target-feature=+crt-static
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -33,9 +37,9 @@ jobs:
             ~/.cargo/registry
             ~/.cargo/git
             desktop/src-tauri/target
-          key: windows-cargo-v1-${{ hashFiles('desktop/src-tauri/Cargo.toml') }}
+          key: windows-cargo-v2-static-crt-${{ hashFiles('desktop/src-tauri/Cargo.toml') }}
           restore-keys: |
-            windows-cargo-v1-
+            windows-cargo-v2-static-crt-
       - name: Install desktop dependencies
         working-directory: desktop
         run: npm install
@@ -67,8 +71,6 @@ jobs:
           Get-ChildItem $release -Filter "*.dll" -File -ErrorAction SilentlyContinue |
             ForEach-Object { Copy-Item $_.FullName $portable -Force }
 
-          # Inspect the PE import table. ONNX Runtime may be statically linked; in that
-          # case requiring onnxruntime.dll would incorrectly reject a valid portable EXE.
           $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
           if (!(Test-Path $vswhere)) { throw "vswhere.exe missing; cannot verify PE dependencies" }
           $vsPath = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
@@ -77,6 +79,8 @@ jobs:
             Sort-Object FullName -Descending | Select-Object -First 1
           if (!$dumpbin) { throw "dumpbin.exe missing; cannot verify PE dependencies" }
 
+          # Inspect the EXE import table. ONNX Runtime may be statically linked; in that
+          # case requiring onnxruntime.dll would incorrectly reject a valid portable EXE.
           $deps = (& $dumpbin.FullName /dependents $exe | Out-String)
           Write-Host $deps
           $needsOrtDll = $deps -match '(?i)onnxruntime\.dll'
@@ -100,7 +104,37 @@ jobs:
             Write-Host "ONNX Runtime linkage: static/self-contained; no onnxruntime.dll required."
           }
 
+          # A package called portable must not silently depend on an app-local MSVC
+          # runtime that is absent from the ZIP. Check every PE file we ship.
+          $portablePeFiles = Get-ChildItem $portable -File | Where-Object { $_.Extension -in '.exe', '.dll' }
+          foreach ($pe in $portablePeFiles) {
+            $peDeps = (& $dumpbin.FullName /dependents $pe.FullName | Out-String)
+            Write-Host "Dependencies for $($pe.Name):"
+            Write-Host $peDeps
+            $runtimeMatches = [regex]::Matches(
+              $peDeps,
+              '(?im)^\s+(MSVCP\d+(?:_\d+)?\.dll|VCRUNTIME\d+(?:_\d+)?(?:_\d+)?\.dll)\s*$'
+            )
+            foreach ($match in $runtimeMatches) {
+              $runtimeName = $match.Groups[1].Value
+              if (!(Test-Path (Join-Path $portable $runtimeName))) {
+                throw "$($pe.Name) imports $runtimeName but the portable package does not contain it. Build with static CRT or package an approved redistributable runtime."
+              }
+            }
+          }
+
           Get-ChildItem $portable | Select-Object Name, Length
+      - name: Portable startup smoke test
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $exe = Resolve-Path "desktop/portable/tftgoldenchanchan-overlay.exe"
+          $process = Start-Process -FilePath $exe -WorkingDirectory (Split-Path $exe) -PassThru
+          Start-Sleep -Seconds 5
+          if ($process.HasExited) {
+            throw "portable executable exited during startup smoke test with code $($process.ExitCode)"
+          }
+          Stop-Process -Id $process.Id -Force
       - name: Upload portable executable and OCR runtime
         uses: actions/upload-artifact@v4
         with:
